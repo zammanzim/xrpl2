@@ -121,6 +121,7 @@
         .course-card h3 {
             margin-bottom: 15px;
         }
+
         .course-card h4 {
             margin: 10px 0;
         }
@@ -132,6 +133,18 @@
                 padding: 10px;
             }
         }
+        footer {
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -139,7 +152,7 @@
     <header>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <div class="logo">X - RPL 2</div>
-        
+
     </header>
 
     <div class="sidebar" id="sidebar">
@@ -173,8 +186,13 @@
         <h4>Structure Organization</h4>
 
         <div class="course-card">
+            <p>Saran dong, styling isi alus na kumaha</p>
         </div>
     </div>
+    <footer>
+        <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
+        <p>Dev by zm, pecei | Created by zm | Designed by zm, pecei</p>
+    </footer>
     <script>
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');

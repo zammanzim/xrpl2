@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Sederhana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            display: block;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            left: -250px;
+            width: 250px;
+            height: calc(100vh - 50px);
+            background-color: #343a40;
+            color: white;
+            transition: left 0.7s ease;
+            z-index: 999;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #5a6268;
+            transform: scale(0.95);
+
+        }
+
+        .sidebar a.active {
+            background-color: #0088ff;
+            color: white;
+        }
+
+        .sidebar a {
+            margin: 0;
+            background-color: #495057;
+            border-radius: 8px;
+            border: 1px solid #6c757d;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+
+
+        .main-content {
+            margin-top: 60px;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .course-card h3 {
+            margin-bottom: 15px;
+        }
+        .course-card h4 {
+            margin: 10px 0;
+        }
+
+        @media (min-width: 769px) {}
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="logo">X - RPL 2</div>
+        
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <h3>Ini Menu Asli</h3>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About X - RPL 2</a></li>
+            <li><a href="classorg.html" class="active">Class Organization</a></li>
+            <li><a href="piket.html">Piket Schedule</a></li>
+            <h3>Pelajaran wok</h3>
+            <li><a href="bahasaindonesia.html">Bahasa Indonesia</a></li>
+            <li><a href="bahasainggris.html">Bahasa Inggris</a></li>
+            <li><a href="bahasasunda.html">Bahasa Sunda</a></li>
+            <li><a href="bahasajepang.html">Bahasa Jepang</a></li>
+            <li><a href="matematika.html">Matematika</a></li>
+            <li><a href="proipas.html">Proipas</a></li>
+            <li><a href="sejarah.html">Sejarah</a></li>
+            <li><a href="pabp.html">PABP</a></li>
+            <li><a href="pp.html">PP</a></li>
+            <li><a href="senibudaya.html">Seni Budaya</a></li>
+            <li><a href="pjok.html">PJOK</a></li>
+            <li><a href="informatika.html">Informatika</a></li>
+            <li><a href="bk.html">BK</a></li>
+            <li><a href="dpr1.html">DASPROGRPL 1</a></li>
+            <li><a href="dpr2.html">DASPROGRPL 2</a></li>
+            <li><a href="dpr3.html">DASPROGRPL 3</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Class Organization</h1>
+        <h4>Structure Organization</h4>
+
+        <div class="course-card">
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+
+            if (window.innerWidth > 768) {
+                sidebar.classList.toggle('open');
+                mainContent.classList.toggle('shifted');
+            } else {
+                sidebar.classList.toggle('open');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.menu-item a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const sidebar = document.getElementById('sidebar');
+                    const mainContent = document.querySelector('.main-content');
+
+                    if (window.innerWidth > 768) {
+                        sidebar.classList.remove('open');
+                        mainContent.classList.remove('shifted');
+                    } else {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

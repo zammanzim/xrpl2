@@ -1,0 +1,449 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBiodataLengkap(TidakSederhana)</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        text-align: center;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        padding: 10px 30px;
+        background-color: rgb(255, 255, 255);
+        height: 60px;
+    }
+
+    .judul {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 200px;
+        height: calc(100% - 60px);
+        background-color: #e2e2e2;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        border-right: 1px solid #a0a0a0;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 15px;
+    }
+
+    .sidebar a {
+        display: block;
+        background: #f4f4f4;
+        color: #333;
+        padding: 12px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        margin-top: 5px;
+    }
+
+    .sidebar a:hover {
+        background-color: #676767;
+        color: #fff;
+    }
+
+    .sidebar a.active {
+        background-color: #ff0000;
+        color: #fff;
+    }
+
+    .main-content {
+        margin-left: 220px;
+        padding: 20px;
+        background-color: #f3f3f3;
+        min-height: calc(100vh - 60px);
+    }
+
+    .container {
+        display: flex;
+        height: 100vh;
+        padding-top: 60px;
+    }
+
+    .container1 {
+        max-width: 800px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 10px;
+        margin: 35px;
+    }
+
+    .container1 img {
+        width: 200px;
+        height: auto;
+    }
+
+    .right {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding: 20px;
+        overflow-y: auto;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        background: #e2e2e2;
+        border-left: 1px solid #a0a0a0;
+        overflow-x: hidden;
+    }
+
+    .teks1 {
+        margin: 10px;
+    }
+
+    hr {
+        border: none;
+        border-bottom: 1px solid #a0a0a0;
+        width: 1410px;
+        margin: 5px 0;
+    }
+
+    p {
+        padding: 35px;
+        font-size: 50px;
+        margin: 0;
+    }
+
+    h6 {
+        font-weight: 400;
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .photo-container {
+        float: right;
+        width: 405px;
+        height: 545px;
+        padding: 10px;
+        text-align: center;
+        font-size: 15px;
+        margin: 35px;
+        border-radius: 16px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .photo-container img {
+        width: 70%;
+        height: auto;
+        padding-top: 30px;
+    }
+
+    .photo-container .caption {
+        margin-top: 5px;
+        font-size: 35px;
+        color: #555;
+    }
+
+    .inipnormal {
+        font-size: 20px;
+        padding: 0;
+    }
+
+    .inih2normal {
+        font-size: 25px;
+        margin: 20px 0 5px;
+    }
+
+    .search-icon {
+        font-size: 18px;
+        color: #555;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    #searchInput {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        color: #333;
+        position: fixed;
+        margin-left: 20px;
+    }
+
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to bottom, #f9f9f9, #eaeaea);
+        border-radius: 30px;
+        box-shadow:
+            inset 0 3px 6px rgba(0, 0, 0, 0.3),
+            inset 0 -3px 6px rgba(255, 255, 255, 0.8),
+            0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 5px 15px;
+        width: 150px;
+        gap: 8px;
+        height: 25px;
+    }
+
+    #searchResults {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+        display: none;
+        max-height: 240px;
+        overflow-y: auto;
+    }
+
+    .result-item {
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .result-item:hover {
+        background: #f3f3f3;
+        border-radius: 6px;
+    }
+
+    .access-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: #f3f3f3;
+        border-radius: 25px;
+        padding: 6px 10px;
+        width: 150px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+        margin: 20px 0;
+        height: 30px;
+    }
+
+    #accessInput {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 13px;
+        color: #333;
+    }
+
+    #accessBtn:hover {
+        background: #ccc;
+    }
+
+    .containerPW {
+        width: 185px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 10px;
+    }
+
+    .hrbuatright {
+        width: 220px;
+        margin: 15px 0 15px -10px;
+    }
+    @media (max-width: 768px) {
+        body {
+    background-color: lightblue;
+  }
+}
+</style>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="judul">zammanzim</h1>
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
+            <div id="searchResults"></div>
+        </div>
+    </header>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>ailopamila</h2>
+            <ul>
+                <li><a href="ntzam.html" class="active">Biodata</a></li>
+                <li><a href="MainPhone.html">Main Phone</a></li>
+                <li><a href="SecPhone.html">Second Phone</a></li>
+                <li><a href="SpecLaptop.html">Laptop</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <nav class="right">
+                <h2 class="inih2normal">Project Started:</h2>
+                <p class="inipnormal">25 September 2025</p>
+        </div>
+        <main class="main-content">
+            <p>Biodata</p>
+            <hr>
+            <div class="photo-container">
+                <img src="nazm.jpg" alt="ini foto">
+                <p class="caption">nizam dipanggil nengok</p>
+            </div>
+            <div class="container1">
+                <h1 class="teks1">Nama Lengkap</h1>
+                <h6>Nizam Fhamer Arafli</h6>
+            </div>
+            <div class="container1">
+                <h1 class="teks1">Tempat, Tanggal Lahir</h1>
+                <h6>Bandung Barat, 13 Juli 2010</h6>
+            </div>
+            <div class="container1">
+                <h1 class="teks1">Alamat</h1>
+                <h6>Kampung Sekip, RT 03, RW 08</h6>
+            </div>
+            <div class="container1">
+                <h1 class="teks1">Hobi</h1>
+                <h6>Bermain alat musik, mengasah skill di dunia teknologi, pengembangan bakat dan ...baca selengkapnya
+                </h6>
+            </div>
+    </div>
+    </main>
+    </div>
+    <script>
+        const dataList = [
+            { name: "Laptop", link: "SpecLaptop.html" },
+            { name: "Main Phone", link: "MainPhone.html" },
+            { name: "Second Phone", link: "SecPhone.html" },
+        ];
+
+        const input = document.getElementById("searchInput");
+        const results = document.getElementById("searchResults");
+        const container = document.querySelector(".search-container");
+
+        input.addEventListener("input", () => {
+            const query = input.value.toLowerCase().trim();
+            results.innerHTML = "";
+
+            if (query.length === 0) {
+                results.style.display = "none";
+                return;
+            }
+
+            input.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    const query = input.value.toLowerCase().trim();
+
+                    if (query === "ailopamila") {
+                        window.location.href = "abouthim.html";
+                    }
+                }
+            });
+
+
+            const filtered = dataList.filter(item =>
+                item.name.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                const no = document.createElement("div");
+                no.className = "result-item";
+                no.textContent = "yg bener klo nyari";
+                no.style.opacity = "0.6";
+                results.appendChild(no);
+            } else {
+                filtered.forEach(item => {
+                    const div = document.createElement("div");
+                    div.classList.add("result-item");
+                    div.textContent = item.name;
+                    div.onclick = () => window.location.href = item.link;
+                    results.appendChild(div);
+                });
+            }
+
+            results.style.display = "block";
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const query = input.value.toLowerCase().trim();
+
+                if (query === "ailopamila") {
+                    window.location.href = "abouthim.html";
+                    return;
+                }
+
+                const found = dataList.find(item => item.name.toLowerCase() === query);
+                if (found) {
+                    window.location.href = found.link;
+                }
+            }
+        });
+
+
+        const accessInput = document.getElementById("accessInput");
+        const accessBtn = document.getElementById("accessBtn");
+        const accessBox = document.querySelector(".access-container");
+
+        const accessList = {
+            "nzam1313": "rahasiabang.html",
+            "nizam": "biodata.html",
+            "laptop": "SpecLaptop.html"
+        };
+
+        function checkAccess() {
+            const input = accessInput.value.trim().toLowerCase();
+
+            if (accessList[input]) {
+                window.location.href = accessList[input];
+            } else {
+                accessBox.style.animation = "shake 0.3s";
+                setTimeout(() => (accessBox.style.animation = ""), 300);
+            }
+        }
+
+        accessBtn.addEventListener("click", checkAccess);
+        accessInput.addEventListener("keydown", e => {
+            if (e.key === "Enter") checkAccess();
+        });
+
+        const style = document.createElement("style");
+        style.textContent = `
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}`;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+
+</html>
+
+

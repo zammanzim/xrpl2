@@ -13,7 +13,7 @@
         header {
             background-color: #007bff;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 0 10px 20px;
             display: flex;
             align-items: center;
             position: fixed;
@@ -22,7 +22,7 @@
             z-index: 1000;
             max-height: 55px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            gap: 280px;
+            justify-content: space-between;
         }
 
         .hamburger {
@@ -201,6 +201,12 @@
             margin: 0;
         }
 
+        .rightsection {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .searchhomepage {
             position: relative;
             display: flex;
@@ -246,7 +252,7 @@
         button {
             border: none;
             border-radius: 30px;
-            height: 42px;
+            height: 33px;
             padding: 0 16px;
             background: linear-gradient(135deg, #0077ff, #00bfff);
             color: white;

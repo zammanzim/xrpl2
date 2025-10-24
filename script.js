@@ -10,6 +10,16 @@ function toggleMenu() {
     }
 }
 
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            searchPage(); // jalankan fungsi searchPage
+        }
+    });
+}
+
 const toggle = document.getElementById('toggle');
 const gallery = document.getElementById('gallery');
 
@@ -52,9 +62,3 @@ function searchPage() {
         }, 2500);
     }
 }
-
-document.getElementById('searchInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        searchPage();
-    }
-});

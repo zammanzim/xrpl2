@@ -13,11 +13,13 @@
 <body>
     <header>
      <div class="hamburger" onclick="toggleMenu()">☰</div>
-     <form class="searchhomepage" onsubmit="event.preventDefault(); searchPage();">
+     <div class="searchhomepage">
+
          <i class="fa-solid fa-magnifying-glass"></i>
-         <input type="text" id="searchInput" placeholder="Search">
-     </form>
-     <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+                <input type="text" id="searchInput" placeholder="Search">
+            </div>
+            <button onclick="searchPage()">Cari</button>
+            <span id="searchMessage" style="color: red; font-size: 14px;"></span>
  </header>
 
     <div class="sidebar" id="sidebar">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 
-<head>
+<head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +10,13 @@
 
 <body>
     <header>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <div class="logo">X - RPL 2</div>
-
-    </header>
+     <div class="hamburger" onclick="toggleMenu()">☰</div>
+     <form class="searchhomepage" onsubmit="event.preventDefault(); searchPage();">
+         <i class="fa-solid fa-magnifying-glass"></i>
+         <input type="text" id="searchInput" placeholder="Search">
+     </form>
+     <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+ </header>
 
     <div class="sidebar" id="sidebar">
         <h3>Ini Menu Asli</h3>
@@ -81,7 +84,7 @@
     </div>
     <footer>
             <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
-            <p>Dev by zm, pecei | Created by zm | Designed by zm, pecei</p>
+            <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
         </footer>
     <script src="script.js"></script>
 </body>

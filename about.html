@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Learning Sederhana</title>
@@ -121,6 +122,7 @@
         .course-card h3 {
             margin-bottom: 15px;
         }
+
         .course-card h4 {
             margin: 10px 0;
         }
@@ -132,6 +134,7 @@
                 padding: 10px;
             }
         }
+
         footer {
             background-color: #007bff;
             color: #ffffff;
@@ -150,14 +153,13 @@
 <body>
     <header>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <div class="logo">X - RPL 2</div>
-        
+        <h3>X - RPL 2</h3>
     </header>
 
     <div class="sidebar" id="sidebar">
         <h3>Ini Menu Asli</h3>
         <ul>
-           <li><a href="homepage.html">Home</a></li>
+            <li><a href="homepage.html">Home</a></li>
             <li><a href="about.html" class="active">About X - RPL 2</a></li>
             <li><a href="classorg.html">Class Organization</a></li>
             <li><a href="piket.html">Piket Schedule</a></li>
@@ -189,9 +191,9 @@
         </div>
     </div>
     <footer>
-            <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
-            <p>Dev by zm, pecei | Created by zm | Designed by zm, pecei</p>
-        </footer>
+        <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
+        <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
+    </footer>
     <script>
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');

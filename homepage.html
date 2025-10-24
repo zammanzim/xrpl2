@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 
-<head>
+<head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -141,56 +141,89 @@
 
         .searchhomepage {
             position: relative;
-            align-items: center;
             display: flex;
-            background: linear-gradient(to bottom, #f9f9f9, #eaeaea);
+            align-items: center;
+            background: linear-gradient(135deg, #b3ecff, #66c2ff);
             border-radius: 30px;
             box-shadow:
-                inset 0 3px 6px rgba(0, 0, 0, 0.3),
-                inset 0 -3px 6px rgba(255, 255, 255, 0.8),
-                0 2px 4px rgba(0, 0, 0, 0.2);
-            padding: 0 10px;
-            width: 150px;
+                inset 0 3px 6px rgba(255, 255, 255, 0.6),
+                inset 0 -3px 6px rgba(0, 100, 255, 0.15),
+                0 2px 8px rgba(0, 100, 255, 0.25);
+            padding: 0 12px;
+            width: 140px;
+            height: 42px;
             gap: 8px;
-            height: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .searchhomepage:hover {
+            box-shadow:
+                0 4px 10px rgba(0, 140, 255, 0.35),
+                inset 0 -2px 4px rgba(51, 0, 255, 0.9);
+            transform: translateY(-1px);
         }
 
         .searchhomepage input {
             border: none;
-            background: none;
-            width: 145px;
-            margin-left: -30px;
+            background: transparent;
+            font-size: 15px;
+            color: #004d73;
+            width: 100px;
         }
 
         .searchhomepage input::placeholder {
-            padding-left: 30px;
+            color: #0077b6;
+            opacity: 0.8;
         }
 
         .searchhomepage input:focus {
-            border: none;
             outline: none;
-            box-shadow: none;
-            padding-left: 30px;
-
         }
 
-        .searchhomepage button {
+        button {
             border: none;
             border-radius: 30px;
-            height: 35px;
-            min-width: 50px;
-            background: linear-gradient(to bottom, #f9f9f9, #eaeaea);
-            border-radius: 30px;
-            box-shadow:
-                inset 0 3px 6px rgba(0, 0, 0, 0.3),
-                inset 0 -3px 6px rgba(255, 255, 255, 0.8),
-                0 2px 4px rgba(0, 0, 0, 0.2);
+            height: 42px;
+            padding: 0 16px;
+            background: linear-gradient(135deg, #0077ff, #00bfff);
+            color: white;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 1 ease;
+            box-shadow:
+                0 3px 6px rgba(0, 100, 255, 0.3),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.3);
+            transition: all 0.25s ease;
         }
 
-        .searchhomepage button:hover {
-            background: linear-gradient(to bottom, #00d9ff);
+        .course-cards {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .searchhomepage input::placeholder {
+            color: #888;
+            transition: color 0.3s ease;
+        }
+
+        .searchhomepage input.error::placeholder {
+            color: #ff0000;
+            font-weight: 500;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #00aaff, #66d9ff);
+            box-shadow:
+                0 4px 10px rgba(0, 140, 255, 0.4),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -210,10 +243,9 @@
 
 <body>
     <header>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <div class="logo">X - RPL 2</div>
-
-    </header>
+     <div class="hamburger" onclick="toggleMenu()">☰</div>
+     <h3>X - RPL 2</h3>
+ </header>
 
     <div class="sidebar" id="sidebar">
         <h3>Ini Menu Asli</h3>
@@ -245,17 +277,21 @@
         <h1>Home</h1>
         <h4>E-Learning kelas caritana</h4>
 
-        <div class="course-card">
+        <div class="course-cards">
             <div class="searchhomepage">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" placeholder="Search">
-                <button onclick="searchPage()">Cari</button>
             </div>
-            <h4>Tips</h4>
+            <button onclick="searchPage()">Cari</button>
+            <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+        </div>
+        <div class="course-card">
+            <h4>Tips Pake Kolom Pencarian</h4>
             <p>Misal info yang dibagian "📖 PR / Tugas 📖" dibawah ditulis Tugas B. Jepang Nomor 1, untuk nyari tugas
                 nya kalian cukup ketik angka 1 aja di pencarian. Kemudian pencet tombol Cari</p>
-
         </div>
+
+
 
         <div class="course-card">
             <h3>🌟 Senin, 27 Oktober 2025 🌟</h3>
@@ -335,10 +371,10 @@
             </p>
         </div>
     </div>
-        <footer>
-            <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
-            <p>Dev by zm, pecei | Created by zm | Designed by zm, pecei</p>
-        </footer>
+    <footer>
+        <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
+        <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
+    </footer>
 
     <script>
         function toggleMenu() {
@@ -354,28 +390,46 @@
         }
 
         function searchPage() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
+            const input = document.getElementById('searchInput');
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const message = document.getElementById('searchMessage');
 
-            if (query.includes("1")) {
-                window.location.href = "bahasajepang.html#1";
-            } else if (query.includes("2")) {
-                window.location.href = "pjok.html#2";
-            } else if (query.includes("3")) {
-                window.location.href = "informatika.html#3";
-            } else if (query.includes("4")) {
-                window.location.href = "pabp.html#4"
-            } else if (query.includes("5")) {
-                window.location.href = "pp.html#5"
-            } else if (query.includes("6")) {
-                window.location.href = "matematika.html#6"
-            } else if (query.includes("7")) {
-                window.location.href = ".html#5"
-            }
+            message.textContent = "";
 
-            else {
-                alert("Topik tidak ditemukan 😢");
+            const data = [
+                { keyword: "1", url: "bahasajepang.html#1" },
+                { keyword: "2", url: "pjok.html#2" },
+                { keyword: "3", url: "informatika.html#3" },
+                { keyword: "4", url: "pabp.html#4" },
+                { keyword: "5", url: "pp.html#5" },
+                { keyword: "6", url: "matematika.html#6" },
+                { keyword: "7", url: "dpr2.html#7" }
+            ];
+
+            const result = data.find(item => item.keyword === query);
+
+            if (result) {
+                window.location.href = result.url;
+            } else {
+                input.value = "";
+
+                const oldPlaceholder = input.placeholder;
+                input.classList.add('error');
+                input.placeholder = "gaada woi";
+
+                setTimeout(() => {
+                    input.placeholder = oldPlaceholder;
+                    input.classList.remove('error');
+                }, 2500);
             }
         }
+
+        document.getElementById('searchInput').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                searchPage();
+            }
+        });
+
     </script>
 </body>
 

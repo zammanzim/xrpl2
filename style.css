@@ -4,10 +4,27 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow: auto;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+
         }
 
         header {
@@ -48,6 +65,7 @@
             z-index: 999;
             padding: 20px;
             overflow-y: auto;
+            scrollbar-width: none;
         }
 
         .sidebar.open {
@@ -124,7 +142,46 @@
             margin: 5px 0;
         }
 
-        @media (min-width: 769px) {}
+        @media (min-width: 1024px) {
+            .main-content {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 30px;
+                max-width: 1200px;
+                text-align: left;
+            }
+
+            .left-section,
+            .right-section {
+                flex: 1;
+            }
+
+            .right-section {
+                position: sticky;
+                margin-top: 55px;
+            }
+
+
+            .sidebar {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 270px;
+                transition: margin-left 0.3s ease;
+            }
+
+            .sidebar.closed {
+                left: -250px;
+            }
+
+            .main-content.shifted {
+                margin-left: 128px;
+            }
+        }
+
 
         @media (max-width: 768px) {
             .main-content {
@@ -263,6 +320,7 @@
                 inset 0 -2px 4px rgba(255, 255, 255, 0.3);
             transition: all 0.25s ease;
         }
+
         .searchhomepage input::placeholder {
             color: #888;
             transition: color 0.3s ease;

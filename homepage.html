@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 
-<head> 
-    
+<head>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Learning Sederhana</title>
     <style>
+        html {
+            overflow: auto;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +27,16 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
+
+        body::-webkit-scrollbar {
+            display: none;
+
+        }
+
 
         header {
             background-color: #007bff;
@@ -56,6 +74,11 @@
             z-index: 999;
             padding: 20px;
             overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            display: none;
         }
 
         .sidebar.open {
@@ -132,7 +155,46 @@
             margin: 5px 0;
         }
 
-        @media (min-width: 769px) {}
+        @media (min-width: 1024px) {
+            .main-content {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 30px;
+                max-width: 1200px;
+                text-align: left;
+            }
+
+            .left-section,
+            .right-section {
+                flex: 1;
+            }
+
+            .right-section {
+                position: sticky;
+                top: 135px;
+            }
+
+
+            .sidebar {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 270px;
+                transition: margin-left 0.3s ease;
+            }
+
+            .sidebar.closed {
+                left: -250px;
+            }
+
+            .main-content.shifted {
+                margin-left: 128px;
+            }
+        }
+
 
         @media (max-width: 768px) {
             .main-content {
@@ -244,9 +306,9 @@
 
 <body>
     <header>
-     <div class="hamburger" onclick="toggleMenu()">☰</div>
-     <h3>X - RPL 2</h3>
- </header>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <h3>X - RPL 2</h3>
+    </header>
 
     <div class="sidebar" id="sidebar">
         <h3>Ini Menu Asli</h3>
@@ -275,103 +337,116 @@
         </ul>
     </div>
     <div class="main-content">
-        <h1>Home</h1>
-        <h4>E-Learning kelas caritana</h4>
+        <div class="left-section">
+            <h1>Home</h1>
+            <h4>E-Learning kelas caritana</h4>
 
-        <div class="course-cards">
-            <div class="searchhomepage">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Search">
+            <div class="course-cards">
+                <div class="searchhomepage">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Search">
+                </div>
+                <button onclick="searchPage()">Cari</button>
+                <span id="searchMessage" style="color: red; font-size: 14px;"></span>
             </div>
-            <button onclick="searchPage()">Cari</button>
-            <span id="searchMessage" style="color: red; font-size: 14px;"></span>
-        </div>
-        <div class="course-card">
-            <h4>Tips Pake Kolom Pencarian</h4>
-            <p>Misal info yang dibagian "📖 PR / Tugas 📖" dibawah ditulis Tugas B. Jepang Nomor 1, untuk nyari tugas
-                nya kalian cukup ketik angka 1 aja di pencarian. Kemudian pencet tombol Cari</p>
-        </div>
 
+            <div class="course-card">
+                <h4>Tips Pake Kolom Pencarian</h4>
+                <p>Misal info yang dibagian "📖 PR / Tugas 📖" dibawah ditulis Tugas B. Jepang Nomor 1, untuk nyari
+                    tugas
+                    nya kalian cukup ketik angka 1 aja di pencarian. Kemudian pencet tombol Cari</p>
+            </div>
 
+            <div class="course-card">
+                <h3>Announcement:</h3>
+                <p>Web ini masih dalam pengembangan, wajar karek ge 2-4 hari pembuatan. Jadi, tugas dan informasi lain
+                    belum ditambahkan. <br>
+                    Barijeng erek nambahken background nu bakal aya animasi siga di laut di tukang cek si pecei (boro
+                    boro
+                    nyien animasi background, urg mikiran nyien kolom pencarian ge lier).
+                </p>
+            </div>
 
-        <div class="course-card">
-            <h3>🌟 Senin, 27 Oktober 2025 🌟</h3>
-            <hr>
-            <h4>👔 Putih Abu</h4>
-            <hr>
-            <h4>📝 Jadwal Pelajaran 📝</h4>
-            <p>📗 2 Jam B. Jepang</p>
-            <p>📕 1 Jam PPK</p>
-            <p>📘 1 Jam PJOK</p>
-            <p>📙 2 Jam Informatika</p>
-            <p>📕 1 Jam PPK</p>
-            <p>📓 3 Jam PABP</p>
-            <hr>
-            <h4>📖 PR / Tugas 📖</h4>
-            <p>📒 Tugas B. Jepang Nomor <b>1</b></p>
-            <p>📒 Tugas PJOK Nomor <b>2</b></p>
-            <p>📒 Tugas Informatika Nomor <b>3</b></p>
-            <p>📒 Tugas PABP Nomor <b>4</b></p>
-            <hr>
-            <h4>📌 Catatan 📌</h4>
-            <p>Senin Upacara</p>
-            <p>Memakai atribut lengkap</p>
-            <hr>
-            <h4>📔 Status Buku 📔</h4>
-            <p>📔 Ada semua</p>
-            <hr>
-            <h4>🧹 Petugas Piket 🧹</h4>
-            <p>- Alena</p>
-            <p>- Andika</p>
-            <p>- Anna</p>
-            <p>- Faizar</p>
-            <p>- Keyla</p>
-            <p>- Fachri</p>
-            <p>- Risha</p>
-            <hr>
-            <p>KOREKSI woi mun aya TUGAS ANU KURANG atau aya nu salah we.</p>
-            <p>v7</p>
-        </div>
+            <div class="course-card">
+                <h3>Disclaimer:</h3>
+                <p>Bagi hidupnya yang gamau ribet "ah nanaonan nyien nu web kararitu, raribet, te bararoga kuota", nya
+                    te
+                    nanaon. Kalo ada tugas atau ada pengumuman di channel, informasinya suka tenggelem jadi fungsi dari
+                    web
+                    ini adalah untuk mengsortir tugas atau informasi agar tidak berantakan. Yaaa channel masih berjalan,
+                    jadi web ini sebagai pelengkap atau database tentang semua tugas dan informasi. Alasan saya membuat
+                    web
+                    ini? Yap gara-gara gabut, bae alus gabut teh anu bermanfaat.</p>
+            </div>
 
-        <div class="course-card">
-            <h3>Announcement:</h3>
-            <p>Web ini masih dalam pengembangan, wajar karek ge 2-4 hari pembuatan. Jadi, tugas dan informasi lain belum
-                ditambahkan. <br>
-                Barijeng erek nambahken background nu bakal aya animasi siga di laut di tukang cek si pecei (boro boro
-                nyien animasi background, urg mikiran nyien kolom pencarian ge lier).
-            </p>
+            <div class="course-card">
+                <h3>Features</h3>
+                <p>
+                    1. Menu utama dan menu pelajaran (garis tiga di pojok kiri web)
+                    <hr>
+                    2. Menu Home, isinya: <br>
+                    - Kolom pencarian <br>
+                    - Pengumuman <br>
+                    - Info harian/jadwal
+                    <hr>
+                    3. Menu About X - RPL 2, isinya tentang deskripsi kelas kita dan foto-foto memori bersama Bu Windy.
+                    <hr>
+                    4. Menu Class Organization, isinya struktur organisasi kelas X - RPL 2. Mulai dari Wali Kelas,
+                    sampai
+                    seksi kebersihan, keamanan, dll.
+                    <hr>
+                    5. Menu Piket Schedule, yaaa isinya jadwal piket.
+                    <hr>
+                    6. Menu Pelajaran, isinya tentang tugas berdasarkan mapelnya.
+                </p>
+            </div>
         </div>
 
-        <div class="course-card">
-            <h3>Disclaimer:</h3>
-            <p>Bagi hidupnya yang gamau ribet "ah nanaonan nyien nu web kararitu, raribet, te bararoga kuota", nya te
-                nanaon. Kalo ada tugas atau ada pengumuman di channel, informasinya suka tenggelem jadi fungsi dari web
-                ini adalah untuk mengsortir tugas atau informasi agar tidak berantakan. Yaaa channel masih berjalan,
-                jadi web ini sebagai pelengkap atau database tentang semua tugas dan informasi. Alasan saya membuat web
-                ini? Yap gara-gara gabut, bae alus gabut teh anu bermanfaat.</p>
-        </div>
-
-        <div class="course-card">
-            <h3>Features</h3>
-            <p>
-                1. Menu utama dan menu pelajaran (garis tiga di pojok kiri web)
+        <!-- 📅 Kolom kanan -->
+        <div class="right-section">
+            <div class="course-card">
+                <h3>🌟 Senin, 27 Oktober 2025 🌟</h3>
                 <hr>
-                2. Menu Home, isinya: <br>
-                - Kolom pencarian <br>
-                - Pengumuman <br>
-                - Info harian/jadwal
+                <h4>👔 Putih Abu</h4>
                 <hr>
-                3. Menu About X - RPL 2, isinya tentang deskripsi kelas kita dan foto-foto memori bersama Bu Windy.
+                <h4>📝 Jadwal Pelajaran 📝</h4>
+                <p>📗 2 Jam B. Jepang</p>
+                <p>📕 1 Jam PPK</p>
+                <p>📘 1 Jam PJOK</p>
+                <p>📙 2 Jam Informatika</p>
+                <p>📕 1 Jam PPK</p>
+                <p>📓 3 Jam PABP</p>
                 <hr>
-                4. Menu Class Organization, isinya struktur organisasi kelas X - RPL 2. Mulai dari Wali Kelas, sampai
-                seksi kebersihan, keamanan, dll.
+                <h4>📖 PR / Tugas 📖</h4>
+                <p>📒 Tugas B. Jepang Nomor <b>1</b></p>
+                <p>📒 Tugas PJOK Nomor <b>2</b></p>
+                <p>📒 Tugas Informatika Nomor <b>3</b></p>
+                <p>📒 Tugas PABP Nomor <b>4</b></p>
                 <hr>
-                5. Menu Piket Schedule, yaaa isinya jadwal piket.
+                <h4>📌 Catatan 📌</h4>
+                <p>Senin Upacara</p>
+                <p>Memakai atribut lengkap</p>
                 <hr>
-                6. Menu Pelajaran, isinya tentang tugas berdasarkan mapelnya.
-            </p>
+                <h4>📔 Status Buku 📔</h4>
+                <p>📔 Ada semua</p>
+                <hr>
+                <h4>🧹 Petugas Piket 🧹</h4>
+                <p>- Alena</p>
+                <p>- Andika</p>
+                <p>- Anna</p>
+                <p>- Faizar</p>
+                <p>- Keyla</p>
+                <p>- Fachri</p>
+                <p>- Risha</p>
+                <hr>
+                <p>KOREKSI woi mun aya TUGAS ANU KURANG atau aya nu salah we.</p>
+                <p>v7</p>
+            </div>
         </div>
     </div>
+
+
+
     <footer>
         <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
         <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
@@ -382,13 +457,14 @@
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.querySelector('.main-content');
 
-            if (window.innerWidth > 768) {
-                sidebar.classList.toggle('open');
+            if (window.innerWidth >= 1024) {
+                sidebar.classList.toggle('closed');
                 mainContent.classList.toggle('shifted');
             } else {
                 sidebar.classList.toggle('open');
             }
         }
+
 
         function searchPage() {
             const input = document.getElementById('searchInput');

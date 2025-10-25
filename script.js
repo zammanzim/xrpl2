@@ -2,8 +2,8 @@ function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
 
-    if (window.innerWidth > 768) {
-        sidebar.classList.toggle('open');
+    if (window.innerWidth >= 1024) {
+        sidebar.classList.toggle('closed');
         mainContent.classList.toggle('shifted');
     } else {
         sidebar.classList.toggle('open');

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Sederhana</title>
+</head>
+
+<body>
+    <header>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="rightsection">
+            <div class="searchhomepage">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search">
+            </div>
+            <button onclick="searchPage()">Cari</button>
+            <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <h3>Ini Menu Asli</h3>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="announcement.html">Announcement</a></li>
+            <h3>Pelajaran Wok</h3>
+            <li><a href="bahasaindonesia.html">Bahasa Indonesia</a></li>
+            <li><a href="bahasainggris.html">Bahasa Inggris</a></li>
+            <li><a href="bahasasunda.html">Bahasa Sunda</a></li>
+            <li><a href="bahasajepang.html">Bahasa Jepang</a></li>
+            <li><a href="matematika.html">Matematika</a></li>
+            <li><a href="proipas.html">Proipas</a></li>
+            <li><a href="sejarah.html">Sejarah</a></li>
+            <li><a href="pabp.html">PABP</a></li>
+            <li><a href="pp.html">PP</a></li>
+            <li><a href="senibudaya.html">Seni Budaya</a></li>
+            <li><a href="pjok.html">PJOK</a></li>
+            <li><a href="informatika.html" class="active">Informatika</a></li>
+            <li><a href="bk.html">BK</a></li>
+            <li><a href="dpr1.html">DASPROGRPL 1</a></li>
+            <li><a href="dpr2.html">DASPROGRPL 2</a></li>
+            <li><a href="dpr3.html">DASPROGRPL 3</a></li>
+        </ul>            </div>
+    <div class="main-content">
+        <div class="left-section">
+            <h1>Informatika</h1>
+            <h4>PR / Tugas</h4>
+
+            <div class="course-cardpp">
+                <img src="profpic.png" alt="" class="profpic">
+                <div class="course-cardppinfo">
+                    <h3>Teacher</h3>
+                    <p>Pak Hizbul Arafat</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <h3>Note:</h3>
+                <p>Daftar tugas dari hari Senin, 27 Oktober 2025 dan seterusnya.</p>
+            </div>
+        </div>
+<hr>
+        <div class="right-section">
+            <div class="course-card">
+                <div class="headercoursecard">
+                <h3 id="3">Tugas Informatika</h3> <h5>Selesai. Senin, 27 Okt 2025</h5> </div>
+                <h4>Nomor 3</h4>
+                <p>Mempresentasikan tentang pengaruh dan fungsi informatika perkelompok (khusus yang remed).<br>
+                    Selain dari yang di presentasiin ada aspek lain yang dinilai seperti:<br>
+                    1. Sikap tubuh <br>
+                    2. Intonasi <br>
+                    3. Poin yang disampaikan <br>
+                    4. Arah pandangan <br>
+                    <hr>
+                    List kelompok:
+                </p>
+                <div class="toggle-btn" >▼</div>
+
+                <div class="gallery" >
+                    <p>Kelompok 1: Almira, windi <br>
+                        Kelompok 2: Anna, Silva <br>
+                        Kelompok 3: Aufa, Sendi <br>
+                        Kelompok 4: Bintang, Sandra <br>
+                        Kelompok 5: Debby, Rizky <br>
+                        Kelompok 6: Gista, Risha <br>
+                        Kelompok 7: Latif, Neiyla <br>
+                        Kelompok 8: Fachri, Nakisa <br>
+                        Kelompok 9: Yusuf, Nabila <br></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
+        <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Sederhana</title>
+</head>
+
+<body>
+    <header>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="rightsection">
+            <div class="searchhomepage">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search">
+            </div>
+            <button onclick="searchPage()">Cari</button>
+            <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <h3>Ini Menu Asli</h3>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="announcement.html">Announcement</a></li>
+            <h3>Pelajaran Wok</h3>
+            <li><a href="bahasaindonesia.html">Bahasa Indonesia</a></li>
+            <li><a href="bahasainggris.html">Bahasa Inggris</a></li>
+            <li><a href="bahasasunda.html">Bahasa Sunda</a></li>
+            <li><a href="bahasajepang.html">Bahasa Jepang</a></li>
+            <li><a href="matematika.html">Matematika</a></li>
+            <li><a href="proipas.html">Proipas</a></li>
+            <li><a href="sejarah.html">Sejarah</a></li>
+            <li><a href="pabp.html">PABP</a></li>
+            <li><a href="pp.html" class="active">PP</a></li>
+            <li><a href="senibudaya.html">Seni Budaya</a></li>
+            <li><a href="pjok.html">PJOK</a></li>
+            <li><a href="informatika.html">Informatika</a></li>
+            <li><a href="bk.html">BK</a></li>
+            <li><a href="dpr1.html">DASPROGRPL 1</a></li>
+            <li><a href="dpr2.html">DASPROGRPL 2</a></li>
+            <li><a href="dpr3.html">DASPROGRPL 3</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="left-section">
+            <h1>PP</h1>
+            <h4>PR / Tugas</h4>
+
+            <div class="course-cardpp">
+                <img src="profpic.png" alt="" class="profpic">
+                <div class="course-cardppinfo">
+                    <h3>Teacher</h3>
+                    <p>Bu Umi Arifiyah, S. Pd</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <h3>Note:</h3>
+                <p>Daftar tugas dari hari Senin, 27 Oktober 2025 dan seterusnya.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="right-section">
+            <div class="course-card">
+                <div class="headercoursecard">
+                    <h3 id="5">Tugas PP</h3>
+                </div>
+                <h4>Nomor 5</h4>
+                <p>
+                    Mengobservasi kegiatan gotong royong yang ada di lingkungan rumah masing-masing, kemudian buat
+                    jurnal tentang kegiatan tersebut. <br>
+                    <hr>
+                    Kelompok 5 yang belum mengumpulkan jurnal dan belum presentasi, jadi nanti Selasa kelompok 5 hanya
+                    mengumpulkan jurnal, tidak presentasi. Dan nilai tidak sama yang mengumpulkan tepat waktu.
+                </p>
+            </div>
+
+            <hr id="10">
+
+            <div class="course-card">
+                <div class="headercoursecard">
+                    <h3>Tugas PP</h3>
+                </div>
+                <h4>Nomor 10</h4>
+                <p>Mencatat bagian yang di highlight, dan mencatat semua pasal pasal yang ada.</p>
+                <div class="toggle-btn" >▼</div>
+                <div class="gallery" >
+                    <img src="ppimg/pp11a.jpg" alt="">
+                    <img src="ppimg/pp11b.jpg" alt="">
+                    <img src="ppimg/pp11c.jpg" alt="">
+                    <img src="ppimg/pp11d.jpg" alt="">
+                    <img src="ppimg/pp11e.jpg" alt="">
+                </div>
+
+
+            </div>
+        </div>
+        </div>
+        </body>
+        <footer>
+            <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
+            <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
+        </footer>
+        <script src="script.js"></script>
+</body>
+
+</html>

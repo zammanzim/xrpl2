@@ -1,25 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    body {
-        background-color: black;
-        color: white;
-    }
+    <title>Gallery of X - RPL 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-    a {
-        font-size: 100px;
-    }
-</style>
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding-bottom: 100px;
+        }
+
+        .photo,
+        .video {
+            width: 100%;
+            max-width: 360px;
+            background: #111;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo img,
+        .video video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Tombol play di tengah */
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: white;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video:hover .play-btn {
+            opacity: 0.9;
+        }
+
+        /* Timeline di dalam video */
+        .timeline {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .timeline-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+        }
+
+        .caption {
+            padding: 10px 15px;
+            font-size: 15px;
+        }
+
+        .comment-section {
+            width: 100%;
+            max-width: 420px;
+            margin: 40px auto;
+            background: #111;
+            border-radius: 12px;
+            padding: 15px;
+            color: #fff;
+        }
+
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
 <body>
 
-    <h1>can jadi wok sabar.</h1>
-    
-    <a href="home.html">pencet</a>
-    
+    <header>Gallery of X - RPL 2</header>
+
+    <div class="content">
+        <section class="gallery">
+            <div class="photo">
+                <img src="gallery/fotbarbareng.jpg" alt="Foto Bareng Kelas">
+                <div class="caption">Foto bareng kelas di akhir semester 🧡</div>
+            </div>
+
+            <!-- Video reels -->
+            <div class="video">
+                <video src="gallery/excel lope hutao.mp4" muted playsinline></video>
+                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                <div class="timeline">
+                    <div class="timeline-fill"></div>
+                </div>
+            </div>
+
+            <h2>Komentar</h2>
+            <form id="commentForm">
+                <input type="text" id="name" placeholder="Nama" required><br>
+                <textarea id="comment" placeholder="Tulis komentar..." required></textarea><br>
+                <button type="submit">Kirim</button>
+            </form>
+
+            <div id="commentList"></div>
+
+
+            <div class="video">
+                <video src="video/reel2.mp4" muted playsinline></video>
+                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                <div class="timeline">
+                    <div class="timeline-fill"></div>
+                </div>
+                <div class="caption">Keseruan pas istirahat 😆</div>
+            </div>
+    </div>
+
+    </section>
+    <script>
+        const videos = document.querySelectorAll('.video');
+
+        // --- AUTO PLAY saat terlihat ---
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const video = entry.target.querySelector('video');
+                const btn = entry.target.querySelector('.play-btn');
+
+                if (entry.isIntersecting) {
+                    video.play();
+                    btn.style.opacity = 0;
+                } else {
+                    video.pause();
+                    btn.style.opacity = 0.9;
+                }
+            });
+        }, { threshold: 0.6 });
+
+        videos.forEach(v => observer.observe(v));
+
+        // --- INTERAKTIF TIMELINE ---
+        videos.forEach(v => {
+            const video = v.querySelector('video');
+            const btn = v.querySelector('.play-btn');
+            const timeline = v.querySelector('.timeline');
+            const fill = v.querySelector('.timeline-fill');
+
+            // Update progress bar
+            video.addEventListener('timeupdate', () => {
+                const progress = (video.currentTime / video.duration) * 100;
+                fill.style.width = progress + '%';
+            });
+
+            // Klik video → toggle pause/play
+            video.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    btn.style.opacity = 0;
+                } else {
+                    video.pause();
+                    btn.style.opacity = 0.9;
+                }
+            });
+
+            // Klik tombol play
+            btn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    btn.style.opacity = 0;
+                } else {
+                    video.pause();
+                    btn.style.opacity = 0.9;
+                }
+            });
+
+            // Klik timeline → loncat ke waktu tertentu
+            timeline.addEventListener('click', e => {
+                const rect = timeline.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                video.currentTime = pos * video.duration;
+            });
+
+            // Drag timeline
+            let isDragging = false;
+            timeline.addEventListener('mousedown', e => {
+                isDragging = true;
+                const rect = timeline.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                video.currentTime = pos * video.duration;
+            });
+
+            window.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                const rect = timeline.getBoundingClientRect();
+                const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                video.currentTime = pos * video.duration;
+            });
+
+            window.addEventListener('mouseup', () => isDragging = false);
+        });
+    </script>
+
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+        // Konfigurasi Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+            authDomain: "xrpl2web.firebaseapp.com",
+            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "xrpl2web",
+            storageBucket: "xrpl2web.appspot.com",
+            messagingSenderId: "410193641417",
+            appId: "1:410193641417:web:a7da663d744703e4883218",
+            measurementId: "G-4XMHJ64BTE"
+        };
+
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Elemen HTML
+        const commentForm = document.getElementById("commentForm");
+        const commentList = document.getElementById("commentList");
+
+        // Submit komentar
+        commentForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const comment = document.getElementById("comment").value.trim();
+
+            if (!name || !comment) return;
+
+            // Simpan ke database
+            push(ref(db, "comments"), {
+                name: name,
+                comment: comment,
+                time: new Date().toLocaleString()
+            });
+
+            commentForm.reset();
+        });
+
+        // Tampilkan komentar realtime
+        onValue(ref(db, "comments"), (snapshot) => {
+            const data = snapshot.val();
+            commentList.innerHTML = "";
+            if (!data) return;
+
+            Object.keys(data).reverse().forEach(id => {
+                const c = data[id];
+                const div = document.createElement("div");
+                div.style.padding = "8px 0";
+                div.style.borderBottom = "1px solid rgba(255,255,255,0.1)";
+                div.innerHTML = `
+        <strong>${c.name}</strong><br>
+        ${c.comment}<br>
+        <small style="color:gray">${c.time}</small>
+      `;
+                commentList.appendChild(div);
+            });
+        });
+    </script>
+
+
 </body>
+
 </html>

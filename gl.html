@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kontol</title>
+    <style>
+        html {
+            overflow: auto;
+            scrollbar-width: none;
+            overflow-x: hidden;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        body {
+            background: #292929;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        section {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.8), transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+
+        .gallery-section {
+            margin-top: 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .gallery-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 40px 50vw;
+            scroll-snap-type: x mandatory;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            width: 240px;
+            height: 135px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-snap-align: center;
+            position: relative;
+            flex: 0 0 auto;
+            margin: 10px 0;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .gallery-item.active {
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="gallery-section">
+        <h2 data-animate>Class Gallery</h2>
+        <div class="gallery-scroll">
+            <div class="gallery-item"><img src="gallery/home1.webp"></div>
+            <div class="gallery-item"><img src="gallery/home2.webp"></div>
+            <div class="gallery-item"><img src="gallery/home3.webp"></div>
+            <div class="gallery-item"><img src="gallery/home4.webp"></div>
+            <div class="gallery-item"><img src="gallery/home5.webp"></div>
+            <div class="gallery-item"><img src="gallery/home6.webp"></div>
+            <div class="gallery-item"><img src="gallery/home7.webp"></div>
+            <div class="gallery-item"><img src="gallery/home8.webp"></div>
+            <div class="gallery-item"><img src="gallery/home9.webp"></div>
+            <div class="gallery-item"><img src="gallery/home10.webp"></div>
+            <div class="gallery-item"><img src="gallery/home11.webp"></div>
+            <div class="gallery-item"><img src="gallery/home12.webp"></div>
+        </div>
+        <a href="gallery.html" class="gallerybtn" data-animate>Gallery</a>
+    </section>
+
+</body>
+
+<script>
+    const scroll = document.querySelector('.gallery-scroll');
+    const items = document.querySelectorAll('.gallery-item');
+
+    function scrollToIndex(index) {
+        const item = items[index];
+        const containerWidth = scroll.offsetWidth;
+        const target = item.offsetLeft - (containerWidth / 2 - item.offsetWidth / 2);
+        scroll.scrollTo({ left: target, behavior: 'instant' });
+    }
+
+    function updateScale() {
+        const center = scroll.scrollLeft + scroll.offsetWidth / 2;
+
+        items.forEach((item) => {
+            const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+            const distance = Math.abs(center - itemCenter);
+
+            const scale = Math.max(0.85, 1.06 - distance / 400);
+            const glow = Math.max(0.1, 0.5 - distance / 600);
+
+            item.style.transform = `scale(${scale})`;
+            item.style.zIndex = distance < 150 ? 3 : 1;
+            item.style.boxShadow = `0 0 ${50 * glow}px rgba(0,255,255,${glow})`;
+        });
+    }
+
+    // 🔧 Fix utama: delay dikit biar browser udah render semua ukuran
+    window.addEventListener("load", () => {
+        scrollToIndex(5); // Mulai dari foto ke-3
+        updateScale();
+        setTimeout(() => updateScale(), 300);
+    });
+
+</script>
+
+</html>

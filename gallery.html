@@ -42,9 +42,9 @@
             max-width: 400px;
             background: #111;
             border-radius: 16px;
-            margin: 40px auto;
+            margin: 60px auto;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 15px rgb(115, 115, 115);
         }
 
         .post-header {
@@ -64,14 +64,14 @@
 
         .post-user h4 {
             margin: 0;
-            font-size: 15px;
+            font-size: 22px;
             font-weight: 600;
         }
 
         .post-user small {
             display: block;
             color: gray;
-            font-size: 12px;
+            font-size: 18px;
             margin-top: 2px;
         }
 
@@ -106,8 +106,10 @@
 
         .caption {
             padding: 10px 15px;
-            font-size: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .caption p {
+            font-size: 20px;
         }
 
         .comment-section {
@@ -121,6 +123,8 @@
             gap: 8px;
             margin-bottom: 10px;
         }
+
+        .comment-section small {}
 
         .commentForm input,
         .commentForm textarea {
@@ -220,7 +224,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 6px;
+            margin-top: 2px;
             padding: 0 4px;
         }
 
@@ -259,6 +263,41 @@
             font-size: 30px;
             margin-right: 10px;
         }
+
+        .video {
+            position: relative;
+            /* Penting: buat posisi absolute anak di dalamnya */
+        }
+
+        .flying-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 80px;
+            color: rgba(255, 0, 0, 0.9);
+            animation: flyUp 0.7s ease-out forwards;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes flyUp {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.2;
+            }
+
+            40% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -120%) scale(0.6);
+                opacity: 0;
+            }
+        }
+
 
         @media (max-width: 1024px) {
             .post {
@@ -308,7 +347,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -344,7 +385,11 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>
+                <p>Testing vid buat gallery</p>
+                </p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -379,7 +424,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -414,7 +461,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -449,7 +498,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -484,7 +535,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -519,7 +572,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -554,7 +609,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -589,7 +646,9 @@
         </div>
 
         <div class="post-footer">
-            <div class="caption">Testing vid buat gallery</div>
+            <div class="caption">
+                <p>Testing vid buat gallery</p>
+            </div>
             <div class="video-actions">
                 <button class="likeVideoBtn">
                     <i class="fa-solid fa-heart"></i>
@@ -628,20 +687,16 @@
                 const itemCenter = item.offsetLeft + item.offsetWidth / 2;
                 const distance = Math.abs(center - itemCenter);
 
-                // Scale
                 const scale = Math.max(0.85, 1.06 - distance / 400);
                 item.style.transform = `scale(${scale})`;
 
-                // Z-index
                 item.style.zIndex = distance < 150 ? 3 : 1;
 
-                // Glow biru
                 const glow = Math.max(0.1, 0.5 - distance / 600);
                 item.style.boxShadow = distance < 150
                     ? `0 0 ${40 * glow}px rgba(0,255,255,${glow})`
                     : `0 0 25px rgba(0,191,255,0.15)`;
 
-                // Active class
                 if (distance < 50) {
                     item.classList.add('active');
                 } else {
@@ -650,12 +705,10 @@
             });
         }
 
-        // Update saat scroll
         scroll.addEventListener('scroll', updateScale);
 
-        // Initial render
         window.addEventListener("load", () => {
-            scrollToIndex(1); // Mulai dari foto ke-3
+            scrollToIndex(1);
             updateScale();
             setTimeout(() => updateScale(), 300);
         });
@@ -708,9 +761,6 @@
             getDatabase, ref, push, onValue, update, get
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
-        // ===========================================
-        // 1️⃣ Konfigurasi Firebase
-        // ===========================================
         const firebaseConfig = {
             apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
             authDomain: "xrpl2web.firebaseapp.com",
@@ -724,9 +774,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // ===========================================
-        // 2️⃣ BAGIAN KOMENTAR (punya lo yang lama)
-        // ===========================================
         document.querySelectorAll('.video[data-id]').forEach(videoEl => {
             const contentId = videoEl.dataset.id;
             const postEl = videoEl.closest('.post');
@@ -797,9 +844,6 @@
             });
         });
 
-        // ===========================================
-        // 3️⃣ BAGIAN LIKE VIDEO (tambahin di bawah ini)
-        // ===========================================
         document.querySelectorAll('.video[data-id]').forEach(videoEl => {
             const contentId = videoEl.dataset.id;
             const likeBtn = videoEl.closest('.post').querySelector('.likeVideoBtn');
@@ -807,7 +851,6 @@
             const likeRef = ref(db, `likes/${contentId}`);
             const likedKey = `videoLiked_${contentId}`;
 
-            // Ambil jumlah like dari Firebase realtime
             onValue(likeRef, snapshot => {
                 const data = snapshot.val();
                 const count = (data && data.count) || 0;
@@ -824,19 +867,16 @@
                 let currentLikes = snapshot.exists() ? snapshot.val().count || 0 : 0;
 
                 if (localStorage.getItem(likedKey)) {
-                    // Kalau udah like → unlike
                     currentLikes = Math.max(0, currentLikes - 1);
                     update(likeRef, { count: currentLikes });
                     localStorage.removeItem(likedKey);
                     likeBtn.classList.remove("liked");
                 } else {
-                    // Kalau belum like → tambah like
                     currentLikes++;
                     update(likeRef, { count: currentLikes });
                     localStorage.setItem(likedKey, "true");
                     likeBtn.classList.add("liked");
 
-                    // Animasi hati di tengah video ❤️
                     const heart = document.createElement("i");
                     heart.className = "fa-solid fa-heart flying-heart";
                     videoEl.appendChild(heart);
@@ -846,10 +886,8 @@
                 likeCountEl.textContent = currentLikes;
             }
 
-            // Klik tombol like
             likeBtn.addEventListener("click", toggleLike);
 
-            // Double tap video buat like
             let lastTap = 0;
             videoEl.addEventListener("click", () => {
                 const now = Date.now();

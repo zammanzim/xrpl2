@@ -548,7 +548,7 @@
             </div>
         </div>
 
-        <div class="video" data-id="video7">
+        <div class="video" data-id="video8">
             <video src="galleryasli/vidfachri1.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
@@ -583,7 +583,7 @@
             </div>
         </div>
 
-        <div class="video" data-id="video7">
+        <div class="video" data-id="video9">
             <video src="galleryasli/vidraka3.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
@@ -701,9 +701,16 @@
     </script>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import {
+            getDatabase, ref, push, onValue, update, get
+        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
+        // ===========================================
+        // 1️⃣ Konfigurasi Firebase
+        // ===========================================
         const firebaseConfig = {
             apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
             authDomain: "xrpl2web.firebaseapp.com",
@@ -717,6 +724,9 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
+        // ===========================================
+        // 2️⃣ BAGIAN KOMENTAR (punya lo yang lama)
+        // ===========================================
         document.querySelectorAll('.video[data-id]').forEach(videoEl => {
             const contentId = videoEl.dataset.id;
             const postEl = videoEl.closest('.post');
@@ -787,8 +797,9 @@
             });
         });
 
-        import { update, get, child } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
-
+        // ===========================================
+        // 3️⃣ BAGIAN LIKE VIDEO (tambahin di bawah ini)
+        // ===========================================
         document.querySelectorAll('.video[data-id]').forEach(videoEl => {
             const contentId = videoEl.dataset.id;
             const likeBtn = videoEl.closest('.post').querySelector('.likeVideoBtn');
@@ -796,7 +807,7 @@
             const likeRef = ref(db, `likes/${contentId}`);
             const likedKey = `videoLiked_${contentId}`;
 
-            // Ambil jumlah like awal dari Firebase
+            // Ambil jumlah like dari Firebase realtime
             onValue(likeRef, snapshot => {
                 const data = snapshot.val();
                 const count = (data && data.count) || 0;
@@ -808,8 +819,7 @@
                 }
             });
 
-            // Event klik tombol like
-            likeBtn.addEventListener("click", async () => {
+            async function toggleLike() {
                 const snapshot = await get(likeRef);
                 let currentLikes = snapshot.exists() ? snapshot.val().count || 0 : 0;
 
@@ -820,18 +830,35 @@
                     localStorage.removeItem(likedKey);
                     likeBtn.classList.remove("liked");
                 } else {
-                    // Kalau belum like → tambah
+                    // Kalau belum like → tambah like
                     currentLikes++;
                     update(likeRef, { count: currentLikes });
                     localStorage.setItem(likedKey, "true");
                     likeBtn.classList.add("liked");
+
+                    // Animasi hati di tengah video ❤️
+                    const heart = document.createElement("i");
+                    heart.className = "fa-solid fa-heart flying-heart";
+                    videoEl.appendChild(heart);
+                    setTimeout(() => heart.remove(), 700);
                 }
 
                 likeCountEl.textContent = currentLikes;
+            }
+
+            // Klik tombol like
+            likeBtn.addEventListener("click", toggleLike);
+
+            // Double tap video buat like
+            let lastTap = 0;
+            videoEl.addEventListener("click", () => {
+                const now = Date.now();
+                if (now - lastTap < 300) toggleLike();
+                lastTap = now;
             });
         });
-
     </script>
+
 </body>
 
 </html>

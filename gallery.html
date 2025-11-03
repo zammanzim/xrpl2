@@ -12,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scrollbar-width: none;
         }
 
         html {
@@ -22,7 +23,6 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
-
         }
 
         header {
@@ -216,6 +216,49 @@
             box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
         }
 
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+            padding: 0 4px;
+        }
+
+        .caption {
+            color: white;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .video-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .likeVideoBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 40px;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .likeVideoBtn:hover i {
+            color: #ff3040;
+            transform: scale(1.1);
+        }
+
+        .likeVideoBtn.liked i {
+            color: #ff3040;
+        }
+
+        .likeCount {
+            color: white;
+            font-size: 30px;
+            margin-right: 10px;
+        }
 
         @media (max-width: 1024px) {
             .post {
@@ -260,11 +303,20 @@
         </div>
 
         <div class="video" data-id="video1">
-            <video src="vid1.mp4" playsinline></video>
+            <video src="vid1.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
 
-        <div class="caption">Testing vid buat gallery</div>
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
+
 
         <div class="comment-section">
             <small>kasi komentar</small>
@@ -287,11 +339,19 @@
         </div>
 
         <div class="video" data-id="video2">
-            <video src="galleryasli/vidrandom1.mp4" playsinline></video>
+            <video src="galleryasli/vidrandom1.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
 
-        <div class="caption">Random</div>
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
 
         <div class="comment-section">
             <small>kasi komentar</small>
@@ -314,11 +374,19 @@
         </div>
 
         <div class="video" data-id="video3">
-            <video src="galleryasli/vidraka2.mp4" playsinline></video>
+            <video src="galleryasli/vidraka2.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
 
-        <div class="caption">Raka Presentasi</div>
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
 
         <div class="comment-section">
             <small>kasi komentar</small>
@@ -341,11 +409,19 @@
         </div>
 
         <div class="video" data-id="video4">
-            <video src="galleryasli/vidgilang2.mp4" playsinline></video>
+            <video src="galleryasli/vidgilang2.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
 
-        <div class="caption">Aku mau makan MBG gratis</div>
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
 
         <div class="comment-section">
             <small>kasi komentar</small>
@@ -368,11 +444,19 @@
         </div>
 
         <div class="video" data-id="video5">
-            <video src="galleryasli/vidraka1.mp4" playsinline></video>
+            <video src="galleryasli/vidraka1.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
 
-        <div class="caption">Raka pas masih gadis</div>
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
 
         <div class="comment-section">
             <small>kasi komentar</small>
@@ -395,11 +479,124 @@
         </div>
 
         <div class="video" data-id="video6">
-            <video src="galleryasli/vidgilang1.mp4" playsinline></video>
+            <video src="galleryasli/vidgilang1.mp4" playsinline loop></video>
             <div class="play-btn"><i class="fa-solid fa-play"></i></div>
         </div>
 
-        <div class="caption">Tengah heboh di media sosial keajaiban dunia Gilang teriak bokap bokap</div>
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <small>kasi komentar</small>
+            <form class="commentForm">
+                <input type="text" class="comment-name" placeholder="Nama" required>
+                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+            <div class="commentList"></div>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="post-header">
+            <img src="gallery/ukuyolah.webp" alt="pp" class="post-pp">
+            <div class="post-user">
+                <h4>Ukuy</h4>
+                <small>8 September 2025</small>
+            </div>
+        </div>
+
+        <div class="video" data-id="video7">
+            <video src="galleryasli/vidukuy1.mp4" playsinline loop></video>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <small>kasi komentar</small>
+            <form class="commentForm">
+                <input type="text" class="comment-name" placeholder="Nama" required>
+                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+            <div class="commentList"></div>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="post-header">
+            <img src="gallery/fahriolah.webp" alt="pp" class="post-pp">
+            <div class="post-user">
+                <h4>facehri lope neila</h4>
+                <small>8 September 2025</small>
+            </div>
+        </div>
+
+        <div class="video" data-id="video7">
+            <video src="galleryasli/vidfachri1.mp4" playsinline loop></video>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <small>kasi komentar</small>
+            <form class="commentForm">
+                <input type="text" class="comment-name" placeholder="Nama" required>
+                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+            <div class="commentList"></div>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="post-header">
+            <img src="gallery/rakkea.webp" alt="pp" class="post-pp">
+            <div class="post-user">
+                <h4>Aka</h4>
+                <small>13 Agustus 2025</small>
+            </div>
+        </div>
+
+        <div class="video" data-id="video7">
+            <video src="galleryasli/vidraka3.mp4" playsinline loop></video>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <div class="post-footer">
+            <div class="caption">Testing vid buat gallery</div>
+            <div class="video-actions">
+                <button class="likeVideoBtn">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span class="likeCount">0</span>
+            </div>
+        </div>
 
         <div class="comment-section">
             <small>kasi komentar</small>
@@ -589,6 +786,51 @@
                 form.reset();
             });
         });
+
+        import { update, get, child } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+        document.querySelectorAll('.video[data-id]').forEach(videoEl => {
+            const contentId = videoEl.dataset.id;
+            const likeBtn = videoEl.closest('.post').querySelector('.likeVideoBtn');
+            const likeCountEl = videoEl.closest('.post').querySelector('.likeCount');
+            const likeRef = ref(db, `likes/${contentId}`);
+            const likedKey = `videoLiked_${contentId}`;
+
+            // Ambil jumlah like awal dari Firebase
+            onValue(likeRef, snapshot => {
+                const data = snapshot.val();
+                const count = (data && data.count) || 0;
+                likeCountEl.textContent = count;
+                if (localStorage.getItem(likedKey)) {
+                    likeBtn.classList.add("liked");
+                } else {
+                    likeBtn.classList.remove("liked");
+                }
+            });
+
+            // Event klik tombol like
+            likeBtn.addEventListener("click", async () => {
+                const snapshot = await get(likeRef);
+                let currentLikes = snapshot.exists() ? snapshot.val().count || 0 : 0;
+
+                if (localStorage.getItem(likedKey)) {
+                    // Kalau udah like → unlike
+                    currentLikes = Math.max(0, currentLikes - 1);
+                    update(likeRef, { count: currentLikes });
+                    localStorage.removeItem(likedKey);
+                    likeBtn.classList.remove("liked");
+                } else {
+                    // Kalau belum like → tambah
+                    currentLikes++;
+                    update(likeRef, { count: currentLikes });
+                    localStorage.setItem(likedKey, "true");
+                    likeBtn.classList.add("liked");
+                }
+
+                likeCountEl.textContent = currentLikes;
+            });
+        });
+
     </script>
 </body>
 

@@ -253,9 +253,10 @@
       transition: .18s
     }
 
-    .input-name:focus {
+    .input-name:focus,
+    .input-text:focus {
       border-color: #00aaff;
-      box-shadow: 0 0 6px rgba(37, 182, 255, .9)
+      box-shadow: none;
     }
 
     .comment-row {
@@ -275,11 +276,6 @@
       background: #111;
       border: 1px solid #555;
       transition: .18s
-    }
-
-    .input-text:focus {
-      border-color: #00aaff;
-      box-shadow: 0 0 6px rgba(37, 182, 255, .9)
     }
 
     .commentForm button {
@@ -308,7 +304,6 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, .6);
-      backdrop-filter: blur(2px);
       z-index: 9998;
       opacity: 0;
       pointer-events: none;
@@ -394,7 +389,7 @@
     </div>
 
     <div class="video" data-id="video">
-      <video src="galleryasli/vidgilang3.mp4" playsinline loop></video>
+      <video src="galleryasli/vidgilang3.mp4" playsinline loop preload="metadata"></video>
       <div class="play-btn"><i class="fa-solid fa-play"></i></div>
       <div class="timeline">
         <div class="progress"></div>
@@ -571,7 +566,7 @@
     // load comments dan render (rapi)
     function loadComments(contentId) {
       const nodeRef = ref(db, `comments/${contentId}`);
-      onValue(nodeRef, snapshot => {
+      get(nodeRef).then(snapshot => {
         commentList.innerHTML = "";
         const data = snapshot.val();
         if (!data) {
@@ -579,25 +574,25 @@
           return;
         }
         const comments = Object.values(data).reverse();
+        const frag = document.createDocumentFragment();
         comments.forEach(c => {
           const div = document.createElement('div');
           div.className = "comment-item";
           div.innerHTML = `
-            <img src="${c.photo || 'profpic.png'}" class="comment-avatar" alt="avatar">
-            <div class="comment-content">
-              <strong class="comment-name">${escapeHtml(c.name)}</strong>
-              <p class="comment-text">${escapeHtml(c.comment)}</p>
-              <small class="comment-time">${escapeHtml(c.time)}</small>
-            </div>
-          `;
-          commentList.appendChild(div);
+        <img src="${c.photo || 'profpic.png'}" class="comment-avatar" alt="avatar">
+        <div class="comment-content">
+          <strong class="comment-name">${escapeHtml(c.name)}</strong>
+          <p class="comment-text">${escapeHtml(c.comment)}</p>
+          <small class="comment-time">${escapeHtml(c.time)}</small>
+        </div>
+      `;
+          frag.appendChild(div);
         });
-        // scroll to top newest first if needed:
+        commentList.appendChild(frag);
         commentList.scrollTop = 0;
       });
     }
-
-    // kirim komentar (form)
+ 
     form.addEventListener('submit', e => {
       e.preventDefault();
       if (!currentContentId) return;
@@ -618,10 +613,10 @@
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const vid = entry.target;
-        if (entry.isIntersecting) vid.play().catch(err => console.log("Autoplay gagal:", err));
+        if (entry.isIntersecting) vid.play().catch(() => { });
         else vid.pause();
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.8 });
     videos.forEach(v => observer.observe(v));
 
     // simple escapeHtml

@@ -60,9 +60,13 @@ function searchPage() {
         { keyword: "10", url: "pp.html#10" },
         { keyword: "11", url: "dpr1.html#11" },
         { keyword: "12", url: "matematika.html#12" },
-        { keyword: "13", url: "matematika.html#13"},
-        { keyword: "14", url: "dpr2.html#14"},
-        { keyword: "15", url: "proipas.html#15"}
+        { keyword: "13", url: "matematika.html#13" },
+        { keyword: "14", url: "dpr2.html#14" },
+        { keyword: "15", url: "proipas.html#15" },
+        { keyword: "16", url: "sejarah.html#16" },
+        { keyword: "17", url: "bahasasunda.html#17" },
+        { keyword: "18", url: "senibudaya.html#18" },
+        { keyword: "19", url: "pp.html#19" },
     ];
 
     const result = data.find(item => item.keyword === query);

@@ -2,894 +2,634 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery of X - RPL 2</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scrollbar-width: none;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery of X - RPL 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      scrollbar-width: none
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    body {
+      background: #000;
+      color: #fff
+    }
 
-        body {
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 10
+    }
 
-        header {
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
+    .post {
+      width: 100%;
+      max-width: 400px;
+      background: #111;
+      border-radius: 16px;
+      margin: 30px auto;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgb(115, 115, 115)
+    }
 
-        .post {
-            width: 100%;
-            max-width: 400px;
-            background: #111;
-            border-radius: 16px;
-            margin: 60px auto;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgb(115, 115, 115);
-        }
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px
+    }
 
-        .post-header {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .post-pp {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover
+    }
 
-        .post-pp {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 10px;
-        }
+    .post-user h4 {
+      font-size: 15px;
+      margin-bottom: 2px
+    }
 
-        .post-user h4 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 600;
-        }
+    .post-user small {
+      color: #aaa
+    }
 
-        .post-user small {
-            display: block;
-            color: gray;
-            font-size: 18px;
-            margin-top: 2px;
-        }
+    .video {
+      position: relative;
+      background: #000
+    }
 
-        .video {
-            position: relative;
-            background: #111;
-        }
+    .video video {
+      width: 100%;
+      display: block
+    }
 
-        .video video {
-            width: 100%;
-            display: block;
-        }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      color: rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .3s
+    }
 
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color: white;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 50%;
-            padding: 15px 20px;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    .timeline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.12)
+    }
 
-        .video:hover .play-btn {
-            opacity: 0.9;
-        }
+    .timeline .progress {
+      height: 100%;
+      width: 0;
+      background: #00ffff;
+      transition: width .1s linear
+    }
 
-        .caption {
-            padding: 10px 15px;
-        }
+    .caption-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px
+    }
 
-        .caption p {
-            font-size: 20px;
-        }
+    .caption {
+      font-size: 16px;
+      flex: 1
+    }
 
-        .comment-section {
-            padding: 10px 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .video-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 8px;
+      position: relative
+    }
 
-        .commentForm {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
+    .video-actions button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      transition: transform .2s ease, color .2s ease
+    }
 
-        .commentForm input,
-        .commentForm textarea {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            padding: 8px;
-            border-radius: 8px;
-            resize: none;
-        }
+    .video-actions button:hover {
+      transform: scale(1.12)
+    }
 
-        .commentForm button {
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-            border: none;
-            color: white;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+    .likeVideoBtn.liked i {
+      color: #ff3b3b
+    }
 
-        .commentList {
-            font-size: 14px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
+    .video-actions span {
+      font-size: 15px;
+      color: #ddd
+    }
 
-        .comment-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 0;
-        }
+    .commentBtn {
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
 
-        .comment-item strong {
-            color: #00c6ff;
-        }
+    .commentBtn i {
+      margin-right: 2px
+    }
 
-        .show-more-btn {
-            background: none;
-            border: none;
-            color: #00c6ff;
-            font-weight: 500;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            margin-top: 5px;
-        }
+    .commentBtn:hover i {
+      color: #1e90ff
+    }
 
-        .show-more-btn:hover {
-            text-decoration: underline;
-        }
+    .flying-heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 80px;
+      color: rgba(255, 0, 0, 0.9);
+      animation: flyUp .7s ease-out forwards;
+      pointer-events: none;
+      z-index: 2
+    }
 
-        .gallery-section {
-            text-align: center;
-            color: white;
-        }
+    @keyframes flyUp {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: .2
+      }
 
-        .gallery-scroll {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            padding-left: 50vw;
-            padding-right: 50vw;
-            box-sizing: content-box;
-        }
+      40% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1
+      }
 
-        .gallery-scroll::-webkit-scrollbar {
-            display: none;
-        }
+      100% {
+        transform: translate(-50%, -120%) scale(.6);
+        opacity: 0
+      }
+    }
 
-        .gallery-item {
-            flex-shrink: 0 0 auto;
-            max-width: 400px;
-            aspect-ratio: 16/9;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 25px rgba(0, 191, 255, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            scroll-snap-align: center;
-            position: relative;
-            flex: 0 0 auto;
-            margin: 10px 0;
-        }
+    /* popup komentar */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      background: #111;
+      color: #fff;
+      border-radius: 15px 15px 0 0;
+      transition: bottom .3s ease;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column
+    }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
+    .comment-popup.active {
+      bottom: 0
+    }
 
-        .gallery-item.active {
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
-        }
+    .popup-content {
+      padding: 10px;
+      flex: 1;
+      display: flex;
+      flex-direction: column
+    }
 
-        .post-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2px;
-            padding: 0 4px;
-        }
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
 
-        .caption {
-            color: white;
-            font-size: 14px;
-            flex: 1;
-        }
+    .popup-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer
+    }
 
-        .video-actions {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+    .commentForm {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px
+    }
 
-        .likeVideoBtn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 40px;
-            color: white;
-            transition: all 0.2s ease;
-        }
+    .input-name {
+      width: 100%;
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: white;
+      font-size: 14px;
+      outline: none;
+      background: #111;
+      border: 1px solid #555;
+      transition: .18s
+    }
 
-        .likeVideoBtn.liked i {
-            color: #ff3040;
-        }
+    .input-name:focus {
+      border-color: #00aaff;
+      box-shadow: 0 0 6px rgba(37, 182, 255, .9)
+    }
 
-        .likeCount {
-            color: white;
-            font-size: 30px;
-            margin-right: 10px;
-        }
+    .comment-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch
+    }
 
-        .video {
-            position: relative;
-            /* Penting: buat posisi absolute anak di dalamnya */
-        }
+    .input-text {
+      flex: 1;
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: white;
+      font-size: 14px;
+      resize: none;
+      outline: none;
+      background: #111;
+      border: 1px solid #555;
+      transition: .18s
+    }
 
-        .flying-heart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            font-size: 80px;
-            color: rgba(255, 0, 0, 0.9);
-            animation: flyUp 0.7s ease-out forwards;
-            pointer-events: none;
-            z-index: 10;
-        }
+    .input-text:focus {
+      border-color: #00aaff;
+      box-shadow: 0 0 6px rgba(37, 182, 255, .9)
+    }
 
-        @keyframes flyUp {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0.2;
-            }
+    .commentForm button {
+      background: #00bfff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 0 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s
+    }
 
-            40% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 1;
-            }
+    .commentForm button:hover {
+      background: #0099cc
+    }
 
-            100% {
-                transform: translate(-50%, -120%) scale(0.6);
-                opacity: 0;
-            }
-        }
+    .commentList {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 10px;
+      padding-right: 6px
+    }
 
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      backdrop-filter: blur(2px);
+      z-index: 9998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s
+    }
 
-        @media (max-width: 1024px) {
-            .post {
-                width: calc(100% - 20px);
-                max-width: none;
-                margin: 20px auto;
-            }
+    .popup-overlay.active {
+      opacity: 1;
+      pointer-events: all
+    }
 
-            .caption,
-            .comment-section,
-            .commentForm input,
-            .commentForm textarea,
-            .commentForm button {
-                width: 100%;
-                box-sizing: border-box;
-            }
+    .comment-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #2a2a2a
+    }
 
-        }
-    </style>
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0
+    }
+
+    .comment-content {
+      display: flex;
+      flex-direction: column;
+      background: none;
+      border: none;
+      width: 100%
+    }
+
+    .comment-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      margin: 0;
+      padding: 0
+    }
+
+    .comment-text {
+      font-size: 14px;
+      color: #ddd;
+      margin: 6px 0 4px 0;
+      line-height: 1.4;
+      word-wrap: break-word
+    }
+
+    .comment-time {
+      color: #777;
+      font-size: 12px;
+      margin-top: 0
+    }
+
+    @media (max-width:1024px) {
+      .post {
+        width: calc(100% - 20px);
+        max-width: none;
+        margin: 20px auto
+      }
+
+      .caption {
+        width: 100%;
+        box-sizing: border-box
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header>Gallery of X - RPL 2</header>
+  <header>Gallery of X - RPL 2</header>
 
-    <div class="gallery-section">
-        <div class="gallery-scroll">
-            <div class="gallery-item"><img src="galleryasli/fotbarbareng.jpg" alt=""></div>
-            <div class="gallery-item"><img src="galleryasli/fotbarbareng2.jpg" alt=""></div>
-            <div class="gallery-item"><img src="galleryasli/fotbarbareng3.jpg" alt=""></div>
-        </div>
-        <a href="home.html">Balik ke home</a>
+  <div class="post">
+    <div class="post-header">
+      <img src="students/gilang.jpg" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Gialng</h4>
+        <small>4 November 2025</small>
+      </div>
     </div>
 
-
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/nzamwkm.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>zammanzim</h4>
-                <small>2 November 2025</small>
-            </div>
-        </div>
-
-        <div class="video" data-id="video1">
-            <video src="vid1.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <div class="post-footer">
-            <div class="caption">
-                <p>Testing vid buat gallery</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
-
-
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
+    <div class="video" data-id="video">
+      <video src="galleryasli/vidgilang3.mp4" playsinline loop></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
     </div>
 
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/ukuyolah.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Ukuy</h4>
-                <small>Enya ah</small>
-            </div>
-        </div>
+    <div class="caption-bar">
+      <div class="caption">Gialng viral</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
 
-        <div class="video" data-id="video2">
-            <video src="galleryasli/vidrandom1.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <div class="post-footer">
-            <div class="caption">
-                <p>radnom #random #pabpxrpl2 #hidupjokowi</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
-
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/rakkea.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Aka</h4>
-                <small>Duka iraha, tapi tos lami</small>
-            </div>
-        </div>
+  <div class="popup-overlay"></div>
 
-        <div class="video" data-id="video3">
-            <video src="galleryasli/vidraka2.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
+  <div class="comment-popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Komentar</h3>
+        <button class="close-popup">✕</button>
+      </div>
 
-        <div class="post-footer">
-            <div class="caption">
-                <p>Raka lope dila</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
+      <div class="commentList"></div>
 
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
+      <form class="commentForm">
+        <!-- ganti class supaya gak tabrakan dengan .comment-name di komentar -->
+        <input type="text" class="input-name" placeholder="Nama" required>
+        <div class="comment-row">
+          <textarea class="input-text" placeholder="Tulis komentar..." required></textarea>
+          <button type="submit">Kirim</button>
         </div>
+      </form>
     </div>
+  </div>
 
-    <div class="post">
-        <div class="post-header">
-            <img src="students/gilang.jpg" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Gilang Ojol Online</h4>
-                <small>Duka ah</small>
-            </div>
-        </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import { getDatabase, ref, push, onValue, update, get } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
-        <div class="video" data-id="video4">
-            <video src="galleryasli/vidgilang2.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+      authDomain: "xrpl2web.firebaseapp.com",
+      databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "xrpl2web",
+      storageBucket: "xrpl2web.appspot.com",
+      messagingSenderId: "410193641417",
+      appId: "1:410193641417:web:a7da663d744703e4883218",
+    };
 
-        <div class="post-footer">
-            <div class="caption">
-                <p>Aku mau makan bergizi MBG gratis</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
-    </div>
+    // VIDEO play/pause icon
+    document.querySelectorAll(".video").forEach(v => {
+      const video = v.querySelector("video");
+      const btn = v.querySelector(".play-btn");
+      video.addEventListener("click", () => {
+        if (video.paused) { video.play(); btn.style.opacity = 0; }
+        else { video.pause(); btn.style.opacity = 1; }
+      });
+      video.addEventListener("play", () => btn.style.opacity = 0);
+      video.addEventListener("pause", () => btn.style.opacity = 1);
+    });
 
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/rakkea.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Aka</h4>
-                <small>Tos lami</small>
-            </div>
-        </div>
+    // TIMELINE
+    document.querySelectorAll('.video video').forEach(video => {
+      const progress = video.closest('.video').querySelector('.progress');
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const percent = (video.currentTime / video.duration) * 100;
+        progress.style.width = percent + "%";
+      });
+    });
 
-        <div class="video" data-id="video5">
-            <video src="galleryasli/vidraka1.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
+    // LIKE system (simple)
+    document.querySelectorAll('.video[data-id]').forEach(videoEl => {
+      const contentId = videoEl.dataset.id;
+      const postEl = videoEl.closest('.post');
+      const likeBtn = postEl.querySelector('.likeVideoBtn');
+      const likeCountEl = postEl.querySelector('.likeCount');
+      const likeRef = ref(db, `likes/${contentId}`);
+      const likedKey = `videoLiked_${contentId}`;
 
-        <div class="post-footer">
-            <div class="caption">
-                <p>Raka pas masih gadis</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
+      onValue(likeRef, snapshot => {
+        const data = snapshot.val();
+        const count = (data && data.count) || 0;
+        likeCountEl.textContent = count;
+        likeBtn.classList.toggle("liked", !!localStorage.getItem(likedKey));
+      });
 
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
-    </div>
+      async function toggleLike() {
+        const snapshot = await get(likeRef);
+        let currentLikes = snapshot.exists() ? snapshot.val().count || 0 : 0;
 
-    <div class="post">
-        <div class="post-header">
-            <img src="students/gilang.jpg" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Gilang Ojol Online</h4>
-                <small>Ulang Tahun Kepsek sekolah</small>
-            </div>
-        </div>
-
-        <div class="video" data-id="video6">
-            <video src="galleryasli/vidgilang1.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <div class="post-footer">
-            <div class="caption">
-                <p>"roket, roket, roket"</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
-
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
-    </div>
-
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/ukuyolah.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Ukuy</h4>
-                <small>8 September 2025</small>
-            </div>
-        </div>
-
-        <div class="video" data-id="video7">
-            <video src="galleryasli/vidukuy1.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <div class="post-footer">
-            <div class="caption">
-                <p>ukuy gantenk</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
-
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
-    </div>
-
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/fahriolah.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>faceuhri</h4>
-                <small>8 September 2025</small>
-            </div>
-        </div>
-
-        <div class="video" data-id="video8">
-            <video src="galleryasli/vidfachri1.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <div class="post-footer">
-            <div class="caption">
-                <p>faceuhri pas kasep keneh</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
-
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
-    </div>
-
-    <div class="post">
-        <div class="post-header">
-            <img src="gallery/rakkea.webp" alt="pp" class="post-pp">
-            <div class="post-user">
-                <h4>Aka</h4>
-                <small>13 Agustus 2025</small>
-            </div>
-        </div>
-
-        <div class="video" data-id="video9">
-            <video src="galleryasli/vidraka3.mp4" playsinline loop></video>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <div class="post-footer">
-            <div class="caption">
-                <p>Dila lope raka</p>
-            </div>
-            <div class="video-actions">
-                <button class="likeVideoBtn">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <span class="likeCount">0</span>
-            </div>
-        </div>
-
-        <div class="comment-section">
-            <small>kasi komentar</small>
-            <form class="commentForm">
-                <input type="text" class="comment-name" placeholder="Nama" required>
-                <textarea class="comment-text" placeholder="Tulis komentar..." required></textarea>
-                <button type="submit">Kirim</button>
-            </form>
-            <div class="commentList"></div>
-        </div>
-    </div>
-
-    <script>
-
-        const scroll = document.querySelector('.gallery-scroll');
-        const items = document.querySelectorAll('.gallery-item');
-
-        function scrollToIndex(index) {
-            const item = items[index];
-            const containerWidth = scroll.offsetWidth;
-            const target = item.offsetLeft - (containerWidth / 2 - item.offsetWidth / 2);
-            scroll.scrollTo({ left: target, behavior: 'smooth' });
+        if (localStorage.getItem(likedKey)) {
+          currentLikes = Math.max(0, currentLikes - 1);
+          await update(likeRef, { count: currentLikes });
+          localStorage.removeItem(likedKey);
+          likeBtn.classList.remove("liked");
+        } else {
+          currentLikes++;
+          await update(likeRef, { count: currentLikes });
+          localStorage.setItem(likedKey, "true");
+          likeBtn.classList.add("liked");
+          const heart = document.createElement("i");
+          heart.className = "fa-solid fa-heart flying-heart";
+          videoEl.appendChild(heart);
+          setTimeout(() => heart.remove(), 700);
         }
+        likeCountEl.textContent = currentLikes;
+      }
 
-        function updateScale() {
-            const center = scroll.scrollLeft + scroll.offsetWidth / 2;
+      likeBtn.addEventListener("click", toggleLike);
+    });
 
-            items.forEach((item) => {
-                const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-                const distance = Math.abs(center - itemCenter);
+    // POPUP KOMENTAR
+    const popup = document.querySelector('.comment-popup');
+    const overlay = document.querySelector('.popup-overlay');
+    const commentList = popup.querySelector('.commentList');
+    const form = popup.querySelector('.commentForm');
+    const closeBtn = popup.querySelector('.close-popup');
+    let currentContentId = null;
 
-                const scale = Math.max(0.85, 1.06 - distance / 400);
-                item.style.transform = `scale(${scale})`;
+    // commentCount per post (realtime)
+    document.querySelectorAll('.video[data-id]').forEach(videoEl => {
+      const contentId = videoEl.dataset.id;
+      const postEl = videoEl.closest('.post');
+      const commentCountEl = postEl.querySelector('.commentCount');
+      const commentRef = ref(db, `comments/${contentId}`);
+      onValue(commentRef, snapshot => {
+        const data = snapshot.val();
+        const count = data ? Object.keys(data).length : 0;
+        if (commentCountEl) commentCountEl.textContent = count;
+      });
+    });
 
-                item.style.zIndex = distance < 150 ? 3 : 1;
+    // tombol komentar tiap post (buka popup)
+    document.querySelectorAll('.commentBtn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const post = e.target.closest('.post');
+        const videoEl = post.querySelector('.video[data-id]');
+        currentContentId = videoEl.dataset.id;
+        popup.classList.add('active');
+        overlay.classList.add('active');
+        loadComments(currentContentId);
+      });
+    });
 
-                const glow = Math.max(0.1, 0.5 - distance / 600);
-                item.style.boxShadow = distance < 150
-                    ? `0 0 ${40 * glow}px rgba(0,255,255,${glow})`
-                    : `0 0 25px rgba(0,191,255,0.15)`;
+    // tutup popup
+    closeBtn.addEventListener('click', () => {
+      popup.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    overlay.addEventListener('click', () => {
+      popup.classList.remove('active');
+      overlay.classList.remove('active');
+    });
 
-                if (distance < 50) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
+    // format tanggal indonesia (contoh)
+    function formatDateIndonesia(date = new Date()) {
+      const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+      let formatted = new Date(date).toLocaleString('id-ID', options);
+      formatted = formatted.replace(',', '').replace(':', '.');
+      return formatted;
+    }
+
+    // load comments dan render (rapi)
+    function loadComments(contentId) {
+      const nodeRef = ref(db, `comments/${contentId}`);
+      onValue(nodeRef, snapshot => {
+        commentList.innerHTML = "";
+        const data = snapshot.val();
+        if (!data) {
+          commentList.innerHTML = "<p style='text-align:center;color:gray'>Belum ada komentar</p>";
+          return;
         }
-
-        scroll.addEventListener('scroll', updateScale);
-
-        window.addEventListener("load", () => {
-            scrollToIndex(1);
-            updateScale();
-            setTimeout(() => updateScale(), 300);
+        const comments = Object.values(data).reverse();
+        comments.forEach(c => {
+          const div = document.createElement('div');
+          div.className = "comment-item";
+          div.innerHTML = `
+            <img src="${c.photo || 'profpic.png'}" class="comment-avatar" alt="avatar">
+            <div class="comment-content">
+              <strong class="comment-name">${escapeHtml(c.name)}</strong>
+              <p class="comment-text">${escapeHtml(c.comment)}</p>
+              <small class="comment-time">${escapeHtml(c.time)}</small>
+            </div>
+          `;
+          commentList.appendChild(div);
         });
+        // scroll to top newest first if needed:
+        commentList.scrollTop = 0;
+      });
+    }
 
+    // kirim komentar (form)
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!currentContentId) return;
+      const name = form.querySelector('.input-name').value.trim();
+      const text = form.querySelector('.input-text').value.trim();
+      if (!name || !text) return;
+      const nodeRef = ref(db, `comments/${currentContentId}`);
+      push(nodeRef, {
+        name,
+        comment: text,
+        time: formatDateIndonesia()
+      });
+      form.reset();
+    });
 
-        document.querySelectorAll('.video').forEach(v => {
-            const video = v.querySelector('video');
-            const btn = v.querySelector('.play-btn');
+    // autoplay observer
+    const videos = document.querySelectorAll(".video video");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const vid = entry.target;
+        if (entry.isIntersecting) vid.play().catch(err => console.log("Autoplay gagal:", err));
+        else vid.pause();
+      });
+    }, { threshold: 0.5 });
+    videos.forEach(v => observer.observe(v));
 
-            const togglePlay = () => {
-                if (video.paused) {
-                    video.play();
-                    btn.style.opacity = 0;
-                } else {
-                    video.pause();
-                    btn.style.opacity = 0.9;
-                }
-            };
-
-            video.addEventListener('click', togglePlay);
-            btn.addEventListener('click', togglePlay);
-        });
-
-        const videos = document.querySelectorAll('.video');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const video = entry.target.querySelector('video');
-                const btn = entry.target.querySelector('.play-btn');
-                if (entry.isIntersecting) {
-                    video.play().catch(() => {
-                        btn.style.opacity = 0.9;
-                    });
-                    btn.style.opacity = 0;
-                } else {
-                    video.pause();
-                    btn.style.opacity = 0.9;
-                }
-            });
-        }, { threshold: 0.6 });
-
-        videos.forEach(v => observer.observe(v));
-    </script>
-
-    <script type="module">
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-        import {
-            getDatabase, ref, push, onValue, update, get
-        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
-            authDomain: "xrpl2web.firebaseapp.com",
-            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "xrpl2web",
-            storageBucket: "xrpl2web.appspot.com",
-            messagingSenderId: "410193641417",
-            appId: "1:410193641417:web:a7da663d744703e4883218",
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        document.querySelectorAll('.video[data-id]').forEach(videoEl => {
-            const contentId = videoEl.dataset.id;
-            const postEl = videoEl.closest('.post');
-            const form = postEl.querySelector('.commentForm');
-            const list = postEl.querySelector('.commentList');
-            const nodeRef = ref(db, `comments/${contentId}`);
-
-            function renderComment(c) {
-                const div = document.createElement('div');
-                div.className = "comment-item";
-                div.innerHTML = `<strong>${escapeHtml(c.name)}</strong><br>${escapeHtml(c.comment)}<br><small style="color:gray">${c.time}</small>`;
-                return div;
-            }
-
-            function escapeHtml(str) {
-                return str.replace(/[&<>"']/g, m => ({
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                }[m]));
-            }
-
-            onValue(nodeRef, snapshot => {
-                const data = snapshot.val();
-                list.innerHTML = "";
-                if (!data) return;
-
-                const comments = Object.values(data).reverse();
-                const showLimit = 3;
-                comments.slice(0, showLimit).forEach(c => list.appendChild(renderComment(c)));
-
-                if (comments.length > showLimit) {
-                    const btn = document.createElement("button");
-                    btn.textContent = "Lihat selengkapnya";
-                    btn.classList.add("show-more-btn");
-                    let expanded = false;
-
-                    btn.addEventListener("click", () => {
-                        list.innerHTML = "";
-                        if (!expanded) {
-                            comments.forEach(c => list.appendChild(renderComment(c)));
-                            btn.textContent = "Tutup komentar";
-                        } else {
-                            comments.slice(0, showLimit).forEach(c => list.appendChild(renderComment(c)));
-                            btn.textContent = "Lihat selengkapnya";
-                        }
-                        expanded = !expanded;
-                        list.appendChild(btn);
-                    });
-
-                    list.appendChild(btn);
-                }
-            });
-
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                const name = form.querySelector('.comment-name').value.trim();
-                const text = form.querySelector('.comment-text').value.trim();
-                if (!name || !text) return;
-                push(nodeRef, {
-                    name,
-                    comment: text,
-                    time: new Date().toLocaleString()
-                });
-                form.reset();
-            });
-        });
-
-        document.querySelectorAll('.video[data-id]').forEach(videoEl => {
-            const contentId = videoEl.dataset.id;
-            const likeBtn = videoEl.closest('.post').querySelector('.likeVideoBtn');
-            const likeCountEl = videoEl.closest('.post').querySelector('.likeCount');
-            const likeRef = ref(db, `likes/${contentId}`);
-            const likedKey = `videoLiked_${contentId}`;
-
-            onValue(likeRef, snapshot => {
-                const data = snapshot.val();
-                const count = (data && data.count) || 0;
-                likeCountEl.textContent = count;
-                if (localStorage.getItem(likedKey)) {
-                    likeBtn.classList.add("liked");
-                } else {
-                    likeBtn.classList.remove("liked");
-                }
-            });
-
-            async function toggleLike() {
-                const snapshot = await get(likeRef);
-                let currentLikes = snapshot.exists() ? snapshot.val().count || 0 : 0;
-
-                if (localStorage.getItem(likedKey)) {
-                    currentLikes = Math.max(0, currentLikes - 1);
-                    update(likeRef, { count: currentLikes });
-                    localStorage.removeItem(likedKey);
-                    likeBtn.classList.remove("liked");
-                } else {
-                    currentLikes++;
-                    update(likeRef, { count: currentLikes });
-                    localStorage.setItem(likedKey, "true");
-                    likeBtn.classList.add("liked");
-
-                    const heart = document.createElement("i");
-                    heart.className = "fa-solid fa-heart flying-heart";
-                    videoEl.appendChild(heart);
-                    setTimeout(() => heart.remove(), 700);
-                }
-
-                likeCountEl.textContent = currentLikes;
-            }
-
-            likeBtn.addEventListener("click", toggleLike);
-
-            let lastTap = 0;
-            videoEl.addEventListener("click", () => {
-                const now = Date.now();
-                if (now - lastTap < 300) toggleLike();
-                lastTap = now;
-            });
-        });
-    </script>
-
+    // simple escapeHtml
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
+    }
+  </script>
 </body>
 
 </html>

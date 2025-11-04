@@ -170,6 +170,26 @@
             margin: 5px 0;
         }
 
+        .course-card a {
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            padding: 5px 8px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #0077ff, #00bfff);
+            box-shadow:
+                0 3px 6px rgba(0, 100, 255, 0.3),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .course-card a:hover {
+            background: linear-gradient(135deg, #00aaff, #66d9ff);
+            box-shadow:
+                0 4px 10px rgba(0, 140, 255, 0.4),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.4);
+        }
+
         @media (min-width: 1024px) {
             .main-content {
                 display: flex;
@@ -376,25 +396,29 @@
                     📓 2 Jam B. Indo<br></p>
                 <hr>
                 <h4>📖 PR / Tugas 📖</h4>
-                <p>📒 B. Jepang Nomor <b>9</b>. Harus sudah selesai pas mulai kbm, jangan alasan.<br>
-                    📒 PABP Nomor <b>8</b>. Tugas yang tabel mengisi aspek.<br></p>
+                <p>📒 Tugas Matematika Nomor 12 <a href="matematika.html#12">Klik disini</a></p>
+                <br>
+                <p>📒 Tugas Matematika Nomor 13 <a href="matematika.html#13">Klik disini</a></p>
                 <hr>
                 <h4>📌 Catatan 📌</h4>
-                <p>Senin Upacara<br>
-                    Atribut harus lengkap.</p>
+                <p>Rabu PPK<br>
+                    Pendidikan Penguatan Karakter</p>
                 <hr>
                 <h4>📔 Status Buku 📔</h4>
-                <p>📔 Semua ada.</p>
+                <p>📔 B. Indo: Dikumpulkan <br>
+                    📔 Matematika: Ada <br>
+                    📔 B. Inggris: Dikumpulkan <br>
+                    📔 BK: Ada</p>
                 <h4></h4><b>koreksi</b> jika ada salah dalam penginformasian status buku.
                 <hr>
                 <h4>🧹 Petugas Piket 🧹</h4>
-                <p>- Alena<br>
-                    - Andika <br>
-                    - Anna <br>
-                    - Faizar <br>
-                    - Keyla <br>
-                    - M. Fachri <br>
-                    - Risha</p>
+                <p>- Nisa sabyan<br>
+                    - Lemari<br>
+                    - Gusti nu agung<br>
+                    - Dungs ngantoek<br>
+                    - Nila punya f<br>
+                    - Raka karbohidrat<br>
+                    - Palembank</p>
                 <hr>
                 <p>KOREKSI mun aya TUGAS ANU KURANG atau aya nu salah.</p>
                 <h3></h3>
@@ -489,10 +513,10 @@
                 { keyword: "13", url: "matematika.html#13" },
                 { keyword: "14", url: "dpr2.html#14" },
                 { keyword: "15", url: "proipas.html#15" },
-                { keyword: "16", url: "sejarah.html#16"},
-                { keyword: "17", url: "bahasasunda.html#17"},
-                { keyword: "18", url: "senibudaya.html#18"},
-                { keyword: "19", url: "pp.html#19"},
+                { keyword: "16", url: "sejarah.html#16" },
+                { keyword: "17", url: "bahasasunda.html#17" },
+                { keyword: "18", url: "senibudaya.html#18" },
+                { keyword: "19", url: "pp.html#19" },
             ];
 
             const result = data.find(item => item.keyword === query);

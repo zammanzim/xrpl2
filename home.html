@@ -291,15 +291,20 @@
             box-shadow: 0 0 20px #dd2a7b, 0 0 60px rgba(221, 42, 123, 0.6);
         }
 
-        .tiktok {
-            background: linear-gradient(135deg, #000000, #25f4ee, #fe2c55);
-            box-shadow: 0 0 20px #25f4ee, 0 0 60px rgba(37, 244, 238, 0.6);
-        }
-
         .wa {
             background: linear-gradient(135deg, #25d366, #128c7e);
             box-shadow: 0 0 20px #25d366, 0 0 60px rgba(18, 140, 126, 0.6);
         }
+
+        .confess {
+            width: 100%;
+            background: linear-gradient(135deg, #7f00ff, #e100ff, #00d4ff);
+            box-shadow: 0 0 20px rgba(225, 0, 255, 0.5),
+                0 0 60px rgba(0, 212, 255, 0.4);
+                cursor: pointer;
+        }
+
+
 
         .social-box i {
             font-size: 1.5rem;
@@ -392,13 +397,13 @@
             border-radius: 15px;
             padding: 12px;
             width: 240px;
-            box-shadow: 0 0 20px rgb(0, 191, 255, 0.8);
+            box-shadow: 0 0 20px rgb(0, 191, 255, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
         .member-card:hover {
-            transform: scale(1.08);
+            transform: scale(1.02);
             box-shadow: 0 0 40px rgba(0, 191, 255, 1);
         }
 
@@ -431,29 +436,31 @@
             margin: 0;
         }
 
-        [data-animate] {
+        .member-card[data-animate] {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s ease, transform 0.8s ease;
             will-change: opacity, transform;
         }
 
-        [data-animate].show {
+        .member-card[data-animate].show {
             opacity: 1;
             transform: translateY(0);
         }
 
-        [data-animate="left"] {
+        .member-card[data-animate="left"] {
             transform: translateX(-40px);
         }
 
-        [data-animate="right"] {
+        .member-card[data-animate="right"] {
             transform: translateX(40px);
         }
 
-        [data-animate="zoom"] {
-            transform: scale(0.9);
+        .member-card[data-animate="left"].show,
+        .member-card[data-animate="right"].show {
+            transform: translateX(0);
         }
+
 
         .background {
             position: relative;
@@ -946,12 +953,13 @@
         .students-container {
             position: relative;
             width: 100%;
-            min-height: 400px;
+            min-height: 500px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             overflow-y: hidden;
             overflow-x: hidden;
+
         }
 
         .student-group {
@@ -961,7 +969,7 @@
             justify-content: center;
             gap: 15px;
             width: 100%;
-            top: 0;
+            top: 40px;
             left: 0;
             opacity: 0;
             transform: translateX(50px);
@@ -974,6 +982,130 @@
             transform: translateX(0);
             pointer-events: all;
             position: relative;
+        }
+
+        .popupconfess {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popupconfess-content {
+            background: #1e1e1e;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+            animation: popupConfessFade 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .popupconfess-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .popupconfess-form input,
+        .popupconfess-form textarea {
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 14px;
+        }
+
+        .popupconfess-send {
+            background: linear-gradient(135deg, #00ffaa, #00d4ff);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            padding: 8px 20px;
+        }
+
+        .popupconfess-send:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #00ffcc, #00e1ff);
+        }
+
+        .popupconfess-list {
+            text-align: left;
+            margin-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+        }
+
+        .confess-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .confess-item .name {
+            font-weight: bold;
+            color: #00ffaa;
+        }
+
+        .confess-item .message {
+            margin-top: 4px;
+            white-space: pre-wrap;
+        }
+
+        .loading {
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .popupconfess-form textarea {
+            resize: none;
+        }
+
+
+        @keyframes popupConfessFade {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+
+        @keyframes popupConfessFade {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .slide-in-left {
@@ -1099,12 +1231,17 @@
                     <span>(WKM)</span>
                 </a>
             </div>
+            <div class="social-box confess">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span>Confess Atau Pesan Buat X - RPL 2</span>
+                </a>
+            </div>
         </div>
     </div>
 
     <section class="gallery-section">
         <h2 data-animate>Class Gallery</h2>
-        <div class="gallery-scroll"> 
+        <div class="gallery-scroll">
             <div class="gallery-item"><img src="gallery/home1.webp"></div>
             <div class="gallery-item"><img src="gallery/home2.webp"></div>
             <div class="gallery-item"><img src="gallery/home3.webp"></div>
@@ -1123,6 +1260,8 @@
 
     <section class="structure-section">
         <h2 class="section-title" data-animate>Class Structure X - RPL 2</h2>
+        <br>
+        <br>
 
         <div class="structure-container">
             <div class="wali" data-animate>
@@ -1324,8 +1463,8 @@
                             data-img="students/amiiii.jpg" data-wa="" data-ig="" data-quote="" data-desc="">
                             <img src="students/amiiii.jpg" alt="">
                             <h3>amie goreng<h3>
-                            <p>Absen 02</p>
-                            <p>uncompleted</p>
+                                    <p>Absen 02</p>
+                                    <p>uncompleted</p>
                         </div>
 
                         <div class="member-card" data-name="Andika Prasetia" data-role="Absen 03"
@@ -1634,6 +1773,26 @@
             <button class="close-popup" onclick="closePopup()">Tutup</button>
         </div>
     </div>
+
+    <!-- Popup Confess -->
+    <div id="popupconfess" class="popupconfess">
+        <div class="popupconfess-content">
+            <span class="popupconfess-close">&times;</span>
+            <h2>Tulis Pesan Mu Disiniii</h2>
+
+            <div class="popupconfess-form">
+                <input type="text" id="confessName" placeholder="Nama">
+                <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
+                <button id="confessSend" class="popupconfess-send">Kirim</button>
+            </div>
+
+            <div class="popupconfess-list" id="confessList">
+                <p class="loading">Loading Messages</p>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
@@ -1675,12 +1834,12 @@
         scroll.addEventListener('scroll', updateScale);
         window.addEventListener('resize', updateScale);
 
-        const animatedEls = document.querySelectorAll('[data-animate]');
+        const animatedEls = document.querySelectorAll('.member-card[data-animate]');
 
         window.addEventListener('scroll', () => {
             animatedEls.forEach(el => {
                 const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
+                if (rect.top < window.innerHeight - 80) {
                     el.classList.add('show');
                 }
             });
@@ -1788,6 +1947,87 @@
             });
         });
     </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+        // Konfigurasi Firebase lu
+        const firebaseConfig = {
+            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+            authDomain: "xrpl2web.firebaseapp.com",
+            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "xrpl2web",
+            storageBucket: "xrpl2web.appspot.com",
+            messagingSenderId: "410193641417",
+            appId: "1:410193641417:web:a7da663d744703e4883218",
+        };
+
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const confessRef = ref(db, "confess");
+
+        // Elemen
+        const confessBox = document.querySelector('.social-box.confess');
+        const popupconfess = document.getElementById('popupconfess');
+        const closeConfess = document.querySelector('.popupconfess-close');
+        const sendBtn = document.getElementById('confessSend');
+        const nameInput = document.getElementById('confessName');
+        const msgInput = document.getElementById('confessMessage');
+        const confessList = document.getElementById('confessList');
+
+        // Buka popup
+        confessBox.onclick = () => {
+            popupconfess.style.display = 'flex';
+        };
+
+        // Tutup popup
+        closeConfess.onclick = () => popupconfess.style.display = 'none';
+        window.onclick = (e) => { if (e.target === popupconfess) popupconfess.style.display = 'none'; };
+
+        // Kirim data ke Firebase
+        sendBtn.onclick = async () => {
+            const name = nameInput.value.trim() || "Anonim";
+            const message = msgInput.value.trim();
+
+            if (!message) {
+                alert("Isi pesannya dulu, bre!");
+                return;
+            }
+
+            await push(confessRef, {
+                name: name,
+                message: message,
+                time: Date.now()
+            });
+
+            msgInput.value = "";
+            nameInput.value = "";
+        };
+
+        // Tampilkan data dari Firebase
+        onValue(confessRef, (snapshot) => {
+            confessList.innerHTML = "";
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                const keys = Object.keys(data).reverse(); // terbaru di atas
+                keys.forEach((key) => {
+                    const item = data[key];
+                    const div = document.createElement("div");
+                    div.classList.add("confess-item");
+                    div.innerHTML = `
+          <div class="name">${item.name}</div>
+          <div class="message">${item.message}</div>
+        `;
+                    confessList.appendChild(div);
+                });
+            } else {
+                confessList.innerHTML = "<p class='loading'>Belum ada confess nih 😢</p>";
+            }
+        });
+    </script>
+
 </body>
 
 </html>

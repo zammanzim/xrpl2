@@ -1,0 +1,4 @@
+projek:
+1. foto di tugas clickable
+2. penambahan elemen di page home
+3. melengkapi gallery

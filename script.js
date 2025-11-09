@@ -67,6 +67,15 @@ function searchPage() {
         { keyword: "17", url: "bahasasunda.html#17" },
         { keyword: "18", url: "senibudaya.html#18" },
         { keyword: "19", url: "pp.html#19" },
+        { keyword: "20", url: "informatika.html#20" },
+        { keyword: "21", url: "pabp.html#21" },
+        { keyword: "22", url: "pp.html#22" },
+        { keyword: "23", url: "bahasainggris.html#23" },
+        { keyword: "24", url: "dpr1.html#24" },
+        { keyword: "25", url: "bahasaindonesia.html#25" },
+        { keyword: "26", url: "bk.html#26" },
+        { keyword: "27", url: "proipas.html#27" },
+        { keyword: "28", url: "dpr2.html#28" },
     ];
 
     const result = data.find(item => item.keyword === query);

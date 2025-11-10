@@ -337,6 +337,231 @@
         footer p {
             margin: 0;
         }
+
+        .img-overlay {
+            display: flex;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .img-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .img-overlay img {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .img-overlay .desc {
+            margin-top: 12px;
+            font-size: 16px;
+            max-width: 90%;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .overlay-close {
+            position: fixed;
+            top: 18px;
+            right: 22px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            font-size: 26px;
+            cursor: pointer;
+            z-index: 10010;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .overlay-arrow {
+            position: fixed;
+            bottom: 22px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            font-size: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10010;
+            transition: transform .12s ease, background .12s;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .overlay-arrow.left {
+            left: 18px;
+        }
+
+        .overlay-arrow.right {
+            right: 18px;
+        }
+
+        .overlay-arrow:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .overlay-close:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: scale(1.03);
+        }
+
+        .overlay-arrow.hidden {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #imgHeader {
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 12px;
+            width: 90%;
+            color: #fff;
+        }
+
+        #imgHeader h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #5bc0ff;
+            margin: 0 0 6px;
+            text-shadow: 0 0 15px rgba(91, 192, 255, 0.8),
+                0 0 30px rgba(91, 192, 255, 0.5);
+        }
+
+        #imgHeader h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #8ed2ff;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(142, 210, 255, 0.5),
+                0 0 18px rgba(142, 210, 255, 0.3);
+        }
+
+        #imgFooter {
+            text-align: center;
+            color: #f2f2f2;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-top: 16px;
+            max-width: 90%;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            padding: 5px 40px;
+        }
+
+        #imgHeader,
+        #imgFooter {
+            animation: fadeInUp 0.4s ease both;
+        }
+
+        button,
+        .overlay-close,
+        .overlay-arrow,
+        .img-overlay {
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        #imgHeader,
+        #imgFooter,
+        #imgFooter p {
+            user-select: text;
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .overlay-arrow {
+                width: 72px;
+                height: 72px;
+                font-size: 36px;
+                bottom: 18px;
+            }
+
+            .overlay-close {
+                width: 52px;
+                height: 52px;
+                font-size: 28px;
+                right: 14px;
+                top: 14px;
+            }
+        }
+
+        .toggle-btn {
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.3s;
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        .toggle-btn.active {
+            transform: rotate(180deg);
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.4s ease, max-height 0.4s ease, transform 0.4s ease;
+            transform: translateY(10px);
+        }
+
+        .gallery.show {
+            opacity: 1;
+            max-height: 10000px;
+            transform: translateY(0);
+        }
+
+        .gallery img {
+            border-radius: 10px;
+            width: 380px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
@@ -384,45 +609,44 @@
                 <span id="searchMessage" style="color: red; font-size: 14px;"></span>
             </div>
             <div class="course-card">
-                <h3>🌟 Senin, 10 November 2025 🌟</h3>
+                <h3>🌟 Selasa, 11 November 2025 🌟</h3>
                 <hr>
                 <h4>👔 Putih Abu</h4>
                 <hr>
                 <h4>📝 Jadwal Pelajaran 📝</h4>
-                <p>📗 2 Jam B. Jepang<br>
-                    📘 1 Jam PPK<br>
-                    📙 1 Jam PJOK<br>
-                    📕 2 Jam Informatika<br>
-                    📘 1 Jam PPK<br>
-                    📓 3 Jam PABP<br></p>
+                <p>📗 2 Jam Seni Budaya<br>
+                    📙 2 Jam PP<br>
+                    📕 2 Jam B. Inggris<br>
+                    📘 2 Jam DASPROGRPL 1<br>
+                    📓 2 Jam Informatika<br></p>
                 <hr>
                 <h4>📖 PR / Tugas 📖</h4>
-                <p>📒 Tugas Informatika Nomor 20 <a href="informatika.html#20">Klik disini</a></p>
+                <p>📒 Tugas Seni Budaya Nomor 18 <a href="senibudaya.html#18">Klik disini</a></p>
                 <br>
-                <p>📒 Tugas PABP Nomor 21 <a href="pabp.html#21">Klik disini</a> <br>
-                    persiapan bagi yang debat untuk minggu depan.</p>
+                <p>📒 Tugas PP Nomor 22 <a href="pp.html#22">Klik disini</a></p>
+                <br>
+                <p>📒 Tugas B. Inggris Nomor 23 <a href="bahasainggris.html#23">Klik disini</a></p>
+                <br>
+                <p>📒 Tugas DPR 1 Nomor 24 <a href="dpr1.html#24">Klik disini</a></p>
+                <br>
+                <p>📒 Tugas Informatika Nomor 20 <a href="informatika.html#20">Klik disini</a></p>
                 <hr>
                 <h4>📌 Catatan 📌</h4>
-                <p>Senin Upacara<br>
-                    Atribut lengkap dan datang lebih awal. <br>
-                    Upacara HUT LPPM RI</p>
+                <p>Selasa SKJ<br>
+                    Memakai pakaian olahraga dari rumah.</p>
                 <hr>
                 <h4>📔 Status Buku 📔</h4>
-                <p>📔 B. Jepang: Ada <br>
-                    📔 PPK: Ada <br>
-                    📔 PJOK: Dikumpulkan <br>
-                    📔 Informatika: Dikumpulkan <br>
-                    📔 PABP: Ada</p>
+                <p>📔 Semua Ada</p>
                 <h4></h4><b>Koreksi</b> jika ada salah dalam penginformasian status buku.
                 <hr>
                 <h4>🧹 Petugas Piket 🧹</h4>
-                <p>- Umi Lena<br>
-                    - Abi Dika Bedog<br>
-                    - Anna Antum<br>
-                    - Ajay Muso<br>
-                    - Kela Sakedap<br>
-                    - Fachri Galon Jayaslot<br>
-                    - Risha Katel</p>
+                <p>- Amie Goreng<br>
+                    - Epul Garut<br>
+                    - Lauk Peda<br>
+                    - Namla Kripik Tulank<br>
+                    - Gilang Ojol Baso Cabul<br>
+                    - Nijam Endog<br>
+                    - Sandra Pulang Pergi</p>
                 <hr>
                 <p>KOREKSI mun aya TUGAS ANU KURANG atau aya nu salah.</p>
                 <h3></h3>
@@ -432,42 +656,62 @@
 
         <div class="right-section">
             <div class="course-card">
-                <h4>Tips Pake Kolom Pencarian</h4>
-                <p>Cobaan ketik nomor 11 mun erk ka tugas atau sesuai nomor tugas. trus mun bade ka halaman awal ketik
-                    0.</p>
+                <h3>New Feature(s)</h3>
+                <p>Kalo liat tugas yang difoto coba klik fotonya, biar foto fokus ke tengah layar kalo di catat. mau
+                    coba? Buka yang dibawah.</p>
+                <div class="toggle-btn">▼</div>
+                <div class="gallery">
+                    <img src="gallery/fahriolah.webp" loading="lazy">
+                    <img src="gallery/ukuyolah.webp" alt="">
+                </div>
             </div>
 
-            <div class="course-card">
-                <h3>Announcement:</h3>
-                <p>Web ini masih dalam pengembangan, masih jauh dari kata sempurna. Jadi, kalo nemu bug atau ada saran
-                    buat pengembangan web ini kedepannya chat.<br>
-                </p>
-            </div>
+            <div class="right-section">
+                <div class="course-card">
+                    <h4>Tips Pake Kolom Pencarian</h4>
+                    <p>Cobaan ketik nomor 11 mun erk ka tugas atau sesuai nomor tugas. trus mun bade ka halaman awal
+                        ketik
+                        0.</p>
+                </div>
 
-            <div class="course-card">
-                <h3>Disclaimer:</h3>
-                <p>Bagi hidupnya yang gamau ribet "ah nanaonan nyien nu web kararitu, raribet, te bararoga kuota", nya
-                    te
-                    nanaon. Kalo ada tugas atau ada pengumuman di channel, informasinya suka tenggelem jadi fungsi dari
-                    web
-                    ini adalah untuk mengsortir tugas atau informasi agar tidak berantakan. Yaaa channel masih berjalan,
-                    jadi web ini sebagai pelengkap atau database tentang semua tugas dan informasi. Alasan saya membuat
-                    web
-                    ini? Yap gara-gara gabut, bae alus gabut teh anu bermanfaat.</p>
-            </div>
+                <div class="course-card">
+                    <h3>Announcement:</h3>
+                    <p>Web ini masih dalam pengembangan, masih jauh dari kata sempurna. Jadi, kalo nemu bug atau ada
+                        saran
+                        buat pengembangan web ini kedepannya chat.<br>
+                    </p>
+                </div>
 
-            <div class="course-card">
-                <h3>Features</h3>
-                <p>1. Menu Home, isinya tentang highlight X - RPL 2. Seperti foto, struktur organigram, jadwal piket,
-                    dll.
-                    <hr>
-                    2. Menu Announcement, dimana semua pengumuman seperti jadwal, info ada disini.
-                    <hr>
-                    3. Menu pelajaran, isinya tentang tugas berdasarkan mapelnya.
-                    <hr>
-                    4. Menu Class Gallery(masi proses), semua foto - foto X - RPL 2 ada disini. Mulai dari foto
-                    kumpulan, foto kelas, bahkan sampai aib.
-                </p>
+                <div class="course-card">
+                    <h3>Disclaimer:</h3>
+                    <p>Bagi hidupnya yang gamau ribet "ah nanaonan nyien nu web kararitu, raribet, te bararoga kuota",
+                        nya
+                        te
+                        nanaon. Kalo ada tugas atau ada pengumuman di channel, informasinya suka tenggelem jadi fungsi
+                        dari
+                        web
+                        ini adalah untuk mengsortir tugas atau informasi agar tidak berantakan. Yaaa channel masih
+                        berjalan,
+                        jadi web ini sebagai pelengkap atau database tentang semua tugas dan informasi. Alasan saya
+                        membuat
+                        web
+                        ini? Yap gara-gara gabut, bae alus gabut teh anu bermanfaat.</p>
+                </div>
+
+                <div class="course-card">
+                    <h3>Features</h3>
+                    <p>1. Menu Home, isinya tentang highlight X - RPL 2. Seperti foto, struktur organigram, jadwal
+                        piket,
+                        dll.
+                        <hr>
+                        2. Menu Announcement, dimana semua pengumuman seperti jadwal, info ada disini.
+                        <hr>
+                        3. Menu pelajaran, isinya tentang tugas berdasarkan mapelnya.
+                        <hr>
+                        4. Menu Class Gallery(masi proses), semua foto - foto X - RPL 2 ada disini. Mulai dari foto
+                        kumpulan, foto kelas, bahkan sampai aib.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -476,8 +720,18 @@
 
     <footer>
         <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
-        <p>Dev by zm | Created by zm | Designed by zm, pecei</p>
+            <p>Created, Dev, Design by Nijam Endog</p>
     </footer>
+
+    <div class="img-overlay" id="imgOverlay" aria-hidden="true">
+        <div class="desc" id="imgHeader"></div>
+        <img id="overlayImg" src="" alt="Gambar fullscreen">
+        <div class="desc" id="imgFooter"></div>
+
+        <button class="overlay-close" id="overlayClose">✕</button>
+        <button class="overlay-arrow left" id="overlayPrev">&#10094;</button>
+        <button class="overlay-arrow right" id="overlayNext">&#10095;</button>
+    </div>
 
     <script>
         function toggleMenu() {
@@ -554,6 +808,115 @@
             if (e.key === 'Enter') {
                 searchPage();
             }
+        });
+
+        const overlay = document.getElementById('imgOverlay');
+        const overlayImg = document.getElementById('overlayImg');
+        const overlayHeader = document.getElementById('imgHeader');
+        const overlayFooter = document.getElementById('imgFooter');
+        const btnClose = document.getElementById('overlayClose');
+        const btnPrev = document.getElementById('overlayPrev');
+        const btnNext = document.getElementById('overlayNext');
+        const allImages = Array.from(document.querySelectorAll('.gallery img'));
+        let currentIndex = 0;
+        let scrollY = 0;
+
+        function showOverlay() {
+            scrollY = window.scrollY;
+
+            document.body.dataset.scrollY = scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+
+            overlay.classList.add('active');
+
+            const img = allImages[currentIndex];
+            overlayImg.src = img.src;
+            const card = img.closest('.course-card');
+            const title = card?.querySelector('h3')?.innerText || '';
+            const subtitle = card?.querySelector('h4')?.innerText || '';
+            const desc = card?.querySelector('p')?.innerText || '';
+
+            overlayHeader.innerHTML = `
+    <h3>${title}</h3>
+    <h4>${subtitle}</h4>
+  `;
+            overlayFooter.innerHTML = `<p>${desc}</p>`;
+
+            updateArrows();
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('active');
+
+            const y = parseInt(document.body.dataset.scrollY || '0');
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+            window.scrollTo(0, y);
+        }
+
+        function prevImg() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showOverlay();
+            }
+        }
+
+        function nextImg() {
+            if (currentIndex < allImages.length - 1) {
+                currentIndex++;
+                showOverlay();
+            }
+        }
+
+        function updateArrows() {
+            btnPrev.classList.toggle('hidden', currentIndex === 0);
+            btnNext.classList.toggle('hidden', currentIndex === allImages.length - 1);
+        }
+
+        allImages.forEach((img, i) => {
+            img.addEventListener('click', () => {
+                currentIndex = i;
+                showOverlay();
+            });
+        });
+
+        btnClose.addEventListener('click', closeOverlay);
+        btnPrev.addEventListener('click', prevImg);
+        btnNext.addEventListener('click', nextImg);
+
+        document.addEventListener('keydown', (e) => {
+            if (overlay.classList.contains('active')) {
+                if (e.key === 'Escape') closeOverlay();
+                if (e.key === 'ArrowLeft') prevImg();
+                if (e.key === 'ArrowRight') nextImg();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggles = document.querySelectorAll(".toggle-btn");
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", () => {
+                    const gallery = toggle.nextElementSibling;
+
+                    if (gallery.classList.contains("show")) {
+                        gallery.classList.remove("show");
+                        toggle.classList.remove("active");
+                    } else {
+                        gallery.classList.add("show");
+                        toggle.classList.add("active");
+                    }
+                });
+            });
         });
 
     </script>

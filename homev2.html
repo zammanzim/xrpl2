@@ -554,6 +554,338 @@
             }
         }
 
+        .structure-section {
+            text-align: center;
+            margin: 60px auto;
+            color: white;
+            text-shadow: 0 0 10px #00bfff;
+        }
+
+        .structure-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
+        }
+
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+        }
+
+        .node {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            transition: 0.3s ease;
+        }
+
+        .node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #00bfff;
+        }
+
+        .node img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+            border: 2px solid #00bfff;
+        }
+
+        .node p {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 3px;
+            color: #00bfff;
+        }
+
+        .line.vertical {
+            width: 2px;
+            height: 40px;
+            background: #00bfff;
+            opacity: 0.6;
+            margin-bottom: 10px;
+        }
+
+        .children {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .students-section {
+            text-align: center;
+            margin: 100px auto;
+            color: white;
+        }
+
+        .students-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
+        }
+
+        .students-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            background: rgba(0, 191, 255, 0.15);
+            border: 1px solid #00bfff;
+            border-radius: 10px;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            background: rgba(0, 191, 255, 0.4);
+            box-shadow: 0 0 10px #00bfff;
+        }
+
+        .tab-btn.active {
+            background: #00bfff;
+            color: black;
+            font-weight: bold;
+            box-shadow: 0 0 20px #00bfff;
+        }
+
+        .students-container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            justify-content: center;
+        }
+
+        @media (min-width: 1025px) {
+            .students-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        .student-card {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            border-radius: 15px;
+            padding: 15px;
+            transition: 0.3s;
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+        }
+
+        .student-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #00bfff;
+        }
+
+        .student-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .student-card h3 {
+            font-size: 1.1rem;
+            color: #00bfff;
+            margin-bottom: 5px;
+        }
+
+        .student-card p {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 3px;
+            color: #00bfff;
+        }
+
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            border-radius: 10px;
+            color: white;
+            padding: 8px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 191, 255, 0.3);
+            box-shadow: 0 0 15px #00bfff;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(6px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-card {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            box-shadow: 0 0 25px #00bfff;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            max-width: 320px;
+            color: white;
+            animation: fadeIn1 0.4s ease;
+            position: relative;
+        }
+
+        .popup-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #00bfff;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .popup-card h3 {
+            color: #00bfff;
+            margin: 10px 0 5px;
+        }
+
+        .popup-card p {
+            margin: 6px 0;
+        }
+
+        .popup-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .popup-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .popup-links a.wa i {
+            color: #25D366;
+            font-size: 1.5rem;
+        }
+
+        .popup-links a.ig i {
+            color: #E1306C;
+            font-size: 1.5rem;
+        }
+
+        .popup-links a:hover {
+            background: rgba(0, 191, 255, 0.3);
+            box-shadow: 0 0 10px #00bfff;
+            transform: scale(1.1);
+        }
+
+
+        .close-popup {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            font-size: 1.8rem;
+            color: #00bfff;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn1 {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+
+        .popup-card.fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 1024px) {
             header {
                 padding: 8px 14px;
@@ -677,9 +1009,379 @@
         <div class="gallery-scroll">
             <div class="gallery-item"><img src="gallery/home1.webp"></div>
             <div class="gallery-item"><img src="gallery/home2.webp"></div>
-            dst sampai 11
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src=""></div>
         </div>
     </div>
+
+    <div class="structure-section">
+        <h2>Class Structure</h2>
+
+        <div class="tree">
+            <div class="node wali" data-name="Bu Windy Puteri Utami, S. Hum" data-role="Wali Kelas"
+                data-img="gallery/buwindywk.jpg" data-wa="6287821006692" data-ig="windy_rpl2"
+                data-quote="Jangan takut gagal, takutlah kalau tidak mencoba."
+                data-desc="Guru produktif RPL yang selalu semangat membimbing siswa.">
+                <img src="gallery/buwindywk.jpg" alt="Bu Windy">
+                <p>Wali Kelas</p>
+                <span>Bu Windy Puteri Utami</span>
+            </div>
+
+
+            <h4>Dewan Ketua dan Perwakilan Lembaga</h4>
+
+            <div class="children">
+                <div class="node" data-name="Excel Adila Putra" data-role="Dewan Ketua Lembaga"
+                    data-img="gallery/peceikm.webp" data-wa="62895329906073" data-ig="couldrnt"
+                    data-quote="0.1% bukan berarti 0 kemungkinan." data-desc="Kaem yang pusing">
+                    <img src="gallery/peceikm.webp" alt="">
+                    <p>Excel</p>
+                </div>
+                <div class="node" data-name="Nizam Fhamer Arafli" data-role="Dewan Perwakilan Lembaga"
+                    data-img="gallery/nzamwkm.webp" data-wa="6283851088843" data-ig=""
+                    data-quote="Janganlah don't karena because selalu always" data-desc="enya">
+                    <img src="gallery/nzamwkm.webp" alt="">
+                    <p>Nizam</p>
+                </div>
+            </div>
+
+            <h3>Dewan Keuangan Lembaga</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="gallery/dilabend.webp">
+                    <p>Dila</p>
+                </div>
+                <div class="node">
+                    <img src="gallery/nabilabend.webp">
+                    <p>Nabila</p>
+                </div>
+            </div>
+
+            <h3>Dewan Sekretaris</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="gallery/indahsek.webp">
+                    <p>Indah</p>
+                </div>
+                <div class="node">
+                    <img src="gallery/aufasek.webp">
+                    <p>Aufa</p>
+                </div>
+            </div>
+
+            <h3>Dewan Kehadiran dan Absensi</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="gallery/alenaabs.webp">
+                    <p>Alena</p>
+                </div>
+                <div class="node">
+                    <img src="students/amiiii.jpg">
+                    <p>Almira</p>
+                </div>
+            </div>
+
+            <h3>Dewan Keamananan dan Ketertiban</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="gallery/rakkea.webp">
+                    <p>Raka</p>
+                </div>
+                <div class="node">
+                    <img src="gallery/revankea.png">
+                    <p>Revan</p>
+                </div>
+            </div>
+
+            <h3>Dewan Lingkungan dan Kebersihan</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="gallery/ucupkeber.webp">
+                    <p>Yusup</p>
+                </div>
+                <div class="node">
+                    <img src="gallery/bekamkeber.webp">
+                    <p>Nazlan</p>
+                </div>
+            </div>
+
+            <h3>Dewan Olahraga</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="gallery/ukuyolah.webp">
+                    <p>Rizky</p>
+                </div>
+                <div class="node">
+                    <img src="gallery/fahriolah.webp">
+                    <p>Fachri</p>
+                </div>
+            </div>
+
+            <h3>Dewan Pembinaan dan Akhlak</h3>
+
+            <div class="children">
+                <div class="node">
+                    <img src="students/andika.jpg">
+                    <p>Andika</p>
+                </div>
+                <div class="node">
+                    <img src="gallery/latifrohani.webp">
+                    <p>Latif</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="students-section">
+        <h2>Our Students</h2>
+
+        <div class="students-tabs">
+            <button class="tab-btn active" data-tab="1">1 - 8</button>
+            <button class="tab-btn" data-tab="2">9 - 16</button>
+            <button class="tab-btn" data-tab="3">17 - 26</button>
+            <button class="tab-btn" data-tab="4">27 - 34</button>
+        </div>
+
+        <div class="students-container">
+            <div class="tab-content active" id="tab-1">
+                <div class="students-grid">
+                    <div class="student-card">
+                        <img src="students/alena.jpg" alt="Excel Adila Putra">
+                        <p>Umi Lena</p>
+                        <span>Absen 01</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="students/amiiii.jpg" alt="Nizam">
+                        <p>Amie Goreng</p>
+                        <span>Absen 02</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="students/andika.jpg" alt="Nizam">
+                        <p>Abi Dika Bedog</p>
+                        <span>Absen 03</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="students/anisa.jpg" alt="Nizam">
+                        <p>Nisa Sabyan</p>
+                        <span>Absen 04</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="students/anna.jpg" alt="Nizam">
+                        <p>Anna Antum</p>
+                        <span>Absen 05</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="gallery/aufasek.webp" alt="Nizam">
+                        <p>Aufa Walrus</p>
+                        <span>Absen 06</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="students/bintang.jpg" alt="Nizam">
+                        <p>Epul Garut</p>
+                        <span>Absen 07</span>
+                    </div>
+                    <div class="student-card">
+                        <img src="students/debby.jpg" alt="Nizam">
+                        <p>Dobby</p>
+                        <span>Absen 08</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-2">
+                <div class="students-grid">
+                    <div class="student-card">
+                        <img src="students/dila.jpg" alt="">
+                        <p>Lauk Peda</p>
+                        <span>Absen 9</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/peceikm.webp" alt="">
+                        <p>Lemari</p>
+                        <span>Absen 10</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/faizar.jpg" alt="">
+                        <p>Ajay Muso</p>
+                        <span>Absen 11</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/gista.jpg" alt="">
+                        <p>Gusti Nu Agung</p>
+                        <span>Absen 12</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/keyla.jpg" alt="">
+                        <p>Kela Sakedap</p>
+                        <span>Absen 13</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/latifrohani.webp" alt="">
+                        <p>Latif Fast Charging</p>
+                        <span>Absen 14</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/gilang.jpg" alt="">
+                        <p>Gilang Ojol Baso Cabul</p>
+                        <span>Absen 15</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/bekamkeber.webp" alt="">
+                        <p>Bekam hengset</p>
+                        <span>Absen 16</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-3">
+                <div class="students-grid">
+                    <div class="student-card">
+                        <img src="students/fachri.jpg" alt="">
+                        <p>Fachri Galon Jayaslot</p>
+                        <span>Absen 17</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/wildan.jpg" alt="">
+                        <p>Dungs Ngantoek</p>
+                        <span>Absen 18</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/ucupkeber.webp" alt="">
+                        <p>Ucup Sarimi</p>
+                        <span>Absen 19</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/nabila.jpg" alt="">
+                        <p>Namla Buek</p>
+                        <span>Absen 20</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/nakisa.jpg" alt="">
+                        <p>Bos Bihun</p>
+                        <span>Absen 21</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/neiyla.jpg" alt="">
+                        <p>Nila Punya F</p>
+                        <span>Absen 22</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/nzamwkm.webp" alt="">
+                        <p>Nijam hateemel</p>
+                        <span>Absen 23</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/rafi.jpg" alt="">
+                        <p>Ontel</p>
+                        <span>Absen 24</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/raka.jpg" alt="">
+                        <p>Raka Karbohidrat</p>
+                        <span>Absen 25</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/revankea.png" alt="">
+                        <p>Evan Ngorong</p>
+                        <span>Absen 26</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-4">
+                <div class="students-grid">
+                    <div class="student-card">
+                        <img src="students/risha.jpg" alt="">
+                        <p>Risha Katel</p>
+                        <span>Absen 27</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/rizky.jpg" alt="">
+                        <p>Ukuy Depo Roket Indo</p>
+                        <span>Absen 28</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="" alt="">
+                        <p>Sandra Pulang Pergi</p>
+                        <span>Absen 29</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/sendi.jpg" alt="">
+                        <p>Omoy Bumbu Kacang Bacol</p>
+                        <span>Absen 30</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="" alt="">
+                        <p>Sivla</p>
+                        <span>Absen 31</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="gallery/indahsek.webp" alt="">
+                        <p>Siti Hawa Nafsu</p>
+                        <span>Absen 32</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="" alt="">
+                        <p>Palembank</p>
+                        <span>Absen 33</span>
+                    </div>
+
+                    <div class="student-card">
+                        <img src="students/windi.jpg" alt="">
+                        <p>Mahalini</p>
+                        <span>Absen 34</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-nav">
+            <button id="prevTab" class="nav-btn">← Prev</button>
+            <button id="nextTab" class="nav-btn">Next →</button>
+        </div>
+    </div>
+
 
     <div id="popupconfess" class="popupconfess">
         <div class="popupconfess-content">
@@ -693,6 +1395,23 @@
                 <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
                 <button id="confessSend" class="popupconfess-send">Kirim</button>
             </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup-card">
+            <span class="close-popup">&times;</span>
+            <img id="popup-img" src="" alt="Profile">
+            <h3 id="popup-name"></h3>
+            <p class="popup-role" id="popup-role"></p>
+            <p class="popup-quote" id="popup-quote"></p>
+            <p class="popup-desc" id="popup-desc"></p>
+
+            <div class="popup-links">
+                <a id="popup-wa" href="#" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
+                <a id="popup-ig" href="#" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+
         </div>
     </div>
 
@@ -750,7 +1469,7 @@
         }
 
         window.addEventListener("load", () => {
-            scrollToIndex(1, false);
+            scrollToIndex(false);
             updateScale();
             setTimeout(() => updateScale(), 300);
         });
@@ -766,6 +1485,87 @@
             setTimeout(updateScale, 500);
         }, 3000);
 
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
+        const prevBtn = document.getElementById("prevTab");
+        const nextBtn = document.getElementById("nextTab");
+        let activeIndex = 0;
+
+        function updateTabs(index) {
+            tabs.forEach((b, i) => {
+                b.classList.toggle("active", i === index);
+                contents[i].classList.toggle("active", i === index);
+            });
+
+            // Nonaktifkan tombol di batas
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === tabs.length - 1;
+        }
+
+        // klik tombol tab manual
+        tabs.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                activeIndex = i;
+                updateTabs(activeIndex);
+            });
+        });
+
+        // klik tombol navigasi bawah
+        prevBtn.addEventListener("click", () => {
+            if (activeIndex > 0) activeIndex--;
+            updateTabs(activeIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (activeIndex < tabs.length - 1) activeIndex++;
+            updateTabs(activeIndex);
+        });
+
+        // inisialisasi awal
+        updateTabs(activeIndex);
+
+
+        document.querySelectorAll(".node, .student-card").forEach(card => {
+            card.addEventListener("click", () => {
+                const popup = document.getElementById("popup");
+                const popupCard = popup.querySelector(".popup-card");
+
+                // isi data
+                document.getElementById("popup-img").src = card.dataset.img;
+                document.getElementById("popup-name").innerText = card.dataset.name;
+                document.getElementById("popup-role").innerText = card.dataset.role;
+                document.getElementById("popup-quote").innerText = `"${card.dataset.quote}"`;
+                document.getElementById("popup-desc").innerText = card.dataset.desc;
+                document.getElementById("popup-wa").href = `https://wa.me/${card.dataset.wa}`;
+                document.getElementById("popup-ig").href = `https://instagram.com/${card.dataset.ig}`;
+
+                // tampil popup
+                popup.style.display = "flex";
+                popupCard.classList.remove("fade-out"); // pastiin gak ke-cache animasi keluar
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        function closePopup() {
+            const popup = document.getElementById("popup");
+            const popupCard = popup.querySelector(".popup-card");
+
+            popupCard.classList.add("fade-out"); // animasi keluar
+
+            setTimeout(() => {
+                popup.style.display = "none";
+                popupCard.classList.remove("fade-out");
+                document.body.style.overflow = "auto";
+            }, 300); // durasi sama kayak fadeOut
+        }
+
+        // tombol close
+        document.querySelector(".close-popup").addEventListener("click", closePopup);
+
+        // klik area luar popup
+        document.getElementById("popup").addEventListener("click", e => {
+            if (e.target.id === "popup") closePopup();
+        });
     </script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
@@ -852,7 +1652,7 @@
                 }
             });
         }
-        
+
         document.querySelectorAll('.social-box').forEach(box => {
             box.addEventListener('click', () => {
                 const nodeId = box.dataset.id;

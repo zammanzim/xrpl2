@@ -13,7 +13,7 @@
             scrollbar-width: none;
             overflow-x: hidden;
         }
- 
+
         html::-webkit-scrollbar {
             display: none;
         }
@@ -1753,46 +1753,64 @@
         <p>© 2025-2026 X - RPL 2 Web Class | All rights reserved.</p>
         <p>Dev by zm | Created by zm | Designed by zm</p>
     </footer>
+
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-card">
+            <img id="popupImg" src="" alt="">
+            <h3 id="popupName"></h3>
+            <p id="popupRole"></p>
+            <p id="popupDesc"></p>
+            <p><span id="popupQuote"></span></p>
+
+            <div class="popup-links">
+                <a id="popupWA" href="#" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a id="popupIG" href="#" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+
+            <button class="close-popup" onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+
+    <div id="popupconfess" class="popupconfess">
+        <div class="popupconfess-content">
+            <span class="popupconfess-close">&times;</span>
+            <h2>Tuliskan Pesan Disinii</h2>
+
+            <div class="popupconfess-list" id="confessList">
+                <p class="loading">Loading Messages...</p>
+            </div>
+            <div class="popupconfess-form">
+                <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
+                <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
+                <button id="confessSend" class="popupconfess-send">Kirim</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-card">
+            <span class="close-popup">&times;</span>
+            <img id="popup-img" src="" alt="Profile">
+            <h3 id="popup-name"></h3>
+            <p class="popup-role" id="popup-role"></p>
+            <p class="popup-quote" id="popup-quote"></p>
+            <p class="popup-desc" id="popup-desc"></p>
+
+            <div class="popup-links">
+                <a id="popup-wa" href="#" target="_blank">💬 WhatsApp</a>
+                <a id="popup-ig" href="#" target="_blank">📸 Instagram</a>
+            </div>
+        </div>
+    </div>
+
+
 </body>
-<div id="popupOverlay" class="popup-overlay">
-    <div class="popup-card">
-        <img id="popupImg" src="" alt="">
-        <h3 id="popupName"></h3>
-        <p id="popupRole"></p>
-        <p id="popupDesc"></p>
-        <p><span id="popupQuote"></span></p>
-
-        <div class="popup-links">
-            <a id="popupWA" href="#" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-
-            <a id="popupIG" href="#" target="_blank">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-        </div>
-
-        <button class="close-popup" onclick="closePopup()">Tutup</button>
-    </div>
-</div>
-
-<div id="popupconfess" class="popupconfess">
-    <div class="popupconfess-content">
-        <span class="popupconfess-close">&times;</span>
-        <h2>Tuliskan Pesan Disinii</h2>
-
-        <div class="popupconfess-list" id="confessList">
-            <p class="loading">Loading Messages...</p>
-        </div>
-        <div class="popupconfess-form">
-            <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
-            <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
-            <button id="confessSend" class="popupconfess-send">Kirim</button>
-        </div>
-    </div>
-</div>
-
-
 <script>
     function toggleMenu() {
         const sidebar = document.getElementById('sidebar');
@@ -2043,4 +2061,5 @@
 
 </script>
 </body>
+
 </html>

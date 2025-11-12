@@ -76,6 +76,7 @@ function searchPage() {
         { keyword: "26", url: "bk.html#26" },
         { keyword: "27", url: "proipas.html#27" },
         { keyword: "28", url: "dpr2.html#28" },
+        { keyword: "29", url: "matematika.html#29"}
     ];
 
     const result = data.find(item => item.keyword === query);

@@ -14,8 +14,7 @@
             -ms-overflow-style: none;
         }
 
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar {
+        html::-webkit-scrollbar {
             display: none;
         }
 
@@ -37,12 +36,7 @@
         }
 
         body {
-            background: #292929;
             color: white;
-            overflow-x: hidden;
-        }
-
-        body {
             background-color: #101010;
             background-image:
                 linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px),
@@ -124,11 +118,6 @@
             pointer-events: all;
         }
 
-        .menu-popup-overlay.closing {
-            opacity: 0;
-            pointer-events: none;
-        }
-
         .menu-popup {
             background: rgba(0, 30, 60, 0.95);
             color: white;
@@ -141,7 +130,6 @@
             transform: scale(0.85);
             opacity: 0;
             transition: all 0.35s ease;
-            transition-delay: 0s;
         }
 
         .menu-popup-overlay.active .menu-popup {
@@ -418,56 +406,32 @@
             text-align: center;
         }
 
-        .popupconfess {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popupconfess-content {
-            background: #1e1e1e;
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
-            width: 90%;
-            max-width: 420px;
-            text-align: center;
-            position: relative;
-            animation: popupConfessFade 0.3s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .popupconfess-close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
         .popupconfess-form input,
         .popupconfess-form textarea {
             width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 191, 255, 0.4);
             border-radius: 10px;
-            border: none;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.1);
             color: white;
+            padding: 10px 12px;
+            margin-bottom: 10px;
             font-size: 14px;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .popupconfess-form input:focus,
+        .popupconfess-form textarea:focus {
+            border-color: #00bfff;
+            box-shadow: 0 0 12px #00bfff;
+            background: rgba(0, 191, 255, 0.08);
+        }
+
+        .popup-dynamic h2 {
+            font-size: 1.4rem;
+            color: #00d4ff;
+            text-shadow: 0 0 10px #00bfff;
+            margin-bottom: 18px;
         }
 
         .popupconfess-send {
@@ -477,7 +441,7 @@
             color: #000;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.2s;
+            transition: 0.25s ease;
             padding: 8px 20px;
         }
 
@@ -486,22 +450,34 @@
             background: linear-gradient(135deg, #00ffcc, #00e1ff);
         }
 
-        .popupconfess-list {
-            text-align: left;
-            margin-top: 15px;
-            padding-top: 10px;
-            overflow-y: auto;
-            max-height: 55vh;
-            display: flex;
-            flex-direction: column-reverse;
-        }
-
         .confess-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            border-radius: 8px;
+            padding: 10px 12px;
+            border-radius: 10px;
             margin-bottom: 10px;
+            transition: background 0.3s ease;
         }
+
+        .confess-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding-right: 5px;
+        }
+
+        .confess-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .confess-list::-webkit-scrollbar-thumb {
+            background: rgba(0, 191, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .confess-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
 
         .confess-item .name {
             font-weight: bold;
@@ -520,26 +496,6 @@
 
         .popupconfess-form textarea {
             resize: none;
-        }
-
-        .popupconfess-form {
-            position: sticky;
-            bottom: 0;
-            background: #1e1e1e;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        @keyframes popupConfessFade {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
         }
 
         @keyframes fadeIn {
@@ -696,8 +652,6 @@
             border-radius: 15px;
             padding: 15px;
             transition: 0.3s;
-            background: rgba(0, 191, 255, 0.1);
-            border: 1px solid rgba(0, 191, 255, 0.4);
         }
 
         .student-card:hover {
@@ -770,42 +724,108 @@
         }
 
         .popup-card {
-            background: rgba(0, 191, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 520px;
+            background: rgba(0, 191, 255, 0.08);
             border: 1px solid rgba(0, 191, 255, 0.4);
             box-shadow: 0 0 25px #00bfff;
             border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            max-width: 320px;
+            padding: 20px;
             color: white;
             animation: fadeIn1 0.4s ease;
-            position: relative;
         }
 
-        .popup-card img {
-            width: 100px;
-            height: 100px;
+        .popup-layout {
+            display: grid;
+            grid-template-columns: 1fr 160px;
+            grid-template-rows: auto auto;
+            gap: 6px 20px;
+            /* 🔧 jarak antar baris diperkecil dari 12px jadi 6px */
+            width: 100%;
+            align-items: start;
+        }
+
+        .popup-layout .quote {
+            grid-column: 1;
+            grid-row: 1;
+            font-style: italic;
+            background: rgba(0, 191, 255, 0.05);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            /* 🔧 border neon tipis */
+            border-left: 3px solid #00bfff;
+            padding: 8px 10px;
+            border-radius: 10px;
+            color: #c9f8ff;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+        }
+
+        .popup-layout img {
+            grid-column: 2;
+            grid-row: 1;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 2px solid #00bfff;
             object-fit: cover;
-            margin-bottom: 10px;
+            border: 2px solid #00bfff;
+            box-shadow: 0 0 12px rgba(0, 191, 255, 0.5);
+            justify-self: center;
         }
 
-        .popup-card h3 {
-            color: #00bfff;
-            margin: 10px 0 5px;
+        /* Deskripsi kiri bawah */
+        .popup-layout .desc {
+            grid-column: 1;
+            grid-row: 2;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            /* 🔧 border juga */
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #e8faff;
+            text-align: justify;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.15);
         }
 
-        .popup-card p {
-            margin: 6px 0;
+        /* Nama dan peran kanan bawah */
+        .popup-layout .identity {
+            grid-column: 2;
+            grid-row: 2;
+            text-align: center;
+            margin-top: 2px;
+            /* 🔧 biar sejajar pas */
+        }
+
+        .popup-layout .identity h3 {
+            font-size: 1.2rem;
+            color: #00d4ff;
+            text-shadow: 0 0 8px #00bfff;
+        }
+
+        .popup-layout .identity .role {
+            color: #00ffaa;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .popup-layout .quote:hover,
+        .popup-layout .desc:hover {
+            background: rgba(0, 191, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            transition: 0.3s ease;
         }
 
         .popup-links {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 8px;
         }
+
 
         .popup-links a {
             display: flex;
@@ -836,16 +856,6 @@
             transform: scale(1.1);
         }
 
-
-        .close-popup {
-            position: absolute;
-            top: 8px;
-            right: 14px;
-            font-size: 1.8rem;
-            color: #00bfff;
-            cursor: pointer;
-        }
-
         @keyframes fadeIn1 {
             from {
                 opacity: 0;
@@ -872,18 +882,6 @@
 
         .popup-card.fade-out {
             animation: fadeOut 0.3s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @media (max-width: 1024px) {
@@ -926,14 +924,6 @@
 
             .background {
                 height: 30vh;
-            }
-
-            .social-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-                gap: 12px;
-                width: 90%;
             }
 
             .social-box.tall {
@@ -992,12 +982,12 @@
                 <span>WhatsApp Channel</span>
             </a>
 
-            <div class="social-box confess tall" data-id="confess-rpl2" data-title="Confess / Pesan Buat X - RPL 2">
+            <div class="social-box confess tall" data-id="confess-rpl2">
                 <i class="fa-regular fa-paper-plane"></i>
                 <span>Confess / Pesan Buat X - RPL 2</span>
             </div>
 
-            <div class="social-box dev" data-id="pesan-dev" data-title="Pesan Buat Dev (Nijam endog)">
+            <div class="social-box dev" data-id="pesan-dev">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 <span>Pesan Buat Dev</span>
             </div>
@@ -1007,23 +997,18 @@
     <div class="gallery-section">
         <h2>Short Gallery</h2>
         <div class="gallery-scroll">
-            <div class="gallery-item"><img src="gallery/home1.webp"></div>
-            <div class="gallery-item"><img src="gallery/home2.webp"></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
-            <div class="gallery-item"><img src=""></div>
+            <div class="gallery-item"><img src="gallery/home1.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home2.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home3.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home4.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home5.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home6.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home7.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home8.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home9.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home10.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home11.jpg"></div>
+            <div class="gallery-item"><img src="gallery/home12.jpg"></div>
         </div>
     </div>
 
@@ -1297,7 +1282,9 @@
                         <span>Absen 22</span>
                     </div>
 
-                    <div class="student-card">
+                    <div class="student-card" data-name="Nizam Fhamer Arafli" data-role="Dewan Perwakilan Lembaga"
+                        data-img="gallery/nzamwkm.webp" data-wa="6283851088843" data-ig="zammanzim"
+                        data-quote="Janganlah don't karena because selalu always" data-desc="enya">
                         <img src="gallery/nzamwkm.webp" alt="">
                         <p>Nijam hateemel</p>
                         <span>Absen 23</span>
@@ -1383,108 +1370,117 @@
     </div>
 
 
-    <div id="popupconfess" class="popupconfess">
-        <div class="popupconfess-content">
-            <span class="popupconfess-close">&times;</span>
-            <h2 id="popupTitle">Tuliskan Pesan Disinii</h2>
-            <div class="popupconfess-list" id="confessList">
-                <p class="loading">Loading Messages...</p>
-            </div>
-            <div class="popupconfess-form">
-                <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
-                <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
-                <button id="confessSend" class="popupconfess-send">Kirim</button>
-            </div>
-        </div>
-    </div>
-
     <div class="popup-overlay" id="popup">
         <div class="popup-card">
-            <span class="close-popup">&times;</span>
-            <img id="popup-img" src="" alt="Profile">
-            <h3 id="popup-name"></h3>
-            <p class="popup-role" id="popup-role"></p>
-            <p class="popup-quote" id="popup-quote"></p>
-            <p class="popup-desc" id="popup-desc"></p>
-
-            <div class="popup-links">
-                <a id="popup-wa" href="#" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
-                <a id="popup-ig" href="#" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-
+            <div class="popup-dynamic"></div>
         </div>
     </div>
 
 
-    <script>
+
+    <script type="module" defer>
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+        // --- Firebase ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+            authDomain: "xrpl2web.firebaseapp.com",
+            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "xrpl2web",
+            storageBucket: "xrpl2web.appspot.com",
+            messagingSenderId: "410193641417",
+            appId: "1:410193641417:web:a7da663d744703e4883218",
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // --- Navbar ---
         const menuOverlay = document.getElementById("menuOverlay");
         const hamburger = document.querySelector(".hamburger");
         const closeMenu = document.querySelector(".close-menu");
 
-        hamburger.addEventListener("click", () => {
-            menuOverlay.classList.add("active");
-        });
-
+        hamburger.addEventListener("click", () => menuOverlay.classList.add("active"));
         closeMenu.addEventListener("click", () => {
-            menuOverlay.classList.add("closing");
-            setTimeout(() => {
-                menuOverlay.classList.remove("active", "closing");
-            }, 300);
+            menuOverlay.classList.remove("active");
         });
-
         menuOverlay.addEventListener("click", (e) => {
             if (e.target === menuOverlay) {
                 menuOverlay.classList.add("closing");
-                setTimeout(() => {
-                    menuOverlay.classList.remove("active", "closing");
-                }, 300);
+                setTimeout(() => menuOverlay.classList.remove("active", "closing"), 300);
             }
         });
 
-
-        const scroll = document.querySelector('.gallery-scroll');
-        const items = document.querySelectorAll('.gallery-item');
+        // --- Galeri ---
+        const scroll = document.querySelector(".gallery-scroll");
+        const items = document.querySelectorAll(".gallery-item");
 
         function scrollToIndex(index, smooth = true) {
             const item = items[index];
             const containerWidth = scroll.offsetWidth;
             const target = item.offsetLeft - (containerWidth / 2 - item.offsetWidth / 2);
-            scroll.scrollTo({ left: target, behavior: smooth ? 'smooth' : 'instant' });
+            scroll.scrollTo({ left: target, behavior: smooth ? "smooth" : "instant" });
         }
 
         function updateScale() {
             const center = scroll.scrollLeft + scroll.offsetWidth / 2;
-
-            items.forEach(item => {
+            items.forEach((item) => {
                 const itemCenter = item.offsetLeft + item.offsetWidth / 2;
                 const distance = Math.abs(center - itemCenter);
-
                 const scale = Math.max(0.85, 1.06 - distance / 400);
                 const glow = Math.max(0.1, 0.5 - distance / 600);
-
                 item.style.transform = `scale(${scale})`;
                 item.style.zIndex = distance < 150 ? 3 : 1;
                 item.style.boxShadow = `0 0 ${50 * glow}px rgba(0,255,255,${glow})`;
             });
         }
+        scroll.addEventListener("scroll", updateScale);
+        window.addEventListener("resize", updateScale);
+
+        let currentIndex = 0;
+        let autoSlide;
+
+        function startAutoSlide() {
+            clearInterval(autoSlide); // reset biar gak dobel
+            autoSlide = setInterval(() => {
+                currentIndex = (currentIndex + 1) % items.length;
+                scrollToIndex(currentIndex);
+                setTimeout(updateScale, 400);
+            }, 2000);
+        }
 
         window.addEventListener("load", () => {
-            scrollToIndex(false);
+            scrollToIndex(0, false);
             updateScale();
-            setTimeout(() => updateScale(), 300);
+            setTimeout(updateScale, 300);
+            startAutoSlide();
         });
 
-        scroll.addEventListener('scroll', updateScale);
-        window.addEventListener('resize', updateScale);
 
-        let currentIndex = 1;
-        setInterval(() => {
-            currentIndex++;
-            if (currentIndex >= items.length) currentIndex = 0;
-            scrollToIndex(currentIndex, true);
-            setTimeout(updateScale, 500);
-        }, 3000);
+        // --- Saat user geser manual, sinkronin ulang currentIndex ---
+        scroll.addEventListener("scroll", () => {
+            updateScale();
+            clearTimeout(scroll._timer);
+            scroll._timer = setTimeout(() => {
+                // cari item terdekat ke tengah layar
+                const center = scroll.scrollLeft + scroll.offsetWidth / 2;
+                let closestIndex = 0;
+                let minDist = Infinity;
+                items.forEach((item, i) => {
+                    const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+                    const dist = Math.abs(center - itemCenter);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closestIndex = i;
+                    }
+                });
+                currentIndex = closestIndex;
+                startAutoSlide(); // restart supaya interval sinkron lagi
+            }, 250);
+        });
 
+
+        // --- Tabs ---
         const tabs = document.querySelectorAll(".tab-btn");
         const contents = document.querySelectorAll(".tab-content");
         const prevBtn = document.getElementById("prevTab");
@@ -1496,176 +1492,131 @@
                 b.classList.toggle("active", i === index);
                 contents[i].classList.toggle("active", i === index);
             });
-
-            // Nonaktifkan tombol di batas
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === tabs.length - 1;
         }
-
-        // klik tombol tab manual
-        tabs.forEach((btn, i) => {
-            btn.addEventListener("click", () => {
-                activeIndex = i;
-                updateTabs(activeIndex);
-            });
-        });
-
-        // klik tombol navigasi bawah
-        prevBtn.addEventListener("click", () => {
-            if (activeIndex > 0) activeIndex--;
-            updateTabs(activeIndex);
-        });
-
-        nextBtn.addEventListener("click", () => {
-            if (activeIndex < tabs.length - 1) activeIndex++;
-            updateTabs(activeIndex);
-        });
-
-        // inisialisasi awal
+        tabs.forEach((btn, i) => btn.addEventListener("click", () => { activeIndex = i; updateTabs(i); }));
+        prevBtn.addEventListener("click", () => { if (activeIndex > 0) updateTabs(--activeIndex); });
+        nextBtn.addEventListener("click", () => { if (activeIndex < tabs.length - 1) updateTabs(++activeIndex); });
         updateTabs(activeIndex);
 
+        // --- Popup Universal ---
+        const popup = document.getElementById("popup");
+        const popupCard = popup.querySelector(".popup-card");
+        const popupContent = popupCard.querySelector(".popup-dynamic");
 
-        document.querySelectorAll(".node, .student-card").forEach(card => {
-            card.addEventListener("click", () => {
-                const popup = document.getElementById("popup");
-                const popupCard = popup.querySelector(".popup-card");
-
-                // isi data
-                document.getElementById("popup-img").src = card.dataset.img;
-                document.getElementById("popup-name").innerText = card.dataset.name;
-                document.getElementById("popup-role").innerText = card.dataset.role;
-                document.getElementById("popup-quote").innerText = `"${card.dataset.quote}"`;
-                document.getElementById("popup-desc").innerText = card.dataset.desc;
-                document.getElementById("popup-wa").href = `https://wa.me/${card.dataset.wa}`;
-                document.getElementById("popup-ig").href = `https://instagram.com/${card.dataset.ig}`;
-
-                // tampil popup
-                popup.style.display = "flex";
-                popupCard.classList.remove("fade-out"); // pastiin gak ke-cache animasi keluar
-                document.body.style.overflow = "hidden";
-            });
-        });
-
+        function openPopup(innerHTML) {
+            popupContent.innerHTML = innerHTML;
+            popup.style.display = "flex";
+            popupCard.classList.remove("fade-out");
+            document.body.style.overflow = "hidden";
+        }
         function closePopup() {
-            const popup = document.getElementById("popup");
-            const popupCard = popup.querySelector(".popup-card");
-
-            popupCard.classList.add("fade-out"); // animasi keluar
-
+            popupCard.classList.add("fade-out");
             setTimeout(() => {
                 popup.style.display = "none";
                 popupCard.classList.remove("fade-out");
                 document.body.style.overflow = "auto";
-            }, 300); // durasi sama kayak fadeOut
+            }, 300);
         }
+        popup.addEventListener("click", (e) => { if (e.target.id === "popup") closePopup(); });
+        window.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
 
-        // tombol close
-        document.querySelector(".close-popup").addEventListener("click", closePopup);
+        document.querySelectorAll(".node, .student-card").forEach(card => {
+            card.addEventListener("click", () => {
+                const html = `
+        <div class="popup-layout">
+            ${card.dataset.quote ? `<div class="quote">💬 “${card.dataset.quote}”</div>` : `<div class="quote">💬 Tidak ada kata-kata</div>`}
+            <img src="${card.dataset.img}" alt="Foto ${card.dataset.name || 'Siswa'}">
+            ${card.dataset.desc ? `<div class="desc">🧠 ${card.dataset.desc}</div>` : `<div class="desc">Tidak ada deskripsi.</div>`}
+            <div class="identity">
+                <h3>${card.dataset.name || "Anonim"}</h3>
+                ${card.dataset.role ? `<div class="role">${card.dataset.role}</div>` : ""}
+            </div>
+        </div>
 
-        // klik area luar popup
-        document.getElementById("popup").addEventListener("click", e => {
-            if (e.target.id === "popup") closePopup();
-        });
-    </script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
-
-        // Firebase config
-        const firebaseConfig = {
-            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
-            authDomain: "xrpl2web.firebaseapp.com",
-            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "xrpl2web",
-            storageBucket: "xrpl2web.appspot.com",
-            messagingSenderId: "410193641417",
-            appId: "1:410193641417:web:a7da663d744703e4883218",
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        // Elemen popup
-        const popup = document.getElementById('popupconfess');
-        const closeBtn = popup.querySelector('.popupconfess-close');
-        const titleEl = popup.querySelector('#popupTitle');
-        const confessList = popup.querySelector('#confessList');
-        const nameInput = popup.querySelector('#confessName');
-        const msgInput = popup.querySelector('#confessMessage');
-        const sendBtn = popup.querySelector('#confessSend');
-
-        let currentRef = null; // node Firebase aktif
-
-        // Fungsi buka popup
-        function openPopup() {
-            popup.classList.remove('hide');
-            popup.classList.add('show');
-            popup.style.display = 'flex';
-            document.body.classList.add('no-scroll');
-        }
-
-        // Fungsi tutup popup
-        function closePopup() {
-            popup.classList.remove('show');
-            popup.classList.add('hide');
-            setTimeout(() => {
-                popup.style.display = 'none';
-                document.body.classList.remove('no-scroll');
-            }, 0); // harus sama dengan CSS transition
-        }
-
-        // Event close
-        closeBtn.onclick = closePopup;
-        window.onclick = (e) => { if (e.target === popup) closePopup(); };
-
-        // Kirim pesan
-        sendBtn.onclick = async () => {
-            if (!currentRef) return;
-            const name = nameInput.value.trim() || "Anonim";
-            const message = msgInput.value.trim();
-            if (!message) { alert("Isi pesan dulu!"); return; }
-
-            await push(currentRef, { name, message, time: Date.now() });
-            nameInput.value = "";
-            msgInput.value = "";
-        };
-
-        // Load pesan
-        function loadMessages(nodeRef) {
-            confessList.innerHTML = "<p class='loading'>Loading Messages...</p>";
-            onValue(nodeRef, (snapshot) => {
-                confessList.innerHTML = "";
-                if (snapshot.exists()) {
-                    const data = snapshot.val();
-                    Object.keys(data).reverse().forEach(key => {
-                        const item = data[key];
-                        const div = document.createElement("div");
-                        div.classList.add("confess-item");
-                        div.innerHTML = `
-                    <div class="name">${item.name}</div>
-                    <div class="message">${item.message}</div>
-                `;
-                        confessList.appendChild(div);
-                    });
-                } else {
-                    confessList.innerHTML = "<p class='loading'>No message</p>";
-                }
+        <div class="popup-links">
+            ${card.dataset.wa ? `<a href="https://wa.me/${card.dataset.wa}" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>` : ""}
+            ${card.dataset.ig ? `<a href="https://instagram.com/${card.dataset.ig}" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>` : ""}
+        </div>
+        `;
+                openPopup(html);
             });
-        }
+        });
 
-        document.querySelectorAll('.social-box').forEach(box => {
-            box.addEventListener('click', () => {
+
+
+
+
+        // --- Popup Confess & Dev (Firebase) ---
+        document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
+            box.addEventListener("click", () => {
                 const nodeId = box.dataset.id;
-                const title = box.dataset.title || "Pesan";
-                titleEl.textContent = title;
+                const nodeRef = ref(db, `confess/${nodeId}`);
 
-                currentRef = ref(db, `confess/${nodeId}`);
-                loadMessages(currentRef);
+                const html = `
+      <h2>Pesan</h2>
+      <div id="confessList" class="confess-list"><p class="loading">Loading Messages...</p></div>
+      <div class="popupconfess-form">
+        <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
+        <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
+        <button id="confessSend" class="popupconfess-send">Kirim</button>
+      </div>
+    `;
+                openPopup(html);
 
-                openPopup();
+                const confessList = document.getElementById("confessList");
+                const nameInput = document.getElementById("confessName");
+                const msgInput = document.getElementById("confessMessage");
+                const sendBtn = document.getElementById("confessSend");
+
+                function loadMessages() {
+                    onValue(nodeRef, (snapshot) => {
+                        confessList.innerHTML = "";
+                        const titleEl = document.querySelector(".popup-dynamic h2");
+
+                        if (snapshot.exists()) {
+                            const data = snapshot.val();
+                            const total = Object.keys(data).length;
+                            titleEl.textContent = `${total} Pesan`;
+
+                            Object.keys(data).reverse().forEach((key) => {
+                                const item = data[key];
+                                confessList.innerHTML += `
+              <div class="confess-item">
+                <div class="name">${item.name}</div>
+                <div class="message">${item.message}</div>
+              </div>`;
+                            });
+                        } else {
+                            titleEl.textContent = "0 Komentar";
+                            confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
+                        }
+                    });
+
+                }
+                loadMessages();
+
+                async function sendMessage() {
+                    const name = nameInput.value.trim() || "Anonim";
+                    const message = msgInput.value.trim();
+                    if (!message) return alert("Isi pesan dulu!");
+                    await push(nodeRef, { name, message, time: Date.now() });
+                    nameInput.value = "";
+                    msgInput.value = "";
+                }
+
+                sendBtn.onclick = sendMessage;
+                msgInput.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
             });
         });
     </script>
+
 
 </body>
 

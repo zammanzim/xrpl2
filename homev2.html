@@ -729,7 +729,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            max-width: 520px;
+            width: 90%;
             background: rgba(0, 191, 255, 0.08);
             border: 1px solid rgba(0, 191, 255, 0.4);
             box-shadow: 0 0 25px #00bfff;
@@ -740,74 +740,61 @@
         }
 
         .popup-layout {
-            display: grid;
-            grid-template-columns: 1fr 160px;
-            grid-template-rows: auto auto;
-            gap: 6px 20px;
-            /* 🔧 jarak antar baris diperkecil dari 12px jadi 6px */
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 20px;
             width: 100%;
-            align-items: start;
         }
 
-        .popup-layout .quote {
-            grid-column: 1;
-            grid-row: 1;
-            font-style: italic;
-            background: rgba(0, 191, 255, 0.05);
-            border: 1px solid rgba(0, 191, 255, 0.4);
-            /* 🔧 border neon tipis */
-            border-left: 3px solid #00bfff;
-            padding: 8px 10px;
-            border-radius: 10px;
-            color: #c9f8ff;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+        .popup-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
-        .popup-layout img {
-            grid-column: 2;
-            grid-row: 1;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+
+        .popup-right {
+            width: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* center secara vertikal */
+            gap: 6px;
+            align-self: center;
+            /* 🔥 inilah kuncinya: selalu ketengah tinggi kiri */
+        }
+
+
+        .popup-right img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
             object-fit: cover;
             border: 2px solid #00bfff;
-            box-shadow: 0 0 12px rgba(0, 191, 255, 0.5);
-            justify-self: center;
+            box-shadow: 0 0 12px rgba(0, 191, 255, 0.6);
         }
 
-        /* Deskripsi kiri bawah */
-        .popup-layout .desc {
-            grid-column: 1;
-            grid-row: 2;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 191, 255, 0.3);
-            /* 🔧 border juga */
-            border-radius: 10px;
-            padding: 8px 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #e8faff;
-            text-align: justify;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.15);
-        }
-
-        /* Nama dan peran kanan bawah */
-        .popup-layout .identity {
-            grid-column: 2;
-            grid-row: 2;
+        .popup-right h3 {
+            margin-top: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #00c8ff;
             text-align: center;
-            margin-top: 2px;
-            /* 🔧 biar sejajar pas */
         }
 
         .popup-layout .identity h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #00d4ff;
             text-shadow: 0 0 8px #00bfff;
+            text-align: center;
         }
 
         .popup-layout .identity .role {
-            color: #00ffaa;
+            color: white;
+            margin-top: 12px;
             font-weight: 600;
             font-size: 0.95rem;
         }
@@ -822,8 +809,8 @@
         .popup-links {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
+            gap: 12px;
+            margin-top: 4px;
         }
 
 
@@ -838,6 +825,9 @@
             border: 1px solid rgba(0, 191, 255, 0.4);
             transition: 0.3s;
             text-decoration: none;
+            color: #00c8ff;
+            font-size: 1.3rem;
+            transition: 0.3s;
         }
 
         .popup-links a.wa i {
@@ -855,6 +845,82 @@
             box-shadow: 0 0 10px #00bfff;
             transform: scale(1.1);
         }
+
+        .popup-subjudul {
+            color: #00c8ff;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            font-weight: 600;
+            text-shadow: 0 0 8px #00bfff;
+        }
+
+        .divider {
+            height: 1.5px;
+            background: rgba(0, 200, 255, 0.6);
+            margin: 10px 0 6px;
+            box-shadow: 0 0 8px rgba(0, 200, 255, 0.8);
+            border-radius: 2px;
+        }
+
+
+        .quote-section,
+        .desc-section {
+            grid-column: 1;
+            background: rgba(0, 191, 255, 0.05);
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+            color: #e8faff;
+        }
+
+        .quote-section:hover,
+        .desc-section:hover {
+            background: rgba(0, 191, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            transition: 0.3s ease;
+        }
+
+        /* Role box warna dinamis */
+        .popup-right .role {
+            background: var(--role-color);
+            color: #0a0a0a;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 0 15px var(--role-glow);
+            text-align: center;
+        }
+
+        .popup-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: #00c8ff;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            text-shadow: 0 0 6px #00c8ff;
+        }
+
+        .popup-title i {
+            font-size: 0.9rem;
+        }
+
+        .quote-box,
+        .desc-box {
+            background: rgba(0, 191, 255, 0.05);
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            border-radius: 10px;
+            padding: 8px 10px;
+            color: #e8faff;
+            font-size: 0.85rem;
+            line-height: 1.3rem;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.15);
+            margin-top: 4px;
+        }
+
 
         @keyframes fadeIn1 {
             from {
@@ -1019,7 +1085,7 @@
             <div class="node wali" data-name="Bu Windy Puteri Utami, S. Hum" data-role="Wali Kelas"
                 data-img="gallery/buwindywk.jpg" data-wa="6287821006692" data-ig="windy_rpl2"
                 data-quote="Jangan takut gagal, takutlah kalau tidak mencoba."
-                data-desc="Guru produktif RPL yang selalu semangat membimbing siswa.">
+                data-desc="Guru produktif RPL yang selalu semangat membimbing siswa." data-color="#a86dff">
                 <img src="gallery/buwindywk.jpg" alt="Bu Windy">
                 <p>Wali Kelas</p>
                 <span>Bu Windy Puteri Utami</span>
@@ -1029,15 +1095,20 @@
             <h4>Dewan Ketua dan Perwakilan Lembaga</h4>
 
             <div class="children">
-                <div class="node" data-name="Excel Adila Putra" data-role="Dewan Ketua Lembaga"
-                    data-img="gallery/peceikm.webp" data-wa="62895329906073" data-ig="couldrnt"
-                    data-quote="0.1% bukan berarti 0 kemungkinan." data-desc="Kaem yang pusing">
+                <div class="node" data-name="Excel Adila Putra" data-role="KM" data-img="gallery/peceikm.webp"
+                    data-wa="62895329906073" data-ig="couldrnt" data-quote="0.1% bukan berarti 0 kemungkinan."
+                    data-desc="You know, you know where you are with
+You know where you are with
+floor collapses, floating
+bouncing back" data-color="#0099ff">
                     <img src="gallery/peceikm.webp" alt="">
                     <p>Excel</p>
                 </div>
-                <div class="node" data-name="Nizam Fhamer Arafli" data-role="Dewan Perwakilan Lembaga"
-                    data-img="gallery/nzamwkm.webp" data-wa="6283851088843" data-ig=""
-                    data-quote="Janganlah don't karena because selalu always" data-desc="enya">
+                <div class="node" data-name="Nizam Fhamer Arafli" data-role="WKM" data-img="gallery/nzamwkm.webp"
+                    data-wa="6283851088843" data-ig="zammanzim"
+                    data-quote="Janganlah don't karena because selalu always"
+                    data-desc="perkenalkan aku gw wakil wkm kelas 10 X - Rekayasa RPL Lunak 2 Dua"
+                    data-color="rgb(255, 80, 0)">
                     <img src="gallery/nzamwkm.webp" alt="">
                     <p>Nizam</p>
                 </div>
@@ -1046,11 +1117,17 @@
             <h3>Dewan Keuangan Lembaga</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="Dila Kirana Destiana" data-role="Bendahara"
+                    data-img="gallery/dilabend.webp" data-wa="6283875216752" data-ig="dilaa_krnaaaa"
+                    data-desc="Saya siswa X - RPL 2 yang imut, baik hati dan tidak sombong😘"
+                    data-quote="Es jagung ngeunah" data-color="#ff6bb5">
                     <img src="gallery/dilabend.webp">
                     <p>Dila</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="Nabila Yulaika" data-role="Bendahara" data-img="gallery/nabilabend.webp"
+                    data-wa="6283189778020" data-ig="zoldyckbil" data-quote="Kelas kita, keluarga kita"
+                    data-desc="Saya siswi X - RPL 2 yang imut. Kadang introvert, kadang extrovert. Cinta Kilua dan Gojo. Tidak sombong dan tidak pernah marah."
+                    data-color="#9a5fff">
                     <img src="gallery/nabilabend.webp">
                     <p>Nabila</p>
                 </div>
@@ -1059,11 +1136,13 @@
             <h3>Dewan Sekretaris</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="Siti Nur Indah" data-role="Sekretaris" data-img="gallery/indahsek.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#f26bff">
                     <img src="gallery/indahsek.webp">
                     <p>Indah</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="Aufa Fatimatul Azka" data-role="Sekretaris" data-img="gallery/aufasek.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#ff8b6b">
                     <img src="gallery/aufasek.webp">
                     <p>Aufa</p>
                 </div>
@@ -1072,11 +1151,13 @@
             <h3>Dewan Kehadiran dan Absensi</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="Alena Al Zahra" data-role="Absensi" data-img="gallery/alenaabs.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#33ffb5">
                     <img src="gallery/alenaabs.webp">
                     <p>Alena</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="Almira Tanisha Purnama" data-role="Absensi" data-img="students/almira.jpg" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#00ff80">
                     <img src="students/almira.jpg">
                     <p>Almira</p>
                 </div>
@@ -1085,11 +1166,13 @@
             <h3>Dewan Keamananan dan Ketertiban</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="Raka Pratama Sumitra" data-role="Keamanan" data-img="gallery/rakkea.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#004eff">
                     <img src="gallery/rakkea.webp">
                     <p>Raka</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="Revan Hidayat" data-role="Keamanan" data-img="gallery/revankea.png" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#009eff">
                     <img src="gallery/revankea.png">
                     <p>Revan</p>
                 </div>
@@ -1098,11 +1181,13 @@
             <h3>Dewan Lingkungan dan Kebersihan</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="M. Yusup Pratama" data-role="Kebersihan" data-img="gallery/ucupkeber.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#00e65c">
                     <img src="gallery/ucupkeber.webp">
                     <p>Yusup</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="M. Nazlan Rizqi Ramadhan" data-role="Kebersihan" data-img="gallery/bekamkeber.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#3cff00">
                     <img src="gallery/bekamkeber.webp">
                     <p>Nazlan</p>
                 </div>
@@ -1111,11 +1196,13 @@
             <h3>Dewan Olahraga</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="Rizky Khoerruerizal" data-role="Olahraga" data-img="gallery/ukuyolah.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#ff7300">
                     <img src="gallery/ukuyolah.webp">
                     <p>Rizky</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="M. Fachri Syahreza" data-role="Olahraga" data-img="gallery/fahriolah.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#ff2f00">
                     <img src="gallery/fahriolah.webp">
                     <p>Fachri</p>
                 </div>
@@ -1124,11 +1211,13 @@
             <h3>Dewan Pembinaan dan Akhlak</h3>
 
             <div class="children">
-                <div class="node">
+                <div class="node" data-name="Andika Prasetia" data-role="Rohani" data-img="students/andika.jpg" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#009dff">
                     <img src="students/andika.jpg">
                     <p>Andika</p>
                 </div>
-                <div class="node">
+                <div class="node" data-name="Latif Muhammad Fajar" data-role="Rohani" data-img="gallery/latifrohani.webp" data-wa="" data-ig="" data-quote="" data-desc=""
+                    data-color="#00e0ff">
                     <img src="gallery/latifrohani.webp">
                     <p>Latif</p>
                 </div>
@@ -1525,27 +1614,51 @@
         document.querySelectorAll(".node, .student-card").forEach(card => {
             card.addEventListener("click", () => {
                 const html = `
-        <div class="popup-layout">
-            ${card.dataset.quote ? `<div class="quote">💬 “${card.dataset.quote}”</div>` : `<div class="quote">💬 Tidak ada kata-kata</div>`}
-            <img src="${card.dataset.img}" alt="Foto ${card.dataset.name || 'Siswa'}">
-            ${card.dataset.desc ? `<div class="desc">🧠 ${card.dataset.desc}</div>` : `<div class="desc">Tidak ada deskripsi.</div>`}
-            <div class="identity">
-                <h3>${card.dataset.name || "Anonim"}</h3>
-                ${card.dataset.role ? `<div class="role">${card.dataset.role}</div>` : ""}
-            </div>
-        </div>
+<div class="popup-layout">
+    <div class="popup-left">
 
-        <div class="popup-links">
-            ${card.dataset.wa ? `<a href="https://wa.me/${card.dataset.wa}" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>` : ""}
-            ${card.dataset.ig ? `<a href="https://instagram.com/${card.dataset.ig}" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>` : ""}
-        </div>
-        `;
+    <div class="popup-title">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span>Kata-Kata</span>
+    </div>
+    <div class="quote-box">
+        ${card.dataset.quote ? `“${card.dataset.quote}”` : `Tidak ada kata-kata.`}
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="popup-title">
+        <i class="fa-solid fa-user"></i>
+        <span>Deskripsi Diri</span>
+    </div>
+    <div class="desc-box">
+        ${card.dataset.desc ? card.dataset.desc : `Tidak ada deskripsi.`}
+    </div>
+
+</div>
+
+
+    <div class="popup-right">
+    <img src="${card.dataset.img}" alt="Foto ${card.dataset.name || 'Siswa'}">
+    <h3>${card.dataset.name || "Anonim"}</h3>
+
+    ${card.dataset.role ? `<div class="role" 
+        style="--role-color:${card.dataset.color || '#00ffaa'};
+               --role-glow:${card.dataset.glow || card.dataset.color || '#00ffaa'};
+               --role-text:${card.dataset.textcolor || '#0a0a0a'};">
+        ${card.dataset.role}
+    </div>` : ""}
+
+    <div class="popup-links">
+        ${card.dataset.wa ? `<a href="https://wa.me/${card.dataset.wa}" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>` : ""}
+        ${card.dataset.ig ? `<a href="https://instagram.com/${card.dataset.ig}" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>` : ""}
+    </div>
+</div>
+
+`;
                 openPopup(html);
             });
         });
-
-
-
 
 
         // --- Popup Confess & Dev (Firebase) ---

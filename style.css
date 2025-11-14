@@ -146,8 +146,8 @@
             margin: 20px 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: left;
-            backdrop-filter: blur(5px);
             transition: all 0.3s ease;
+            backdrop-filter: none;
         }
 
         .course-card h3 {
@@ -209,8 +209,9 @@
 
         .gallery img {
             border-radius: 10px;
-            width: 380px;
+            width: 100%;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            image-rendering: auto;
         }
 
 
@@ -592,12 +593,5 @@
         @media (max-width: 1024px) {
             .main-content {
                 padding: 10px;
-            }
-
-
-            .gallery img {
-                border-radius: 10px;
-                width: 300px;
-                object-fit: cover;
             }
         }

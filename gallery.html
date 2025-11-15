@@ -206,18 +206,27 @@
       transition: bottom .3s ease;
       z-index: 9999;
       display: flex;
-      flex-direction: column
+      flex-direction: column;
+      overflow: hidden;
     }
 
     .comment-popup.active {
-      bottom: 0
+      bottom: 0;
+      overflow: hidden;
     }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+
 
     .popup-content {
       padding: 10px;
       flex: 1;
       display: flex;
-      flex-direction: column
+      flex-direction: column;
+      overflow: hidden;
     }
 
     .popup-header {
@@ -297,7 +306,8 @@
       flex: 1;
       overflow-y: auto;
       margin-top: 10px;
-      padding-right: 6px
+      padding-right: 6px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .popup-overlay {
@@ -409,6 +419,290 @@
       </div>
     </div>
   </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="gallery/ukuyolah.webp" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Ukuy</h4>
+        <small>Scene Pertama</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video1">
+      <video src="galleryasli/1scene.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Pertama Ukuy. Datang ke sekolah</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="gallery/ukuyolah.webp" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Ukuy</h4>
+        <small>Scene Kedua</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video2">
+      <video src="galleryasli/2sceneukuy.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Kedua Ukuy. Datang ke sekolah</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="students/sendi.jpg" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Omoy</h4>
+        <small>Scene Ketiga</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video3">
+      <video src="galleryasli/3scenebareng.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Ketiga. Pas Ukuy pertama kali kenal judol.</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="students/sendi.jpg" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Omoy</h4>
+        <small>Scene Keempat</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video4">
+      <video src="galleryasli/4sceneukuyomoy.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Keempat. Pas Ukuy menraktir temen.</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="students/gilang.jpg" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Ukuy</h4>
+        <small>Scene Kelima</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video5">
+      <video src="galleryasli/5sceneukuy.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Kelima. Saat Ukuy terlihat murung gara gara rungkad.</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="students/neiyla.jpg" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Neiyla</h4>
+        <small>Scene Keenam</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video6">
+      <video src="galleryasli/6sceneiyla.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Keenam. Saat Neiyla datang ke sekolah dengan tangan dan pipi memar akibat di tampar oleh Ukuy.</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="gallery/latifrohani.webp" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Latif</h4>
+        <small>4 November 2025</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video7">
+      <video src="galleryasli/7sceneguru.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Ketujuh. Saat Guru memarahi Neiyla karena tidak bisa menjawab pertanyaan dan tidak memperhatikan guru sedang menjelaskan</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="students/neiyla.jpg" alt="pp" class="post-pp">
+      <div class="post-user">
+        <h4>Neiyla</h4>
+        <small>Scene Kedelapan</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video8">
+      <video src="galleryasli/9scenediajak.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Kedelapan. Saat Neiyla diajak ke kantin, tapi menolak.</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <img src="students/gista.jpg" alt="pp" class="post-pp">
+      <img src="students/risha.jpg" alt="" class="post-pp">
+      <div class="post-user">
+        <h4>Gista, Risha</h4>
+        <small>Scene Kesembilan</small>
+      </div>
+    </div>
+
+    <div class="video" data-id="video9">
+      <video src="galleryasli/10scenengorbol.mp4" playsinline loop preload="metadata"></video>
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="caption-bar">
+      <div class="caption">Scene Kesembilan. Pada saat Risha dan Gista ngobrolin knp si Neiyla gamau diajak ke kantin.</div>
+      <div class="video-actions">
+        <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
+        <span class="likeCount">0</span>
+
+        <button class="commentBtn">
+          <i class="fa-regular fa-comment"></i>
+          <span class="commentCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <h1>Disclaimer:</h1>
+  <h2>Baru shot yang disekolah aja, jadi ini semua scene di sekolah dari bagian video yang berbeda tapi di shot dalam waktu yang sama.</h2>
+
 
   <div class="popup-overlay"></div>
 
@@ -542,6 +836,8 @@
         popup.classList.add('active');
         overlay.classList.add('active');
         loadComments(currentContentId);
+        disableBodyScroll();
+
       });
     });
 
@@ -549,10 +845,12 @@
     closeBtn.addEventListener('click', () => {
       popup.classList.remove('active');
       overlay.classList.remove('active');
+      enableBodyScroll();
     });
     overlay.addEventListener('click', () => {
       popup.classList.remove('active');
       overlay.classList.remove('active');
+      enableBodyScroll();
     });
 
     // format tanggal indonesia (contoh)
@@ -563,23 +861,30 @@
       return formatted;
     }
 
-    // load comments dan render (rapi)
+    let commentListener = null;
+
     function loadComments(contentId) {
       const nodeRef = ref(db, `comments/${contentId}`);
-      get(nodeRef).then(snapshot => {
+
+      // kalau sebelumnya ada listener, matiin dulu
+      if (commentListener) commentListener();
+
+      commentListener = onValue(nodeRef, snapshot => {
         commentList.innerHTML = "";
+
         const data = snapshot.val();
         if (!data) {
           commentList.innerHTML = "<p style='text-align:center;color:gray'>Belum ada komentar</p>";
           return;
         }
+
         const comments = Object.values(data).reverse();
         const frag = document.createDocumentFragment();
         comments.forEach(c => {
           const div = document.createElement('div');
           div.className = "comment-item";
           div.innerHTML = `
-        <img src="${c.photo || 'profpicture.png'}" class="comment-avatar" alt="avatar">
+        <img src="${c.photo || 'profpicture.png'}" class="comment-avatar">
         <div class="comment-content">
           <strong class="comment-name">${escapeHtml(c.name)}</strong>
           <p class="comment-text">${escapeHtml(c.comment)}</p>
@@ -588,11 +893,12 @@
       `;
           frag.appendChild(div);
         });
+
         commentList.appendChild(frag);
-        commentList.scrollTop = 0;
       });
     }
- 
+
+
     form.addEventListener('submit', e => {
       e.preventDefault();
       if (!currentContentId) return;
@@ -624,7 +930,53 @@
       if (!str) return '';
       return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
     }
+
+    function disableBodyScroll() {
+      document.body.classList.add('no-scroll');
+    }
+
+    function enableBodyScroll() {
+      document.body.classList.remove('no-scroll');
+    }
+
+    popup.classList.add('active');
+    overlay.classList.add('active');
+    disableBodyScroll();
+
+    popup.classList.remove('active');
+    overlay.classList.remove('active');
+    enableBodyScroll();
+
+    overlay.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+    popup.addEventListener('touchmove', (e) => {
+
+      const scrollArea = e.target.closest(".commentList");
+
+      // Jika sentuhan terjadi DI DALAM commentList, izinkan scroll
+      if (scrollArea) {
+        const atTop = scrollArea.scrollTop === 0;
+        const atBottom = scrollArea.scrollHeight - scrollArea.scrollTop === scrollArea.clientHeight;
+        const goingUp = e.touches[0].clientY > (popup._lastY || 0);
+        const goingDown = e.touches[0].clientY < (popup._lastY || 0);
+
+        // Cegah bounce scroll (overscroll)
+        if ((atTop && goingDown) || (atBottom && goingUp)) {
+          e.preventDefault();
+        }
+
+        popup._lastY = e.touches[0].clientY;
+        return; // IZINKAN SCROLL DALAM
+      }
+
+      // Jika sentuhan di luar commentList → BLOK scroll
+      e.preventDefault();
+
+    }, { passive: false });
+
+
+
   </script>
 </body>
+
 
 </html>

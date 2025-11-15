@@ -593,7 +593,8 @@
     </div>
 
     <div class="caption-bar">
-      <div class="caption">Scene Keenam. Saat Neiyla datang ke sekolah dengan tangan dan pipi memar akibat di tampar oleh Ukuy.</div>
+      <div class="caption">Scene Keenam. Saat Neiyla datang ke sekolah dengan tangan dan pipi memar akibat di tampar
+        oleh Ukuy.</div>
       <div class="video-actions">
         <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
         <span class="likeCount">0</span>
@@ -624,7 +625,8 @@
     </div>
 
     <div class="caption-bar">
-      <div class="caption">Scene Ketujuh. Saat Guru memarahi Neiyla karena tidak bisa menjawab pertanyaan dan tidak memperhatikan guru sedang menjelaskan</div>
+      <div class="caption">Scene Ketujuh. Saat Guru memarahi Neiyla karena tidak bisa menjawab pertanyaan dan tidak
+        memperhatikan guru sedang menjelaskan</div>
       <div class="video-actions">
         <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
         <span class="likeCount">0</span>
@@ -647,7 +649,7 @@
     </div>
 
     <div class="video" data-id="video8">
-      <video src="galleryasli/9scenediajak.mp4" playsinline loop preload="metadata"></video>
+      <video src="galleryasli/8scene.mp4" playsinline loop preload="metadata"></video>
       <div class="play-btn"><i class="fa-solid fa-play"></i></div>
       <div class="timeline">
         <div class="progress"></div>
@@ -679,7 +681,7 @@
     </div>
 
     <div class="video" data-id="video9">
-      <video src="galleryasli/10scenengorbol.mp4" playsinline loop preload="metadata"></video>
+      <video src="galleryasli/9scene.mp4" playsinline loop preload="metadata"></video>
       <div class="play-btn"><i class="fa-solid fa-play"></i></div>
       <div class="timeline">
         <div class="progress"></div>
@@ -687,7 +689,8 @@
     </div>
 
     <div class="caption-bar">
-      <div class="caption">Scene Kesembilan. Pada saat Risha dan Gista ngobrolin knp si Neiyla gamau diajak ke kantin.</div>
+      <div class="caption">Scene Kesembilan. Pada saat Risha dan Gista ngobrolin knp si Neiyla gamau diajak ke kantin.
+      </div>
       <div class="video-actions">
         <button class="likeVideoBtn"><i class="fa-regular fa-heart"></i></button>
         <span class="likeCount">0</span>
@@ -701,7 +704,8 @@
   </div>
 
   <h1>Disclaimer:</h1>
-  <h2>Baru shot yang disekolah aja, jadi ini semua scene di sekolah dari bagian video yang berbeda tapi di shot dalam waktu yang sama.</h2>
+  <h2>Baru shot yang disekolah aja, jadi ini semua scene di sekolah dari bagian video yang berbeda tapi di shot dalam
+    waktu yang sama.</h2>
 
 
   <div class="popup-overlay"></div>
@@ -915,15 +919,37 @@
     });
 
     // autoplay observer
-    const videos = document.querySelectorAll(".video video");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const vid = entry.target;
-        if (entry.isIntersecting) vid.play().catch(() => { });
-        else vid.pause();
+    // --- AUTOFOCUS VIDEO MIRIP TIKTOK / IG REELS ---
+    const videosAll = [...document.querySelectorAll(".video video")];
+
+    function playVideoInFocus() {
+      let closest = null;
+      let closestDistance = Infinity;
+      const screenCenter = window.innerHeight / 2;
+
+      videosAll.forEach(video => {
+        const rect = video.getBoundingClientRect();
+        const videoCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(videoCenter - screenCenter);
+
+        // Pause semua video dulu
+        video.pause();
+
+        // Tentukan mana yang paling tengah
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = video;
+        }
       });
-    }, { threshold: 0.8 });
-    videos.forEach(v => observer.observe(v));
+
+      // Play video yg paling dekat ke tengah layar
+      if (closest) closest.play().catch(() => { });
+    }
+
+    window.addEventListener("scroll", playVideoInFocus, { passive: true });
+    window.addEventListener("load", playVideoInFocus);
+    window.addEventListener("resize", playVideoInFocus);
+
 
     // simple escapeHtml
     function escapeHtml(str) {
@@ -938,14 +964,6 @@
     function enableBodyScroll() {
       document.body.classList.remove('no-scroll');
     }
-
-    popup.classList.add('active');
-    overlay.classList.add('active');
-    disableBodyScroll();
-
-    popup.classList.remove('active');
-    overlay.classList.remove('active');
-    enableBodyScroll();
 
     overlay.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
     popup.addEventListener('touchmove', (e) => {

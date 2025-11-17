@@ -42,8 +42,6 @@
                 linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
             background-size: 30px 30px;
-            overflow-x: hidden;
-            overflow-y: auto;
         }
 
         body::after {
@@ -375,10 +373,8 @@
             gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 40px 0;
+            padding: 40px 50vw;
             scroll-snap-type: x mandatory;
-            width: 100vw;
-            position: relative;
         }
 
         .gallery-scroll::-webkit-scrollbar {
@@ -408,10 +404,6 @@
             margin-bottom: 20px;
             text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
             text-align: center;
-        }
-
-        .gallery-section {
-            overflow-x: hidden;
         }
 
         .popupconfess-form input,
@@ -1139,30 +1131,6 @@
             <div class="gallery-item"><img src="gallery/home10.jpg"></div>
             <div class="gallery-item"><img src="gallery/home11.jpg"></div>
             <div class="gallery-item"><img src="gallery/home12.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home1.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home2.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home3.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home4.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home5.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home6.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home7.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home8.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home9.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home10.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home11.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home12.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home1.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home2.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home3.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home4.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home5.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home6.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home7.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home8.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home9.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home10.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home11.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home12.jpg"></div>
         </div>
     </div>
 
@@ -1704,7 +1672,7 @@ bouncing back" data-color="#0099ff">
         }
 
         window.addEventListener("load", () => {
-            scrollToIndex(5, false);
+            scrollToIndex(0, false);
             updateScale();
             setTimeout(updateScale, 300);
             startAutoSlide();
@@ -1715,15 +1683,6 @@ bouncing back" data-color="#0099ff">
         scroll.addEventListener("scroll", () => {
             clearInterval(autoSlide); // stop auto slide saat user scroll
             updateScale();
-
-            // Infinite scroll logic
-            const maxScroll = scroll.scrollWidth - scroll.offsetWidth;
-            if (scroll.scrollLeft <= 0) {
-                scroll.scrollLeft = maxScroll / 3 * 2; // jump to middle section
-            } else if (scroll.scrollLeft >= maxScroll) {
-                scroll.scrollLeft = maxScroll / 3; // jump to start of middle section
-            }
-
             clearTimeout(scroll._timer);
             scroll._timer = setTimeout(() => {
                 // cari item terdekat ke tengah layar
@@ -1738,9 +1697,10 @@ bouncing back" data-color="#0099ff">
                         closestIndex = i;
                     }
                 });
-                currentIndex = closestIndex; // continue from current position
+                currentIndex = closestIndex;
+                scrollToIndex(currentIndex, false); // snap instantly to center
                 startAutoSlide(); // restart supaya interval sinkron lagi
-            }, 1000); // tunggu 3 detik sebelum resume auto slide
+            }, 1000); // tunggu 1 detik sebelum resume auto slide
         });
 
 

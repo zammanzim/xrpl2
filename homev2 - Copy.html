@@ -41,9 +41,7 @@
             background-image:
                 linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
-            background-size: 30px 30px;
-            overflow-x: hidden;
-            overflow-y: auto;
+            background-size: 40px 40px;
         }
 
         body::after {
@@ -375,10 +373,8 @@
             gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 40px 0;
+            padding: 40px 50vw;
             scroll-snap-type: x mandatory;
-            width: 100vw;
-            position: relative;
         }
 
         .gallery-scroll::-webkit-scrollbar {
@@ -408,10 +404,6 @@
             margin-bottom: 20px;
             text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
             text-align: center;
-        }
-
-        .gallery-section {
-            overflow-x: hidden;
         }
 
         .popupconfess-form input,
@@ -976,44 +968,6 @@
             animation: fadeOut 0.3s ease forwards;
         }
 
-        @media (min-width: 1025px) {
-            .background {
-                height: 100vh;
-                position: relative;
-                width: 100%;
-                z-index: -1;
-            }
-
-            .content {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-                z-index: 1;
-            }
-
-            .content h1 {
-                font-size: 4rem;
-            }
-
-            .content p {
-                font-size: 2rem;
-            }
-
-            .search-container,
-            .social-container,
-            .gallery-section,
-            .structure-section,
-            .students-section {
-                padding: 40px 20px;
-            }
-
-            body::after {
-                display: none;
-            }
-        }
-
         @media (max-width: 1024px) {
             header {
                 padding: 8px 14px;
@@ -1127,30 +1081,6 @@
     <div class="gallery-section">
         <h2>Short Gallery</h2>
         <div class="gallery-scroll">
-            <div class="gallery-item"><img src="gallery/home1.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home2.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home3.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home4.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home5.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home6.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home7.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home8.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home9.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home10.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home11.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home12.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home1.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home2.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home3.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home4.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home5.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home6.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home7.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home8.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home9.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home10.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home11.jpg"></div>
-            <div class="gallery-item"><img src="gallery/home12.jpg"></div>
             <div class="gallery-item"><img src="gallery/home1.jpg"></div>
             <div class="gallery-item"><img src="gallery/home2.jpg"></div>
             <div class="gallery-item"><img src="gallery/home3.jpg"></div>
@@ -1704,7 +1634,7 @@ bouncing back" data-color="#0099ff">
         }
 
         window.addEventListener("load", () => {
-            scrollToIndex(5, false);
+            scrollToIndex(0, false);
             updateScale();
             setTimeout(updateScale, 300);
             startAutoSlide();
@@ -1713,21 +1643,11 @@ bouncing back" data-color="#0099ff">
 
         // --- Saat user geser manual, sinkronin ulang currentIndex ---
         scroll.addEventListener("scroll", () => {
-            clearInterval(autoSlide); // stop auto slide saat user scroll
             updateScale();
-
-            // Infinite scroll logic
-            const maxScroll = scroll.scrollWidth - scroll.offsetWidth;
-            if (scroll.scrollLeft <= 0) {
-                scroll.scrollLeft = maxScroll / 3 * 2; // jump to middle section
-            } else if (scroll.scrollLeft >= maxScroll) {
-                scroll.scrollLeft = maxScroll / 3; // jump to start of middle section
-            }
-
             clearTimeout(scroll._timer);
             scroll._timer = setTimeout(() => {
                 // cari item terdekat ke tengah layar
-                const center = scroll.scrollLeft;
+                const center = scroll.scrollLeft + scroll.offsetWidth / 2;
                 let closestIndex = 0;
                 let minDist = Infinity;
                 items.forEach((item, i) => {
@@ -1738,9 +1658,9 @@ bouncing back" data-color="#0099ff">
                         closestIndex = i;
                     }
                 });
-                currentIndex = closestIndex; // continue from current position
+                currentIndex = closestIndex;
                 startAutoSlide(); // restart supaya interval sinkron lagi
-            }, 1000); // tunggu 3 detik sebelum resume auto slide
+            }, 250);
         });
 
 

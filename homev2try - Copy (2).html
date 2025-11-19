@@ -41,7 +41,9 @@
             background-image:
                 linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-size: 30px 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body::after {
@@ -301,6 +303,30 @@
             margin-bottom: 80px;
         }
 
+
+
+        .contact-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .message-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            background: rgba(0, 191, 255, 0.08);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 0 25px #00bfff;
+        }
+
         .social-box.full {
             width: 90%;
         }
@@ -373,8 +399,10 @@
             gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 40px 50vw;
+            padding: 40px calc(50vw - 120px);
             scroll-snap-type: x mandatory;
+            width: 100vw;
+            position: relative;
         }
 
         .gallery-scroll::-webkit-scrollbar {
@@ -404,6 +432,10 @@
             margin-bottom: 20px;
             text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
             text-align: center;
+        }
+
+        .gallery-section {
+            overflow-x: hidden;
         }
 
         .popupconfess-form input,
@@ -968,6 +1000,68 @@
             animation: fadeOut 0.3s ease forwards;
         }
 
+        @media (min-width: 1025px) {
+            .background {
+                height: 100vh;
+                position: relative;
+                width: 100%;
+                z-index: -1;
+            }
+
+            .content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                z-index: 1;
+            }
+
+            .content h1 {
+                font-size: 4rem;
+            }
+
+            .content p {
+                font-size: 2rem;
+            }
+
+            .search-container,
+            .social-container,
+            .gallery-section,
+            .structure-section,
+            .students-section {
+                padding: 40px 20px;
+            }
+
+            .social-container {
+                width: 90%;
+                margin: 30px auto 80px auto;
+                display: flex;
+                gap: 5%;
+            }
+
+            .contact-left {
+                flex-basis: 50%;
+            }
+
+            .confess-section {
+                flex-basis: 20%;
+            }
+
+            .dev-section {
+                flex-basis: 20%;
+            }
+
+            .message-right {
+                flex-basis: 20%;
+                display: flex;
+            }
+
+            body::after {
+                display: none;
+            }
+        }
+
         @media (max-width: 1024px) {
             header {
                 padding: 8px 14px;
@@ -1053,27 +1147,43 @@
     </div>
 
     <div class="social-container">
-        <h1>Contact</h1>
+        <div class="contact-left">
+            <h1>Contact</h1>
 
-        <a href="https://www.instagram.com/sepuluh_rpl02" target="_blank" class="social-box ig full">
-            <i class="fa-brands fa-instagram"></i>
-            <span>Instagram</span>
-        </a>
-
-        <div class="social-grid">
-            <a href="https://whatsapp.com/channel/0029Vb6VlB94Spk8FpXtaM1j" target="_blank" class="social-box wa">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>WhatsApp Channel</span>
+            <a href="https://www.instagram.com/sepuluh_rpl02" target="_blank" class="social-box ig full">
+                <i class="fa-brands fa-instagram"></i>
+                <span>Instagram</span>
             </a>
 
+            <div class="social-grid">
+                <a href="https://whatsapp.com/channel/0029Vb6VlB94Spk8FpXtaM1j" target="_blank" class="social-box wa">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp Channel</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="confess-section">
             <div class="social-box confess tall" data-id="confess-rpl2">
                 <i class="fa-regular fa-paper-plane"></i>
                 <span>Confess / Pesan Buat X - RPL 2</span>
             </div>
+        </div>
 
+        <div class="dev-section">
             <div class="social-box dev" data-id="pesan-dev">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 <span>Pesan Buat Dev</span>
+            </div>
+        </div>
+
+        <div class="message-right">
+            <h2>Pesan</h2>
+            <div id="confessList" class="confess-list"><p class="loading">Loading Messages...</p></div>
+            <div class="popupconfess-form">
+                <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
+                <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
+                <button id="confessSend" class="popupconfess-send">Kirim</button>
             </div>
         </div>
     </div>
@@ -1598,12 +1708,15 @@ bouncing back" data-color="#0099ff">
         // --- Galeri ---
         const scroll = document.querySelector(".gallery-scroll");
         const items = document.querySelectorAll(".gallery-item");
+        let isProgrammatic = false;
 
         function scrollToIndex(index, smooth = true) {
             const item = items[index];
             const containerWidth = scroll.offsetWidth;
             const target = item.offsetLeft - (containerWidth / 2 - item.offsetWidth / 2);
+            isProgrammatic = true;
             scroll.scrollTo({ left: target, behavior: smooth ? "smooth" : "instant" });
+            setTimeout(() => isProgrammatic = false, 600); // allow time for scroll animation
         }
 
         function updateScale() {
@@ -1634,7 +1747,7 @@ bouncing back" data-color="#0099ff">
         }
 
         window.addEventListener("load", () => {
-            scrollToIndex(0, false);
+            scrollToIndex(5, false);
             updateScale();
             setTimeout(updateScale, 300);
             startAutoSlide();
@@ -1642,12 +1755,35 @@ bouncing back" data-color="#0099ff">
 
 
         // --- Saat user geser manual, sinkronin ulang currentIndex ---
+        let isScrolling = false;
+        let scrollTimer;
+
         scroll.addEventListener("scroll", () => {
+            if (isProgrammatic) {
+                // Infinite scroll logic for true loop (only for programmatic/auto scrolls)
+                const maxScroll = scroll.scrollWidth - scroll.offsetWidth;
+                if (scroll.scrollLeft <= 0) {
+                    scroll.scrollLeft = maxScroll; // jump to end
+                    updateScale();
+                } else if (scroll.scrollLeft >= maxScroll) {
+                    scroll.scrollLeft = 0; // jump to start
+                    updateScale();
+                }
+                return; // ignore further processing for programmatic
+            }
+
+            // Manual scroll
+            if (!isScrolling) {
+                clearInterval(autoSlide); // stop auto slide saat user mulai scroll
+                isScrolling = true;
+            }
             updateScale();
-            clearTimeout(scroll._timer);
-            scroll._timer = setTimeout(() => {
+
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                isScrolling = false;
                 // cari item terdekat ke tengah layar
-                const center = scroll.scrollLeft + scroll.offsetWidth / 2;
+                const center = scroll.scrollLeft;
                 let closestIndex = 0;
                 let minDist = Infinity;
                 items.forEach((item, i) => {
@@ -1658,9 +1794,9 @@ bouncing back" data-color="#0099ff">
                         closestIndex = i;
                     }
                 });
-                currentIndex = closestIndex;
-                startAutoSlide(); // restart supaya interval sinkron lagi
-            }, 250);
+                currentIndex = closestIndex; // continue from current position
+                startAutoSlide(); // resume auto slide after user stops scrolling
+            }, 1000); // resume after 1 second of no scrolling
         });
 
 
@@ -1692,6 +1828,7 @@ bouncing back" data-color="#0099ff">
         function openPopup(innerHTML) {
             popupContent.innerHTML = innerHTML;
             popup.style.display = "flex";
+            popup.classList.add("active");
             popupCard.classList.remove("fade-out");
             document.body.style.overflow = "hidden";
         }
@@ -1699,6 +1836,7 @@ bouncing back" data-color="#0099ff">
             popupCard.classList.add("fade-out");
             setTimeout(() => {
                 popup.style.display = "none";
+                popup.classList.remove("active");
                 popupCard.classList.remove("fade-out");
                 document.body.style.overflow = "auto";
             }, 300);
@@ -1757,72 +1895,124 @@ bouncing back" data-color="#0099ff">
 
 
         // --- Popup Confess & Dev (Firebase) ---
-        document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
-            box.addEventListener("click", () => {
-                const nodeId = box.dataset.id;
-                const nodeRef = ref(db, `confess/${nodeId}`);
+        if (window.innerWidth <= 1024) {
+            document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
+                box.addEventListener("click", () => {
+                    const nodeId = box.dataset.id;
+                    const nodeRef = ref(db, `confess/${nodeId}`);
 
-                const html = `
-      <h2>Pesan</h2>
-      <div id="confessList" class="confess-list"><p class="loading">Loading Messages...</p></div>
-      <div class="popupconfess-form">
-        <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
-        <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
-        <button id="confessSend" class="popupconfess-send">Kirim</button>
-      </div>
-    `;
-                openPopup(html);
+                    const html = `
+          <h2>Pesan</h2>
+          <div id="confessList" class="confess-list"><p class="loading">Loading Messages...</p></div>
+          <div class="popupconfess-form">
+            <input type="text" id="confessName" placeholder="Nama kamu (opsional)">
+            <textarea id="confessMessage" placeholder="Tulis pesanmu di sini..." rows="3"></textarea>
+            <button id="confessSend" class="popupconfess-send">Kirim</button>
+          </div>
+        `;
+                    openPopup(html);
 
-                const confessList = document.getElementById("confessList");
-                const nameInput = document.getElementById("confessName");
-                const msgInput = document.getElementById("confessMessage");
-                const sendBtn = document.getElementById("confessSend");
+                    const confessList = document.getElementById("confessList");
+                    const nameInput = document.getElementById("confessName");
+                    const msgInput = document.getElementById("confessMessage");
+                    const sendBtn = document.getElementById("confessSend");
 
-                function loadMessages() {
-                    onValue(nodeRef, (snapshot) => {
-                        confessList.innerHTML = "";
-                        const titleEl = document.querySelector(".popup-dynamic h2");
+                    function loadMessages() {
+                        onValue(nodeRef, (snapshot) => {
+                            confessList.innerHTML = "";
+                            const titleEl = document.querySelector(".popup-dynamic h2");
 
-                        if (snapshot.exists()) {
-                            const data = snapshot.val();
-                            const total = Object.keys(data).length;
-                            titleEl.textContent = `${total} Pesan`;
+                            if (snapshot.exists()) {
+                                const data = snapshot.val();
+                                const total = Object.keys(data).length;
+                                titleEl.textContent = `${total} Pesan`;
 
-                            Object.keys(data).reverse().forEach((key) => {
-                                const item = data[key];
-                                confessList.innerHTML += `
-              <div class="confess-item">
-                <div class="name">${item.name}</div>
-                <div class="message">${item.message}</div>
-              </div>`;
-                            });
-                        } else {
-                            titleEl.textContent = "0 Komentar";
-                            confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
+                                Object.keys(data).reverse().forEach((key) => {
+                                    const item = data[key];
+                                    confessList.innerHTML += `
+                  <div class="confess-item">
+                    <div class="name">${item.name}</div>
+                    <div class="message">${item.message}</div>
+                  </div>`;
+                                });
+                            } else {
+                                titleEl.textContent = "0 Komentar";
+                                confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
+                            }
+                        });
+
+                    }
+                    loadMessages();
+
+                    async function sendMessage() {
+                        const name = nameInput.value.trim() || "Anonim";
+                        const message = msgInput.value.trim();
+                        if (!message) return alert("Isi pesan dulu!");
+                        await push(nodeRef, { name, message, time: Date.now() });
+                        nameInput.value = "";
+                        msgInput.value = "";
+                    }
+
+                    sendBtn.onclick = sendMessage;
+                    msgInput.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                            e.preventDefault();
+                            sendMessage();
                         }
                     });
-
-                }
-                loadMessages();
-
-                async function sendMessage() {
-                    const name = nameInput.value.trim() || "Anonim";
-                    const message = msgInput.value.trim();
-                    if (!message) return alert("Isi pesan dulu!");
-                    await push(nodeRef, { name, message, time: Date.now() });
-                    nameInput.value = "";
-                    msgInput.value = "";
-                }
-
-                sendBtn.onclick = sendMessage;
-                msgInput.addEventListener("keydown", (e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        sendMessage();
-                    }
                 });
             });
-        });
+        } else {
+            // Desktop: Always show message section on right
+            const nodeRef = ref(db, `confess/confess-rpl2`);
+            const confessList = document.getElementById("confessList");
+            const nameInput = document.getElementById("confessName");
+            const msgInput = document.getElementById("confessMessage");
+            const sendBtn = document.getElementById("confessSend");
+
+            function loadMessages() {
+                onValue(nodeRef, (snapshot) => {
+                    confessList.innerHTML = "";
+                    const titleEl = document.querySelector(".message-right h2");
+
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        const total = Object.keys(data).length;
+                        titleEl.textContent = `${total} Pesan`;
+
+                        Object.keys(data).reverse().forEach((key) => {
+                            const item = data[key];
+                            confessList.innerHTML += `
+                  <div class="confess-item">
+                    <div class="name">${item.name}</div>
+                    <div class="message">${item.message}</div>
+                  </div>`;
+                        });
+                    } else {
+                        titleEl.textContent = "0 Pesan";
+                        confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
+                    }
+                });
+            }
+            loadMessages();
+
+            async function sendMessage() {
+                const name = nameInput.value.trim() || "Anonim";
+                const message = msgInput.value.trim();
+                if (!message) return alert("Isi pesan dulu!");
+                await push(nodeRef, { name, message, time: Date.now() });
+                nameInput.value = "";
+                msgInput.value = "";
+            }
+
+            sendBtn.onclick = sendMessage;
+            msgInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
     </script>
 
 

@@ -41,7 +41,9 @@
             background-image:
                 linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-size: 30px 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body::after {
@@ -373,8 +375,10 @@
             gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 40px 50vw;
+            padding: 40px calc(50vw - 120px);
             scroll-snap-type: x mandatory;
+            width: 100vw;
+            position: relative;
         }
 
         .gallery-scroll::-webkit-scrollbar {
@@ -404,6 +408,10 @@
             margin-bottom: 20px;
             text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
             text-align: center;
+        }
+
+        .gallery-section {
+            overflow-x: hidden;
         }
 
         .popupconfess-form input,
@@ -966,6 +974,44 @@
 
         .popup-card.fade-out {
             animation: fadeOut 0.3s ease forwards;
+        }
+
+        @media (min-width: 1025px) {
+            .background {
+                height: 100vh;
+                position: relative;
+                width: 100%;
+                z-index: -1;
+            }
+
+            .content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                z-index: 1;
+            }
+
+            .content h1 {
+                font-size: 4rem;
+            }
+
+            .content p {
+                font-size: 2rem;
+            }
+
+            .search-container,
+            .social-container,
+            .gallery-section,
+            .structure-section,
+            .students-section {
+                padding: 40px 20px;
+            }
+
+            body::after {
+                display: none;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -1598,12 +1644,15 @@ bouncing back" data-color="#0099ff">
         // --- Galeri ---
         const scroll = document.querySelector(".gallery-scroll");
         const items = document.querySelectorAll(".gallery-item");
+        let isProgrammatic = false;
 
         function scrollToIndex(index, smooth = true) {
             const item = items[index];
             const containerWidth = scroll.offsetWidth;
             const target = item.offsetLeft - (containerWidth / 2 - item.offsetWidth / 2);
+            isProgrammatic = true;
             scroll.scrollTo({ left: target, behavior: smooth ? "smooth" : "instant" });
+            setTimeout(() => isProgrammatic = false, 600); // allow time for scroll animation
         }
 
         function updateScale() {
@@ -1634,7 +1683,7 @@ bouncing back" data-color="#0099ff">
         }
 
         window.addEventListener("load", () => {
-            scrollToIndex(0, false);
+            scrollToIndex(5, false);
             updateScale();
             setTimeout(updateScale, 300);
             startAutoSlide();
@@ -1642,11 +1691,33 @@ bouncing back" data-color="#0099ff">
 
 
         // --- Saat user geser manual, sinkronin ulang currentIndex ---
+        let isScrolling = false;
+        let scrollTimer;
+
         scroll.addEventListener("scroll", () => {
-            clearInterval(autoSlide); // stop auto slide saat user scroll
+            if (isProgrammatic) {
+                // Infinite scroll logic for true loop (only for programmatic/auto scrolls)
+                const maxScroll = scroll.scrollWidth - scroll.offsetWidth;
+                if (scroll.scrollLeft <= 0) {
+                    scroll.scrollLeft = maxScroll; // jump to end
+                    updateScale();
+                } else if (scroll.scrollLeft >= maxScroll) {
+                    scroll.scrollLeft = 0; // jump to start
+                    updateScale();
+                }
+                return; // ignore further processing for programmatic
+            }
+
+            // Manual scroll
+            if (!isScrolling) {
+                clearInterval(autoSlide); // stop auto slide saat user mulai scroll
+                isScrolling = true;
+            }
             updateScale();
-            clearTimeout(scroll._timer);
-            scroll._timer = setTimeout(() => {
+
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                isScrolling = false;
                 // cari item terdekat ke tengah layar
                 const center = scroll.scrollLeft;
                 let closestIndex = 0;
@@ -1659,10 +1730,9 @@ bouncing back" data-color="#0099ff">
                         closestIndex = i;
                     }
                 });
-                currentIndex = closestIndex;
-                scrollToIndex(currentIndex, false); // snap instantly to center
-                startAutoSlide(); // restart supaya interval sinkron lagi
-            }, 1000); // tunggu 1 detik sebelum resume auto slide
+                currentIndex = closestIndex; // continue from current position
+                startAutoSlide(); // resume auto slide after user stops scrolling
+            }, 1000); // resume after 1 second of no scrolling
         });
 
 

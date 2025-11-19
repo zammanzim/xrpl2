@@ -1037,6 +1037,8 @@
                 width: 90%;
                 margin: 30px auto 80px auto;
                 display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
                 gap: 5%;
             }
 
@@ -1110,6 +1112,10 @@
 
             .social-container {
                 width: 90%;
+            }
+
+            .message-right {
+                display: none;
             }
         }
     </style>
@@ -1895,13 +1901,12 @@ bouncing back" data-color="#0099ff">
 
 
         // --- Popup Confess & Dev (Firebase) ---
-        if (window.innerWidth <= 1024) {
-            document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
-                box.addEventListener("click", () => {
-                    const nodeId = box.dataset.id;
-                    const nodeRef = ref(db, `confess/${nodeId}`);
+        document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
+            box.addEventListener("click", () => {
+                const nodeId = box.dataset.id;
+                const nodeRef = ref(db, `confess/${nodeId}`);
 
-                    const html = `
+                const html = `
           <h2>Pesan</h2>
           <div id="confessList" class="confess-list"><p class="loading">Loading Messages...</p></div>
           <div class="popupconfess-form">
@@ -1910,109 +1915,108 @@ bouncing back" data-color="#0099ff">
             <button id="confessSend" class="popupconfess-send">Kirim</button>
           </div>
         `;
-                    openPopup(html);
+                openPopup(html);
 
-                    const confessList = document.getElementById("confessList");
-                    const nameInput = document.getElementById("confessName");
-                    const msgInput = document.getElementById("confessMessage");
-                    const sendBtn = document.getElementById("confessSend");
+                const confessList = document.getElementById("confessList");
+                const nameInput = document.getElementById("confessName");
+                const msgInput = document.getElementById("confessMessage");
+                const sendBtn = document.getElementById("confessSend");
 
-                    function loadMessages() {
-                        onValue(nodeRef, (snapshot) => {
-                            confessList.innerHTML = "";
-                            const titleEl = document.querySelector(".popup-dynamic h2");
+                function loadMessages() {
+                    onValue(nodeRef, (snapshot) => {
+                        confessList.innerHTML = "";
+                        const titleEl = document.querySelector(".popup-dynamic h2");
 
-                            if (snapshot.exists()) {
-                                const data = snapshot.val();
-                                const total = Object.keys(data).length;
-                                titleEl.textContent = `${total} Pesan`;
+                        if (snapshot.exists()) {
+                            const data = snapshot.val();
+                            const total = Object.keys(data).length;
+                            titleEl.textContent = `${total} Pesan`;
 
-                                Object.keys(data).reverse().forEach((key) => {
-                                    const item = data[key];
-                                    confessList.innerHTML += `
+                            Object.keys(data).reverse().forEach((key) => {
+                                const item = data[key];
+                                confessList.innerHTML += `
                   <div class="confess-item">
                     <div class="name">${item.name}</div>
                     <div class="message">${item.message}</div>
                   </div>`;
-                                });
-                            } else {
-                                titleEl.textContent = "0 Komentar";
-                                confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
-                            }
-                        });
-
-                    }
-                    loadMessages();
-
-                    async function sendMessage() {
-                        const name = nameInput.value.trim() || "Anonim";
-                        const message = msgInput.value.trim();
-                        if (!message) return alert("Isi pesan dulu!");
-                        await push(nodeRef, { name, message, time: Date.now() });
-                        nameInput.value = "";
-                        msgInput.value = "";
-                    }
-
-                    sendBtn.onclick = sendMessage;
-                    msgInput.addEventListener("keydown", (e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
-                            e.preventDefault();
-                            sendMessage();
+                            });
+                        } else {
+                            titleEl.textContent = "0 Komentar";
+                            confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
                         }
                     });
+
+                }
+                loadMessages();
+
+                async function sendMessage() {
+                    const name = nameInput.value.trim() || "Anonim";
+                    const message = msgInput.value.trim();
+                    if (!message) return alert("Isi pesan dulu!");
+                    await push(nodeRef, { name, message, time: Date.now() });
+                    nameInput.value = "";
+                    msgInput.value = "";
+                }
+
+                sendBtn.onclick = sendMessage;
+                msgInput.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
                 });
             });
-        } else {
-            // Desktop: Always show message section on right
-            const nodeRef = ref(db, `confess/confess-rpl2`);
-            const confessList = document.getElementById("confessList");
-            const nameInput = document.getElementById("confessName");
-            const msgInput = document.getElementById("confessMessage");
-            const sendBtn = document.getElementById("confessSend");
+        });
 
-            function loadMessages() {
-                onValue(nodeRef, (snapshot) => {
-                    confessList.innerHTML = "";
-                    const titleEl = document.querySelector(".message-right h2");
+        // Desktop: Always show message section on right
+        const nodeRef = ref(db, `confess/confess-rpl2`);
+        const confessList = document.getElementById("confessList");
+        const nameInput = document.getElementById("confessName");
+        const msgInput = document.getElementById("confessMessage");
+        const sendBtn = document.getElementById("confessSend");
 
-                    if (snapshot.exists()) {
-                        const data = snapshot.val();
-                        const total = Object.keys(data).length;
-                        titleEl.textContent = `${total} Pesan`;
+        function loadMessages() {
+            onValue(nodeRef, (snapshot) => {
+                confessList.innerHTML = "";
+                const titleEl = document.querySelector(".message-right h2");
 
-                        Object.keys(data).reverse().forEach((key) => {
-                            const item = data[key];
-                            confessList.innerHTML += `
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    const total = Object.keys(data).length;
+                    titleEl.textContent = `${total} Pesan`;
+
+                    Object.keys(data).reverse().forEach((key) => {
+                        const item = data[key];
+                        confessList.innerHTML += `
                   <div class="confess-item">
                     <div class="name">${item.name}</div>
                     <div class="message">${item.message}</div>
                   </div>`;
-                        });
-                    } else {
-                        titleEl.textContent = "0 Pesan";
-                        confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
-                    }
-                });
-            }
-            loadMessages();
-
-            async function sendMessage() {
-                const name = nameInput.value.trim() || "Anonim";
-                const message = msgInput.value.trim();
-                if (!message) return alert("Isi pesan dulu!");
-                await push(nodeRef, { name, message, time: Date.now() });
-                nameInput.value = "";
-                msgInput.value = "";
-            }
-
-            sendBtn.onclick = sendMessage;
-            msgInput.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessage();
+                    });
+                } else {
+                    titleEl.textContent = "0 Pesan";
+                    confessList.innerHTML = "<p class='loading'>Belum ada pesan</p>";
                 }
             });
         }
+        loadMessages();
+
+        async function sendMessage() {
+            const name = nameInput.value.trim() || "Anonim";
+            const message = msgInput.value.trim();
+            if (!message) return alert("Isi pesan dulu!");
+            await push(nodeRef, { name, message, time: Date.now() });
+            nameInput.value = "";
+            msgInput.value = "";
+        }
+
+        sendBtn.onclick = sendMessage;
+        msgInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
     </script>
 
 

@@ -976,6 +976,28 @@
             animation: fadeOut 0.3s ease forwards;
         }
 
+        .cassette-container {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .cassette {
+            width: 100%;
+            animation: spin 3s linear infinite;
+            filter: drop-shadow(0 0 10px #00bfff);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         @media (min-width: 1025px) {
             .background {
                 height: 100vh;
@@ -1172,7 +1194,7 @@ bouncing back" data-color="#0099ff">
                     data-wa="6283851088843" data-ig="zammanzim"
                     data-quote="Janganlah don't karena because selalu always"
                     data-desc="perkenalkan aku gw wakil wkm kelas 10 X - Rekayasa RPL Lunak 2 Dua"
-                    data-color="rgb(255, 80, 0)">
+                    data-color="rgb(255, 80, 0)" data-music="music/L 30sogg.ogg">
                     <img src="gallery/nzamwkm.webp">
                     <p>Nizam</p>
                 </div>
@@ -1184,7 +1206,7 @@ bouncing back" data-color="#0099ff">
                 <div class="node" data-name="Dila Kirana Destiana" data-role="Bendahara"
                     data-img="gallery/dilabend.webp" data-wa="6283875216752" data-ig="dilaa_krnaaaa"
                     data-desc="Saya siswa X - RPL 2 yang imut, baik hati dan tidak sombong😘"
-                    data-quote="Es jagung ngeunah" data-color="#ff6bb5">
+                    data-quote="Hardisk untuk mendinginkan CPU" data-color="#ff6bb5">
                     <img src="gallery/dilabend.webp">
                     <p>Dila</p>
                 </div>
@@ -1417,8 +1439,8 @@ bouncing back" data-color="#0099ff">
                     </div>
 
                     <div class="student-card" data-name="Latif Muhammad Fajar" data-role="Absen 14"
-                        data-img="gallery/latifrohani.webp" data-wa="6283820537998" data-ig="latifmhmmdfjr" data-quote=""
-                        data-desc="" data-color="">
+                        data-img="gallery/latifrohani.webp" data-wa="6283820537998" data-ig="latifmhmmdfjr"
+                        data-quote="" data-desc="" data-color="">
                         <img src="gallery/latifrohani.webp">
                         <p>Latif Fast Charging</p>
                         <span>Absen 14 uncompleted</span>
@@ -1446,8 +1468,8 @@ bouncing back" data-color="#0099ff">
             <div class="tab-content" id="tab-3">
                 <div class="students-grid">
                     <div class="student-card" data-name="Muhammad Fachri Syahreza" data-role="Absen 17"
-                        data-img="students/fachri.jpg" data-wa="6285797461394" data-ig="mfachrisyahreza" data-quote="cintaku diambil kaka kelas" data-desc="aku seorang atlit"
-                        data-color="">
+                        data-img="students/fachri.jpg" data-wa="6285797461394" data-ig="mfachrisyahreza"
+                        data-quote="cintaku diambil kaka kelas" data-desc="aku seorang atlit" data-color="">
                         <img src="students/fachri.jpg">
                         <p>Fachri Galon Jayaslot</p>
                         <span>Absen 17</span>
@@ -1559,7 +1581,8 @@ bouncing back" data-color="#0099ff">
                     </div>
 
                     <div class="student-card" data-name="Sendi Hermansyah" data-role="Absen 30"
-                        data-img="students/sendi.jpg" data-wa="6283865537575" data-ig="sendihermansyah55" data-quote="lebih enak jilat kacang daripada cilok" data-desc="suka bacol pake bumbu kacang"
+                        data-img="students/sendi.jpg" data-wa="6283865537575" data-ig="sendihermansyah55"
+                        data-quote="lebih enak jilat kacang daripada cilok" data-desc="suka bacol pake bumbu kacang"
                         data-color="">
                         <img src="students/sendi.jpg">
                         <p>Omoy Bumbu Kacang Bacol</p>
@@ -1612,7 +1635,6 @@ bouncing back" data-color="#0099ff">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
-        // --- Firebase ---
         const firebaseConfig = {
             apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
             authDomain: "xrpl2web.firebaseapp.com",
@@ -1625,7 +1647,6 @@ bouncing back" data-color="#0099ff">
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // --- Navbar ---
         const menuOverlay = document.getElementById("menuOverlay");
         const hamburger = document.querySelector(".hamburger");
         const closeMenu = document.querySelector(".close-menu");
@@ -1641,7 +1662,6 @@ bouncing back" data-color="#0099ff">
             }
         });
 
-        // --- Galeri ---
         const scroll = document.querySelector(".gallery-scroll");
         const items = document.querySelectorAll(".gallery-item");
         let isProgrammatic = false;
@@ -1674,7 +1694,7 @@ bouncing back" data-color="#0099ff">
         let autoSlide;
 
         function startAutoSlide() {
-            clearInterval(autoSlide); // reset biar gak dobel
+            clearInterval(autoSlide);
             autoSlide = setInterval(() => {
                 currentIndex = (currentIndex + 1) % items.length;
                 scrollToIndex(currentIndex);
@@ -1689,28 +1709,24 @@ bouncing back" data-color="#0099ff">
             startAutoSlide();
         });
 
-
-        // --- Saat user geser manual, sinkronin ulang currentIndex ---
         let isScrolling = false;
         let scrollTimer;
 
         scroll.addEventListener("scroll", () => {
             if (isProgrammatic) {
-                // Infinite scroll logic for true loop (only for programmatic/auto scrolls)
                 const maxScroll = scroll.scrollWidth - scroll.offsetWidth;
                 if (scroll.scrollLeft <= 0) {
-                    scroll.scrollLeft = maxScroll; // jump to end
+                    scroll.scrollLeft = maxScroll;
                     updateScale();
                 } else if (scroll.scrollLeft >= maxScroll) {
-                    scroll.scrollLeft = 0; // jump to start
+                    scroll.scrollLeft = 0;
                     updateScale();
                 }
-                return; // ignore further processing for programmatic
+                return;
             }
 
-            // Manual scroll
             if (!isScrolling) {
-                clearInterval(autoSlide); // stop auto slide saat user mulai scroll
+                clearInterval(autoSlide);
                 isScrolling = true;
             }
             updateScale();
@@ -1718,7 +1734,6 @@ bouncing back" data-color="#0099ff">
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
                 isScrolling = false;
-                // cari item terdekat ke tengah layar
                 const center = scroll.scrollLeft;
                 let closestIndex = 0;
                 let minDist = Infinity;
@@ -1730,13 +1745,11 @@ bouncing back" data-color="#0099ff">
                         closestIndex = i;
                     }
                 });
-                currentIndex = closestIndex; // continue from current position
-                startAutoSlide(); // resume auto slide after user stops scrolling
-            }, 1000); // resume after 1 second of no scrolling
+                currentIndex = closestIndex;
+                startAutoSlide();
+            }, 1000);
         });
 
-
-        // --- Tabs ---
         const tabs = document.querySelectorAll(".tab-btn");
         const contents = document.querySelectorAll(".tab-content");
         const prevBtn = document.getElementById("prevTab");
@@ -1756,7 +1769,6 @@ bouncing back" data-color="#0099ff">
         nextBtn.addEventListener("click", () => { if (activeIndex < tabs.length - 1) updateTabs(++activeIndex); });
         updateTabs(activeIndex);
 
-        // --- Popup Universal ---
         const popup = document.getElementById("popup");
         const popupCard = popup.querySelector(".popup-card");
         const popupContent = popupCard.querySelector(".popup-dynamic");
@@ -1766,6 +1778,11 @@ bouncing back" data-color="#0099ff">
             popup.style.display = "flex";
             popupCard.classList.remove("fade-out");
             document.body.style.overflow = "hidden";
+            setTimeout(() => {
+                const audio = document.getElementById("musicPlayer");
+                if (audio) audio.play().catch(() => { });
+            }, 200);
+
         }
         function closePopup() {
             popupCard.classList.add("fade-out");
@@ -1774,6 +1791,12 @@ bouncing back" data-color="#0099ff">
                 popupCard.classList.remove("fade-out");
                 document.body.style.overflow = "auto";
             }, 300);
+            const audio = document.getElementById("musicPlayer");
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+
         }
         popup.addEventListener("click", (e) => { if (e.target.id === "popup") closePopup(); });
         window.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
@@ -1820,15 +1843,21 @@ bouncing back" data-color="#0099ff">
         ${card.dataset.wa ? `<a href="https://wa.me/${card.dataset.wa}" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>` : ""}
         ${card.dataset.ig ? `<a href="https://instagram.com/${card.dataset.ig}" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>` : ""}
     </div>
+
+    <div class="cassette-container">
+        <img src="cassette.png" class="cassette">
+    </div>
+
+    <audio id="musicPlayer" src="${card.dataset.music || ''}"></audio>
+
 </div>
+
 
 `;
                 openPopup(html);
             });
         });
 
-
-        // --- Popup Confess & Dev (Firebase) ---
         document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
             box.addEventListener("click", () => {
                 const nodeId = box.dataset.id;

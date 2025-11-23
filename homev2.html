@@ -486,7 +486,6 @@
             background: transparent;
         }
 
-
         .confess-item .name {
             font-weight: bold;
             color: #00ffaa;
@@ -722,7 +721,6 @@
             box-shadow: none;
         }
 
-
         .popup-overlay {
             display: none;
             position: fixed;
@@ -741,6 +739,7 @@
             justify-content: center;
             gap: 15px;
             width: 90%;
+            max-width: 600px;
             background: rgba(0, 191, 255, 0.08);
             border: 1px solid rgba(0, 191, 255, 0.4);
             box-shadow: 0 0 25px #00bfff;
@@ -775,7 +774,6 @@
             gap: 6px;
             align-self: center;
         }
-
 
         .popup-right img {
             width: 120px;
@@ -821,7 +819,6 @@
             gap: 12px;
             margin-top: 4px;
         }
-
 
         .popup-links a {
             display: flex;
@@ -870,7 +867,6 @@
             box-shadow: 0 0 8px rgba(0, 200, 255, 0.8);
             border-radius: 2px;
         }
-
 
         .quote-section,
         .desc-section {
@@ -947,7 +943,6 @@
             background: transparent;
         }
 
-
         @keyframes fadeIn1 {
             from {
                 opacity: 0;
@@ -976,7 +971,6 @@
             animation: fadeOut 0.3s ease forwards;
         }
 
-        /* --- MINI PLAYER (slide up/down) --- */
         #miniPlayer {
             position: fixed;
             left: 50%;
@@ -998,13 +992,11 @@
             align-items: center;
         }
 
-        /* visible state slides up */
         #miniPlayer.visible {
             transform: translateX(-50%) translateY(0%);
             opacity: 1;
         }
 
-        /* left cover */
         #miniPlayer .mp-cover {
             width: 120px;
             height: 120px;
@@ -1015,14 +1007,12 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.2));
         }
 
-        /* image fit */
         #miniPlayer .mp-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* center content: title + timeline */
         #miniPlayer .mp-body {
             flex: 1 1 auto;
             display: flex;
@@ -1031,7 +1021,6 @@
             min-width: 0;
         }
 
-        /* title and artist */
         #miniPlayer .mp-title {
             text-align: center;
             font-weight: 700;
@@ -1050,7 +1039,6 @@
             margin-top: -2px;
         }
 
-        /* timeline row */
         .mp-timeline-row {
             display: flex;
             align-items: center;
@@ -1067,7 +1055,6 @@
             text-align: center;
         }
 
-        /* progress bar area */
         .mp-bar {
             flex: 1;
             height: 8px;
@@ -1088,7 +1075,6 @@
             transition: width 120ms linear;
         }
 
-        /* controls row */
         .mp-controls {
             display: flex;
             align-items: center;
@@ -1112,7 +1098,6 @@
             cursor: default;
         }
 
-        /* close button top-right */
         #miniPlayer .mp-close {
             position: absolute;
             right: 10px;
@@ -1318,25 +1303,22 @@
                 <span>Bu Windy Puteri Utami</span>
             </div>
 
-
             <h4>Dewan Ketua dan Perwakilan Lembaga</h4>
 
             <div class="children">
                 <div class="node" data-name="Excel Adila Putra" data-role="KM" data-img="gallery/peceikm.webp"
                     data-wa="62895329906073" data-ig="couldrnt" data-quote="0.1% bukan berarti 0 kemungkinan."
-                    data-desc="You know, you know where you are with
-You know where you are with
-floor collapses, floating
-bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hindia.mp3">
+                    data-desc="You know, you know where you are with You know where you are with floor collapses, floating bouncing back"
+                    data-color="#0099ff">
                     <img src="gallery/peceikm.webp">
                     <p>Excel</p>
                 </div>
+
                 <div class="node" data-name="Nizam Fhamer Arafli" data-role="WKM" data-img="gallery/nzamwkm.webp"
                     data-wa="6283851088843" data-ig="zammanzim"
                     data-quote="Janganlah don't karena because selalu always"
                     data-desc="perkenalkan aku gw wakil wkm kelas 10 X - Rekayasa RPL Lunak 2 Dua"
-                    data-color="rgb(255, 80, 0)" data-music="music/nizamHal-L.ogg" data-title="L" data-artist="Hindia"
-                    data-cover="music/nizamHal-Limg.jpg">
+                    data-color="rgb(255, 80, 0)">
                     <img src="gallery/nzamwkm.webp">
                     <p>Nizam</p>
                 </div>
@@ -1348,10 +1330,11 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                 <div class="node" data-name="Dila Kirana Destiana" data-role="Bendahara"
                     data-img="gallery/dilabend.webp" data-wa="6283875216752" data-ig="dilaa_krnaaaa"
                     data-desc="Saya siswa X - RPL 2 yang imut, baik hati dan tidak sombong😘"
-                    data-quote="Hardisk untuk mendinginkan CPU" data-color="#ff6bb5">
+                    data-quote="Hardisk untuk mendinginkan CPU">
                     <img src="gallery/dilabend.webp">
                     <p>Dila</p>
                 </div>
+
                 <div class="node" data-name="Nabila Yulaika" data-role="Bendahara" data-img="gallery/nabilabend.webp"
                     data-wa="6283189778020" data-ig="zoldyckbil" data-quote="Kelas kita, keluarga kita"
                     data-desc="Saya siswi X - RPL 2 yang imut. Kadang introvert, kadang extrovert. Cinta Kilua dan Gojo. Tidak sombong dan tidak pernah marah."
@@ -1369,6 +1352,7 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                     <img src="gallery/indahsek.webp">
                     <p>Indah</p>
                 </div>
+
                 <div class="node" data-name="Aufa Fatimatul Azka" data-role="Sekretaris" data-img="gallery/aufasek.webp"
                     data-wa="" data-ig="" data-quote="" data-desc="" data-color="#ff8b6b">
                     <img src="gallery/aufasek.webp">
@@ -1386,6 +1370,7 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                     <img src="gallery/alenaabs.webp">
                     <p>Alena</p>
                 </div>
+
                 <div class="node" data-name="Almira Tanisha Purnama" data-role="Absensi" data-img="students/almira.jpg"
                     data-wa="" data-ig="" data-quote="" data-desc="" data-color="#00ff80">
                     <img src="students/almira.jpg">
@@ -1403,6 +1388,7 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                     <img src="gallery/rakkea.webp">
                     <p>Raka</p>
                 </div>
+
                 <div class="node" data-name="Revan Hidayat" data-role="Keamanan" data-img="gallery/revankea.png"
                     data-wa="" data-ig="" data-quote="" data-desc="" data-color="#009eff">
                     <img src="gallery/revankea.png">
@@ -1418,6 +1404,7 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                     <img src="gallery/ucupkeber.webp">
                     <p>Yusup</p>
                 </div>
+
                 <div class="node" data-name="M. Nazlan Rizqi Ramadhan" data-role="Kebersihan"
                     data-img="gallery/bekamkeber.webp" data-wa="" data-ig="" data-quote="" data-desc=""
                     data-color="#3cff00">
@@ -1434,6 +1421,7 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                     <img src="gallery/ukuyolah.webp">
                     <p>Rizky</p>
                 </div>
+
                 <div class="node" data-name="M. Fachri Syahreza" data-role="Olahraga" data-img="gallery/fahriolah.webp"
                     data-wa="" data-ig="" data-quote="" data-desc="" data-color="#ff2f00">
                     <img src="gallery/fahriolah.webp">
@@ -1449,6 +1437,7 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
                     <img src="students/andika.jpg">
                     <p>Andika</p>
                 </div>
+
                 <div class="node" data-name="Latif Muhammad Fajar" data-role="Rohani"
                     data-img="gallery/latifrohani.webp" data-wa="" data-ig="" data-quote="" data-desc=""
                     data-color="#00e0ff">
@@ -1472,293 +1461,353 @@ bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hind
         <div class="students-container">
             <div class="tab-content active" id="tab-1">
                 <div class="students-grid">
+
                     <div class="student-card" data-name="Alena Al Zahra" data-role="Absensi"
                         data-img="gallery/alenaabs.webp" data-wa="6283115275826" data-ig="_alenaalzahra"
                         data-quote="jika dikabulkan berarti baik, tapi jika tidak dikabulkan berarti ada yang lebih baik. welllll welllll"
-                        data-desc="baik hati intropet ramah tidak sombong suka memberi hospot" data-color="#33ffb5">
+                        data-desc="baik hati intropet ramah tidak sombong suka memberi hospot" data-color="#F9A8D4"
+                        data-music="" data-title="" data-artist="" data-cover="" data-title="" data-artist=""
+                        data-cover="">
                         <img src="students/alena.jpg">
                         <p>Umi Lena</p>
                         <span>Absen 01</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
+
                     <div class="student-card" data-name="Almira Tanisha Purnama" data-role="Absen 02"
-                        data-img="students/almira.jpg" data-wa="6283892187499" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-img="students/almira.jpg" data-wa="6283892187499" data-ig="almiratnsha"
+                        data-quote="alif ketemu ba, alif nya kaget <br> other people know what" data-desc="amiimut"
+                        data-color="#F472B6" data-music="music/almira.ogg" data-title="Too Deep To Turn Back"
+                        data-artist="Daniel Caesar" data-cover="music/almira.webp">
                         <img src="students/almira.jpg">
                         <p>Amie Goreng</p>
-                        <span>Absen 02 uncompleted</span>
+                        <span>Absen 02</span>
+                        <h5>nah ini lengkap</h5>
                     </div>
+
                     <div class="student-card" data-name="Andika Prasetia" data-role="Absen 03"
                         data-img="students/andika.jpg" data-wa="6283862810453" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#64748B" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/andika.jpg">
                         <p>Abi Dika Bedog</p>
-                        <span>Absen 03 uncompleted</span>
+                        <span>Absen 03</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
+
                     <div class="student-card" data-name="Anisa" data-role="Absen 04" data-img="students/anisa.jpg"
                         data-wa="6285703076532" data-ig="n1zyaazz"
                         data-quote="impian tidak akan menjadi kenyataan tanpa usahaa" data-desc="Anisa baikkk hatiii"
-                        data-color="" data-music="">
+                        data-color="#EC4899" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/anisa.jpg">
                         <p>Nisa Sabyan</p>
                         <span>Absen 04</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
+
                     <div class="student-card" data-name="Anna Silviana Ramadani" data-role="Absen 05"
                         data-img="students/anna.jpg" data-wa="6283138465679" data-ig="naa.us3r"
                         data-quote="i love ayam geprek 🤤☝🏻"
-                        data-desc="saya siswa x rpl 2 yang imupp, baik hati dan tidak sombonggh" data-color=""
-                        data-music="">
+                        data-desc="saya siswa x rpl 2 yang imupp, baik hati dan tidak sombonggh" data-color="#F8B4B4"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/anna.jpg">
                         <p>Anna Antum</p>
                         <span>Absen 05</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
+
                     <div class="student-card" data-name="Aufa Fatimatul Azka" data-role="Absen 06"
                         data-img="gallery/aufasek.webp" data-wa="62859141483790" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#FECACA" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="gallery/aufasek.webp">
                         <p>Aufa Walrus</p>
                         <span>Absen 06 uncompleted</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
+
                     <div class="student-card" data-name="Bintang Alim Mustofa" data-role="Absen 07"
                         data-img="students/bintang.jpg" data-wa="6283143559437" data-ig="bint.4ng08"
                         data-quote="Rela menjadi Debu, Demi seorang Ibu"
-                        data-desc="bintng mh bager, sholeh, anak mamah, ganteng (kata mamah)" data-color=""
-                        data-music="">
+                        data-desc="bintng mh bager, sholeh, anak mamah, ganteng (kata mamah)" data-color="#9A3412"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/bintang.jpg">
                         <p>Epul Garut</p>
                         <span>Absen 07</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
+
                     <div class="student-card" data-name="Debby Nur Anisa" data-role="Absen 08"
                         data-img="students/debby.jpg" data-wa="6281572917275" data-ig="dbbbynna"
                         data-quote="seblak enak 🤤"
-                        data-desc="saya siswa xrpl2 baik tidak banyak omong dan tidak sombong" data-color=""
-                        data-music="">
+                        data-desc="saya siswa xrpl2 baik tidak banyak omong dan tidak sombong" data-color="#FCE7F3"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/debby.jpg">
                         <p>Dobby</p>
                         <span>Absen 08</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content" id="tab-2">
                 <div class="students-grid">
+
                     <div class="student-card" data-name="Dila Kirana Destiana" data-role="Absen 09"
                         data-img="students/dila.jpg" data-wa="6283875216752" data-ig="dilaa_krnaaaa"
                         data-quote="es jagung ngenah"
-                        data-desc="sya siswa x rpl 2 yng imut, baik hati dan tidak sombong😘" data-color=""
-                        data-music="">
+                        data-desc="sya siswa x rpl 2 yng imut, baik hati dan tidak sombong😘" data-color="#E879F9"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/dila.jpg">
                         <p>Lauk Peda</p>
                         <span>Absen 09</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Excel Adila Putra" data-role="Absen 10"
                         data-img="gallery/peceikm.webp" data-wa="62895329906073" data-ig="couldrnt"
-                        data-quote="0.1% bukan berarti 0 kemungkinan" data-desc="W ilham💘" data-color="" data-music="">
+                        data-quote="0.1% bukan berarti 0 kemungkinan" data-desc="W ilham💘" data-color="#7F1D1D"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="gallery/peceikm.webp">
                         <p>Lemari</p>
                         <span>Absen 10</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Faizar Reza Aditya" data-role="Absen 11"
                         data-img="students/faizar.jpg" data-wa="6283842962532" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#92400E" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/faizar.jpg">
                         <p>Ajay Muso</p>
-                        <span>Absen 11 uncompleted</span>
+                        <span>Absen 11</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Gista Nurpita" data-role="Absen 12"
                         data-img="students/gista.jpg" data-wa="6283116922902" data-ig="gist_anur"
                         data-quote="di okey kn"
-                        data-desc="saya siswa x rpl 2, yang imupps, ramah dan tidak sombongzss🤟🏿" data-color=""
-                        data-music="">
+                        data-desc="saya siswa x rpl 2, yang imupps, ramah dan tidak sombongzss🤟🏿" data-color="#C084FC"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/gista.jpg">
                         <p>Gusti Nu Agung</p>
                         <span>Absen 12</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Keyla Arumi Fatimah A." data-role="Absen 13"
                         data-img="students/keyla.jpg" data-wa="6283186421783" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#A78BFA" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/keyla.jpg">
                         <p>Kela Sakedap</p>
                         <span>Absen 13 uncompleted</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Latif Muhammad Fajar" data-role="Absen 14"
                         data-img="gallery/latifrohani.webp" data-wa="6283820537998" data-ig="latifmhmmdfjr"
-                        data-quote="" data-desc="" data-color="" data-music="">
+                        data-quote="" data-desc="" data-color="#854D0E" data-music="" data-title="" data-artist=""
+                        data-cover="">
                         <img src="gallery/latifrohani.webp">
                         <p>Latif Fast Charging</p>
                         <span>Absen 14 uncompleted</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Muhammad Gilang" data-role="Absen 15"
                         data-img="students/gilang.jpg" data-wa="628388256759" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#22C55E" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/gilang.jpg">
                         <p>Gilang Ojol Baso Cabul</p>
-                        <span>Absen 15 uncompleted</span>
+                        <span>Absen 15</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Muhammad Nazlan Rizqi Ramadhan" data-role="Absen 16"
                         data-img="gallery/bekamkeber.webp" data-wa="6282312015593" data-ig="zlaan_9"
                         data-quote="lebih baik kita ngopi daripada kita minum intisari. Karena hidup ini perlu inspirasi, bukan halusinasi"
-                        data-desc="selau bernafas & makan" data-color="" data-music="">
+                        data-desc="selau bernafas & makan" data-color="#15803D" data-music="" data-title=""
+                        data-artist="" data-cover="">
                         <img src="gallery/bekamkeber.webp">
                         <p>Bekam hengset</p>
                         <span>Absen 16</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content" id="tab-3">
                 <div class="students-grid">
+
                     <div class="student-card" data-name="Muhammad Fachri Syahreza" data-role="Absen 17"
                         data-img="students/fachri.jpg" data-wa="6285797461394" data-ig="mfachrisyahreza"
-                        data-quote="cintaku diambil kaka kelas" data-desc="aku seorang atlit" data-color=""
-                        data-music="">
+                        data-quote="cintaku diambil kaka kelas" data-desc="aku seorang atlit" data-color="#064E3B"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/fachri.jpg">
                         <p>Fachri Galon Jayaslot</p>
                         <span>Absen 17</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Muhammad Wildan" data-role="Absen 18"
                         data-img="students/wildan.jpg" data-wa="6288971925996" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#155E75" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/wildan.jpg">
                         <p>Dungs Ngantoek</p>
-                        <span>Absen 18 uncompleted</span>
+                        <span>Absen 18</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Muhammad Yusup Pratama" data-role="Absen 19"
                         data-img="gallery/ucupkeber.webp" data-wa="6283195640753" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#164E63" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="gallery/ucupkeber.webp">
                         <p>Ucup Sarimi</p>
-                        <span>Absen 19 uncompleted</span>
+                        <span>Absen 19</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Nabila" data-role="Absen 20" data-img="students/nabila.jpg"
                         data-wa="6283189778020" data-ig="zoldyckbil" data-quote="kelas kita, keluarga kita"
                         data-desc="saya siswi X rpl 2. Yang imut ,kandang introvert kadang extrovert, cinta kilua dan gojo, tidak sombong, dan tidak pernah marah"
-                        data-color="" data-music="">
+                        data-color="#FBCFE8" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/nabila.jpg">
                         <p>Namla Buek</p>
                         <span>Absen 20</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Nakisa Safa Hamida" data-role="Absen 21"
                         data-img="students/nakisa.jpg" data-wa="6283822732249" data-ig="_nnks.sa"
-                        data-quote="sayang aykal" data-desc="kisa nak teladan dan imut" data-color="" data-music="">
+                        data-quote="sayang aykal" data-desc="kisa nak teladan dan imut" data-color="#FDBA74"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/nakisa.jpg">
                         <p>Bos Bihun</p>
-                        <span>Absen 21 uncompleted</span>
+                        <span>Absen 21</span>
+                        <h5>Pending...</h5>
                     </div>
 
                     <div class="student-card" data-name="Neiyla Aprilia" data-role="Absen 22"
                         data-img="students/neiyla.jpg" data-wa="6285793567425" data-ig="cc.ney4x_"
                         data-quote="aku tidak menyesal mengenalnya, tapi aku kecewa pada diriku telah jatuh cinta sedalam ini bahkan melupakannya saja aku tidak mampu"
-                        data-desc="saya siswa x rpl 2 yg sangat centill" data-color="" data-music="">
+                        data-desc="saya siswa x rpl 2 yg sangat centill" data-color="#FCD34D" data-music=""
+                        data-title="" data-artist="" data-cover="">
                         <img src="students/neiyla.jpg">
                         <p>Nila Punya F</p>
                         <span>Absen 22</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Nizam Fhamer Arafli" data-role="Dewan Perwakilan Lembaga"
                         data-img="gallery/nzamwkm.webp" data-wa="6283851088843" data-ig="zammanzim"
                         data-quote="Janganlah don't karena because selalu always"
-                        data-desc="sungguh tak terasa sudah tujuh tahun rotasi waktu hidupku binar mata yang membiru hari-hari yang lesu aku menunggu kamu selalu aku lihat belakang punggungmu disaat kau lihat belakang punggung pria lain menunggu kau menoleh dan berlari kearahku dan memelukku seerat-eratnya sudah aku coba untuk menghapusmu naifku hanya jelaga dirindu pada siapa kumasih merasakannya kamu masih penyebabnya selalu aku lihat belakang punggungmu disaat kau lihat belakang punggung pria lain menunggu kau menoleh dan berlari kearahku dan memelukku seerat-eratnya selalu aku lihat belakang punggungmu disaat kau lihat belakang punggung pria lain menunggu kau menoleh dan berlari kearahku dan memelukku seerat-eratnya mencoba berdamai dengan diriku tapi kau slalu tau itu bagaimana mungkin ketika kau masih jadi satu-satunya alasanku menunggu di lini waktuku sungguh tak terasa sudah tujuh tahun habiskan masa mudaku hanya untuk membuatmu terkesan kepadaku begitu bodohnya aku">
+                        data-desc="sungguh tak terasa sudah tujuh tahun rotasi waktu hidupku binar mata yang membiru hari-hari yang lesu aku menunggu kamu selalu aku lihat belakang punggungmu disaat kau lihat belakang punggung pria lain menunggu kau menoleh dan berlari kearahku dan memelukku seerat-eratnya sudah aku coba untuk menghapusmu naifku hanya jelaga dirindu pada siapa kumasih merasakannya kamu masih penyebabnya selalu aku lihat belakang punggungmu disaat kau lihat belakang punggung pria lain menunggu kau menoleh dan berlari kearahku dan memelukku seerat-eratnya selalu aku lihat belakang punggungmu disaat kau lihat belakang punggung pria lain menunggu kau menoleh dan berlari kearahku dan memelukku seerat-eratnya mencoba berdamai dengan diriku tapi kau slalu tau itu bagaimana mungkin ketika kau masih jadi satu-satunya alasanku menunggu di lini waktuku sungguh tak terasa sudah tujuh tahun habiskan masa mudaku hanya untuk membuatmu terkesan kepadaku begitu bodohnya aku"
+                        data-color="#3B82F6" data-music="music/nizam.ogg" data-title="L" data-artist="Hal"
+                        data-cover="music/nizam.webp">
                         <img src="gallery/nzamwkm.webp">
                         <p>Nijam hateemel</p>
                         <span>Absen 23</span>
+                        <h5>ni jga lengkap</h5>
                     </div>
 
                     <div class="student-card" data-name="Rafi Juliansyah" data-role="Absen 24"
                         data-img="students/rafi.jpg" data-wa="6283112080210" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#1F2937" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/rafi.jpg">
                         <p>Ontel</p>
-                        <span>Absen 24 uncompleted</span>
+                        <span>Absen 24</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Raka Pratama Sumitra" data-role="Absen 25"
                         data-img="students/raka.jpg" data-wa="6283840009957" data-ig="pratamaaxxaaaa"
                         data-quote="Jangan takut gagal, karena kegagalan adalah bagian dari proses menuju keberhasilan"
-                        data-desc="Tampan dan pemberanii anjay slbeww (yg membuat dila terpikat)" data-color="#004eff">
+                        data-desc="Tampan dan pemberanii anjay slbeww (yg membuat dila terpikat)" data-color="#004eff"
+                        data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/raka.jpg">
                         <p>Raka Karbohidrat</p>
                         <span>Absen 25</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Revan Hidayat" data-role="Absen 26"
                         data-img="gallery/revankea.png" data-wa="6283872889213" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#854D0E" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="gallery/revankea.png">
                         <p>Evan Ngorong</p>
-                        <span>Absen 26 uncompleted</span>
+                        <span>Absen 26</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content" id="tab-4">
                 <div class="students-grid">
+
                     <div class="student-card" data-name="Risha Salsabila Nadhifa" data-role="Absen 27"
                         data-img="students/risha.jpg" data-wa="6281224238131" data-ig="rshaslsbila_"
                         data-quote="perempuan itu mudah ragu bukan karena dia lemah,tapi karena hatinya selalu ingin memastikan.ia bertanya tanya apakah dirinya cukup baik,cukup berharga,cukup dicintai?"
-                        data-desc="murid  yngg soft spoken wkwk" data-color="" data-music="">
+                        data-desc="murid  yngg soft spoken wkwk" data-color="#6EE7B7" data-music="" data-title=""
+                        data-artist="" data-cover="">
                         <img src="students/risha.jpg">
                         <p>Risha Katel</p>
                         <span>Absen 27</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Rizky Khoerrurizal" data-role="Absen 28"
                         data-img="students/rizky.jpg" data-ig="_rzkypngersa"
                         data-quote="di kehidupan kedua semoga kau tak terlalu keras kepala(nada puisi)"
-                        data-desc="orang rajin penyabar suka menabung" data-color="" data-music="">
+                        data-desc="orang rajin penyabar suka menabung" data-color="#1D4ED8" data-music="" data-title=""
+                        data-artist="" data-cover="">
                         <img src="students/rizky.jpg">
                         <p>Ukuy Depo Roket Indo</p>
                         <span>Absen 28</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
                     <div class="student-card" data-name="Sandra Puspita" data-role="Absen 29" data-img=""
-                        data-wa="6283131066371" data-ig="" data-quote="" data-desc="" data-color="" data-music="">
+                        data-wa="6283131066371" data-ig="" data-quote="" data-desc="" data-color="#BFDBFE" data-music=""
+                        data-title="" data-artist="" data-cover="">
                         <img src="">
                         <p>Sandra Pulang Pergi</p>
                         <span>Absen 29 uncompleted</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Sendi Hermansyah" data-role="Absen 30"
                         data-img="students/sendi.jpg" data-wa="6283865537575" data-ig="sendihermansyah55"
                         data-quote="lebih enak jilat kacang daripada cilok" data-desc="suka bacol pake bumbu kacang"
-                        data-color="" data-music="">
+                        data-color="#0F172A" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/sendi.jpg">
                         <p>Omoy Bumbu Kacang Bacol</p>
                         <span>Absen 30</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
 
-                    <div class="student-card" data-name="Silva Rahmawati" data-role="Absen 31" data-img=""
-                        data-wa="628886055988" data-ig="" data-quote="" data-desc="" data-color="" data-music="">
-                        <img src="">
+                    <div class="student-card" data-name="Silva Rahmawati" data-role="Absen 31" data-img="students/silva.jpg"
+                        data-wa="628886055988" data-ig="sssi_lvaaa" data-quote="dukaa gatauu" data-desc="🤷🏻‍♀️" data-color="#A7F3D0" data-music=""
+                        data-title="" data-artist="" data-cover="">
+                        <img src="students/silva.jpg">
                         <p>Sivla</p>
-                        <span>Absen 31 uncompleted</span>
+                        <span>Absen 31</span>
+                        <h5>Pending...</h5>
                     </div>
 
                     <div class="student-card" data-name="Siti Nur Indah" data-role="Absen 32"
                         data-img="gallery/indahsek.webp" data-wa="6283170883577" data-ig="" data-quote="" data-desc=""
-                        data-color="" data-music="">
+                        data-color="#FDBA74" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="gallery/indahsek.webp">
                         <p>Siti Hawa Nafsu</p>
-                        <span>Absen 32 uncompleted</span>
+                        <span>Absen 32</span>
+                        <h5>can lengkap kabweh</h5>
                     </div>
 
                     <div class="student-card" data-name="Windi Maharani" data-role="Absen 34"
                         data-img="students/windi.jpg" data-wa="628381098206" data-ig="wndmhrniiii"
                         data-quote="kalo gak mau di sakitin jangan nyakitin" data-desc="baik dan tidak sombong"
-                        data-color="" data-music="">
+                        data-color="#C084FC" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/windi.jpg">
                         <p>Mahalini</p>
                         <span>Absen 34</span>
+                        <h5>Belum lengkap (lagu)</h5>
                     </div>
                 </div>
             </div>

@@ -976,26 +976,152 @@
             animation: fadeOut 0.3s ease forwards;
         }
 
-        .cassette-container {
-            margin-top: 10px;
-            width: 100px;
-            height: 100px;
+        /* --- MINI PLAYER (slide up/down) --- */
+        #miniPlayer {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%) translateY(110%);
+            bottom: 18px;
+            width: 92%;
+            max-width: 680px;
+            background: rgba(2, 18, 25, 0.78);
+            border: 1px solid rgba(0, 200, 255, 0.14);
+            border-radius: 14px;
+            padding: 12px 14px;
+            box-shadow: 0 8px 40px rgba(0, 200, 255, 0.12);
+            backdrop-filter: blur(6px);
+            z-index: 99999;
+            transition: transform 420ms cubic-bezier(.17, .67, .29, 1), opacity 320ms ease;
+            opacity: 0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
         }
 
-        .cassette {
+        /* visible state slides up */
+        #miniPlayer.visible {
+            transform: translateX(-50%) translateY(0%);
+            opacity: 1;
+        }
+
+        /* left cover */
+        #miniPlayer .mp-cover {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(0, 200, 255, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.2));
+        }
+
+        /* image fit */
+        #miniPlayer .mp-cover img {
             width: 100%;
-            animation: spin 3s linear infinite;
-            filter: drop-shadow(0 0 10px #00bfff);
+            height: 100%;
+            object-fit: cover;
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
+        /* center content: title + timeline */
+        #miniPlayer .mp-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
 
-            to {
-                transform: rotate(360deg);
-            }
+        /* title and artist */
+        #miniPlayer .mp-title {
+            text-align: center;
+            font-weight: 700;
+            color: #e9fbff;
+            font-size: 0.98rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #miniPlayer .mp-artist {
+            text-align: center;
+            font-size: 0.82rem;
+            color: rgba(200, 255, 255, 0.78);
+            opacity: 0.9;
+            margin-top: -2px;
+        }
+
+        /* timeline row */
+        .mp-timeline-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mp-time {
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px 8px;
+            border-radius: 8px;
+            color: #e6fbff;
+            min-width: 44px;
+            text-align: center;
+        }
+
+        /* progress bar area */
+        .mp-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mp-bar .mp-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0%;
+            background: linear-gradient(90deg, #00e0ff, #0099ff);
+            border-radius: 999px;
+            transition: width 120ms linear;
+        }
+
+        /* controls row */
+        .mp-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 6px;
+        }
+
+        .mp-controls button {
+            background: transparent;
+            border: none;
+            color: #00e5ff;
+            font-size: 20px;
+            padding: 6px;
+            cursor: pointer;
+        }
+
+        .mp-controls button.disabled {
+            opacity: 0.28;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: default;
+        }
+
+        /* close button top-right */
+        #miniPlayer .mp-close {
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 16px;
+            cursor: pointer;
         }
 
         @media (min-width: 1025px) {
@@ -1201,7 +1327,7 @@
                     data-desc="You know, you know where you are with
 You know where you are with
 floor collapses, floating
-bouncing back" data-color="#0099ff">
+bouncing back" data-color="#0099ff" data-music="music/peceiEverything_u_are-Hindia.mp3">
                     <img src="gallery/peceikm.webp">
                     <p>Excel</p>
                 </div>
@@ -1209,7 +1335,8 @@ bouncing back" data-color="#0099ff">
                     data-wa="6283851088843" data-ig="zammanzim"
                     data-quote="Janganlah don't karena because selalu always"
                     data-desc="perkenalkan aku gw wakil wkm kelas 10 X - Rekayasa RPL Lunak 2 Dua"
-                    data-color="rgb(255, 80, 0)" data-music="music/L 30sogg.ogg">
+                    data-color="rgb(255, 80, 0)" data-music="music/nizamHal-L.ogg" data-title="L" data-artist="Hindia"
+                    data-cover="music/nizamHal-Limg.jpg">
                     <img src="gallery/nzamwkm.webp">
                     <p>Nizam</p>
                 </div>
@@ -1355,22 +1482,22 @@ bouncing back" data-color="#0099ff">
                     </div>
                     <div class="student-card" data-name="Almira Tanisha Purnama" data-role="Absen 02"
                         data-img="students/almira.jpg" data-wa="6283892187499" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/almira.jpg">
                         <p>Amie Goreng</p>
                         <span>Absen 02 uncompleted</span>
                     </div>
                     <div class="student-card" data-name="Andika Prasetia" data-role="Absen 03"
                         data-img="students/andika.jpg" data-wa="6283862810453" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/andika.jpg">
                         <p>Abi Dika Bedog</p>
                         <span>Absen 03 uncompleted</span>
                     </div>
                     <div class="student-card" data-name="Anisa" data-role="Absen 04" data-img="students/anisa.jpg"
-                        data-wa="6285703076532" data-ig="anis_yaaa"
+                        data-wa="6285703076532" data-ig="n1zyaazz"
                         data-quote="impian tidak akan menjadi kenyataan tanpa usahaa" data-desc="Anisa baikkk hatiii"
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/anisa.jpg">
                         <p>Nisa Sabyan</p>
                         <span>Absen 04</span>
@@ -1378,14 +1505,15 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Anna Silviana Ramadani" data-role="Absen 05"
                         data-img="students/anna.jpg" data-wa="6283138465679" data-ig="naa.us3r"
                         data-quote="i love ayam geprek 🤤☝🏻"
-                        data-desc="saya siswa x rpl 2 yang imupp, baik hati dan tidak sombonggh" data-color="">
+                        data-desc="saya siswa x rpl 2 yang imupp, baik hati dan tidak sombonggh" data-color=""
+                        data-music="">
                         <img src="students/anna.jpg">
                         <p>Anna Antum</p>
                         <span>Absen 05</span>
                     </div>
                     <div class="student-card" data-name="Aufa Fatimatul Azka" data-role="Absen 06"
                         data-img="gallery/aufasek.webp" data-wa="62859141483790" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="gallery/aufasek.webp">
                         <p>Aufa Walrus</p>
                         <span>Absen 06 uncompleted</span>
@@ -1393,7 +1521,8 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Bintang Alim Mustofa" data-role="Absen 07"
                         data-img="students/bintang.jpg" data-wa="6283143559437" data-ig="bint.4ng08"
                         data-quote="Rela menjadi Debu, Demi seorang Ibu"
-                        data-desc="bintng mh bager, sholeh, anak mamah, ganteng (kata mamah)" data-color="">
+                        data-desc="bintng mh bager, sholeh, anak mamah, ganteng (kata mamah)" data-color=""
+                        data-music="">
                         <img src="students/bintang.jpg">
                         <p>Epul Garut</p>
                         <span>Absen 07</span>
@@ -1401,7 +1530,8 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Debby Nur Anisa" data-role="Absen 08"
                         data-img="students/debby.jpg" data-wa="6281572917275" data-ig="dbbbynna"
                         data-quote="seblak enak 🤤"
-                        data-desc="saya siswa xrpl2 baik tidak banyak omong dan tidak sombong" data-color="">
+                        data-desc="saya siswa xrpl2 baik tidak banyak omong dan tidak sombong" data-color=""
+                        data-music="">
                         <img src="students/debby.jpg">
                         <p>Dobby</p>
                         <span>Absen 08</span>
@@ -1414,7 +1544,8 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Dila Kirana Destiana" data-role="Absen 09"
                         data-img="students/dila.jpg" data-wa="6283875216752" data-ig="dilaa_krnaaaa"
                         data-quote="es jagung ngenah"
-                        data-desc="sya siswa x rpl 2 yng imut, baik hati dan tidak sombong😘" data-color="">
+                        data-desc="sya siswa x rpl 2 yng imut, baik hati dan tidak sombong😘" data-color=""
+                        data-music="">
                         <img src="students/dila.jpg">
                         <p>Lauk Peda</p>
                         <span>Absen 09</span>
@@ -1422,7 +1553,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Excel Adila Putra" data-role="Absen 10"
                         data-img="gallery/peceikm.webp" data-wa="62895329906073" data-ig="couldrnt"
-                        data-quote="0.1% bukan berarti 0 kemungkinan" data-desc="W ilham💘" data-color="">
+                        data-quote="0.1% bukan berarti 0 kemungkinan" data-desc="W ilham💘" data-color="" data-music="">
                         <img src="gallery/peceikm.webp">
                         <p>Lemari</p>
                         <span>Absen 10</span>
@@ -1430,7 +1561,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Faizar Reza Aditya" data-role="Absen 11"
                         data-img="students/faizar.jpg" data-wa="6283842962532" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/faizar.jpg">
                         <p>Ajay Muso</p>
                         <span>Absen 11 uncompleted</span>
@@ -1439,7 +1570,8 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Gista Nurpita" data-role="Absen 12"
                         data-img="students/gista.jpg" data-wa="6283116922902" data-ig="gist_anur"
                         data-quote="di okey kn"
-                        data-desc="saya siswa x rpl 2, yang imupps, ramah dan tidak sombongzss🤟🏿" data-color="">
+                        data-desc="saya siswa x rpl 2, yang imupps, ramah dan tidak sombongzss🤟🏿" data-color=""
+                        data-music="">
                         <img src="students/gista.jpg">
                         <p>Gusti Nu Agung</p>
                         <span>Absen 12</span>
@@ -1447,7 +1579,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Keyla Arumi Fatimah A." data-role="Absen 13"
                         data-img="students/keyla.jpg" data-wa="6283186421783" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/keyla.jpg">
                         <p>Kela Sakedap</p>
                         <span>Absen 13 uncompleted</span>
@@ -1455,7 +1587,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Latif Muhammad Fajar" data-role="Absen 14"
                         data-img="gallery/latifrohani.webp" data-wa="6283820537998" data-ig="latifmhmmdfjr"
-                        data-quote="" data-desc="" data-color="">
+                        data-quote="" data-desc="" data-color="" data-music="">
                         <img src="gallery/latifrohani.webp">
                         <p>Latif Fast Charging</p>
                         <span>Absen 14 uncompleted</span>
@@ -1463,7 +1595,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Muhammad Gilang" data-role="Absen 15"
                         data-img="students/gilang.jpg" data-wa="628388256759" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/gilang.jpg">
                         <p>Gilang Ojol Baso Cabul</p>
                         <span>Absen 15 uncompleted</span>
@@ -1472,7 +1604,7 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Muhammad Nazlan Rizqi Ramadhan" data-role="Absen 16"
                         data-img="gallery/bekamkeber.webp" data-wa="6282312015593" data-ig="zlaan_9"
                         data-quote="lebih baik kita ngopi daripada kita minum intisari. Karena hidup ini perlu inspirasi, bukan halusinasi"
-                        data-desc="selau bernafas & makan" data-color="">
+                        data-desc="selau bernafas & makan" data-color="" data-music="">
                         <img src="gallery/bekamkeber.webp">
                         <p>Bekam hengset</p>
                         <span>Absen 16</span>
@@ -1484,7 +1616,8 @@ bouncing back" data-color="#0099ff">
                 <div class="students-grid">
                     <div class="student-card" data-name="Muhammad Fachri Syahreza" data-role="Absen 17"
                         data-img="students/fachri.jpg" data-wa="6285797461394" data-ig="mfachrisyahreza"
-                        data-quote="cintaku diambil kaka kelas" data-desc="aku seorang atlit" data-color="">
+                        data-quote="cintaku diambil kaka kelas" data-desc="aku seorang atlit" data-color=""
+                        data-music="">
                         <img src="students/fachri.jpg">
                         <p>Fachri Galon Jayaslot</p>
                         <span>Absen 17</span>
@@ -1492,7 +1625,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Muhammad Wildan" data-role="Absen 18"
                         data-img="students/wildan.jpg" data-wa="6288971925996" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/wildan.jpg">
                         <p>Dungs Ngantoek</p>
                         <span>Absen 18 uncompleted</span>
@@ -1500,7 +1633,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Muhammad Yusup Pratama" data-role="Absen 19"
                         data-img="gallery/ucupkeber.webp" data-wa="6283195640753" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="gallery/ucupkeber.webp">
                         <p>Ucup Sarimi</p>
                         <span>Absen 19 uncompleted</span>
@@ -1509,15 +1642,15 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Nabila" data-role="Absen 20" data-img="students/nabila.jpg"
                         data-wa="6283189778020" data-ig="zoldyckbil" data-quote="kelas kita, keluarga kita"
                         data-desc="saya siswi X rpl 2. Yang imut ,kandang introvert kadang extrovert, cinta kilua dan gojo, tidak sombong, dan tidak pernah marah"
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/nabila.jpg">
                         <p>Namla Buek</p>
                         <span>Absen 20</span>
                     </div>
 
                     <div class="student-card" data-name="Nakisa Safa Hamida" data-role="Absen 21"
-                        data-img="students/nakisa.jpg" data-wa="6283822732249" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-img="students/nakisa.jpg" data-wa="6283822732249" data-ig="_nnks.sa"
+                        data-quote="sayang aykal" data-desc="kisa nak teladan dan imut" data-color="" data-music="">
                         <img src="students/nakisa.jpg">
                         <p>Bos Bihun</p>
                         <span>Absen 21 uncompleted</span>
@@ -1526,7 +1659,7 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Neiyla Aprilia" data-role="Absen 22"
                         data-img="students/neiyla.jpg" data-wa="6285793567425" data-ig="cc.ney4x_"
                         data-quote="aku tidak menyesal mengenalnya, tapi aku kecewa pada diriku telah jatuh cinta sedalam ini bahkan melupakannya saja aku tidak mampu"
-                        data-desc="saya siswa x rpl 2 yg sangat centill" data-color="">
+                        data-desc="saya siswa x rpl 2 yg sangat centill" data-color="" data-music="">
                         <img src="students/neiyla.jpg">
                         <p>Nila Punya F</p>
                         <span>Absen 22</span>
@@ -1543,7 +1676,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Rafi Juliansyah" data-role="Absen 24"
                         data-img="students/rafi.jpg" data-wa="6283112080210" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/rafi.jpg">
                         <p>Ontel</p>
                         <span>Absen 24 uncompleted</span>
@@ -1560,7 +1693,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Revan Hidayat" data-role="Absen 26"
                         data-img="gallery/revankea.png" data-wa="6283872889213" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="gallery/revankea.png">
                         <p>Evan Ngorong</p>
                         <span>Absen 26 uncompleted</span>
@@ -1573,23 +1706,23 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Risha Salsabila Nadhifa" data-role="Absen 27"
                         data-img="students/risha.jpg" data-wa="6281224238131" data-ig="rshaslsbila_"
                         data-quote="perempuan itu mudah ragu bukan karena dia lemah,tapi karena hatinya selalu ingin memastikan.ia bertanya tanya apakah dirinya cukup baik,cukup berharga,cukup dicintai?"
-                        data-desc="murid  yngg soft spoken wkwk" data-color="">
+                        data-desc="murid  yngg soft spoken wkwk" data-color="" data-music="">
                         <img src="students/risha.jpg">
                         <p>Risha Katel</p>
                         <span>Absen 27</span>
                     </div>
 
                     <div class="student-card" data-name="Rizky Khoerrurizal" data-role="Absen 28"
-                        data-img="students/rizky.jpg" data-wa="6285624179417" data-ig="_rzkypngersa"
+                        data-img="students/rizky.jpg" data-ig="_rzkypngersa"
                         data-quote="di kehidupan kedua semoga kau tak terlalu keras kepala(nada puisi)"
-                        data-desc="orang rajin penyabar suka menabung" data-color="">
+                        data-desc="orang rajin penyabar suka menabung" data-color="" data-music="">
                         <img src="students/rizky.jpg">
                         <p>Ukuy Depo Roket Indo</p>
                         <span>Absen 28</span>
                     </div>
 
                     <div class="student-card" data-name="Sandra Puspita" data-role="Absen 29" data-img=""
-                        data-wa="6283131066371" data-ig="" data-quote="" data-desc="" data-color="">
+                        data-wa="6283131066371" data-ig="" data-quote="" data-desc="" data-color="" data-music="">
                         <img src="">
                         <p>Sandra Pulang Pergi</p>
                         <span>Absen 29 uncompleted</span>
@@ -1598,14 +1731,14 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Sendi Hermansyah" data-role="Absen 30"
                         data-img="students/sendi.jpg" data-wa="6283865537575" data-ig="sendihermansyah55"
                         data-quote="lebih enak jilat kacang daripada cilok" data-desc="suka bacol pake bumbu kacang"
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/sendi.jpg">
                         <p>Omoy Bumbu Kacang Bacol</p>
                         <span>Absen 30</span>
                     </div>
 
                     <div class="student-card" data-name="Silva Rahmawati" data-role="Absen 31" data-img=""
-                        data-wa="628886055988" data-ig="" data-quote="" data-desc="" data-color="">
+                        data-wa="628886055988" data-ig="" data-quote="" data-desc="" data-color="" data-music="">
                         <img src="">
                         <p>Sivla</p>
                         <span>Absen 31 uncompleted</span>
@@ -1613,7 +1746,7 @@ bouncing back" data-color="#0099ff">
 
                     <div class="student-card" data-name="Siti Nur Indah" data-role="Absen 32"
                         data-img="gallery/indahsek.webp" data-wa="6283170883577" data-ig="" data-quote="" data-desc=""
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="gallery/indahsek.webp">
                         <p>Siti Hawa Nafsu</p>
                         <span>Absen 32 uncompleted</span>
@@ -1622,7 +1755,7 @@ bouncing back" data-color="#0099ff">
                     <div class="student-card" data-name="Windi Maharani" data-role="Absen 34"
                         data-img="students/windi.jpg" data-wa="628381098206" data-ig="wndmhrniiii"
                         data-quote="kalo gak mau di sakitin jangan nyakitin" data-desc="baik dan tidak sombong"
-                        data-color="">
+                        data-color="" data-music="">
                         <img src="students/windi.jpg">
                         <p>Mahalini</p>
                         <span>Absen 34</span>
@@ -1644,7 +1777,35 @@ bouncing back" data-color="#0099ff">
         </div>
     </div>
 
+    <div id="miniPlayer" aria-hidden="true" role="region" aria-label="Music player">
 
+        <div class="mp-cover" id="mpCover">
+            <img src="" alt="cover">
+        </div>
+
+        <div class="mp-body">
+            <div id="mpTitle" class="mp-title">Unknown Track</div>
+            <div id="mpArtist" class="mp-artist"></div>
+
+            <div class="mp-timeline-row">
+                <div id="mpCur" class="mp-time">0:00</div>
+                <div class="mp-bar" id="mpBar">
+                    <div class="mp-fill" id="mpFill"></div>
+                </div>
+                <div id="mpDur" class="mp-time">0:00</div>
+            </div>
+
+            <div class="mp-controls">
+                <button class="disabled"><i class="fa-solid fa-backward"></i></button>
+                <button id="mpPlay"><i id="mpPlayIcon" class="fa-solid fa-play"></i></button>
+                <button class="disabled"><i class="fa-solid fa-forward"></i></button>
+            </div>
+        </div>
+
+        <button class="mp-close" id="mpClose">✕</button>
+
+        <audio id="mpAudio" preload="metadata"></audio>
+    </div>
 
     <script type="module" defer>
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
@@ -1784,95 +1945,6 @@ bouncing back" data-color="#0099ff">
         nextBtn.addEventListener("click", () => { if (activeIndex < tabs.length - 1) updateTabs(++activeIndex); });
         updateTabs(activeIndex);
 
-        const popup = document.getElementById("popup");
-        const popupCard = popup.querySelector(".popup-card");
-        const popupContent = popupCard.querySelector(".popup-dynamic");
-
-        function openPopup(innerHTML) {
-            popupContent.innerHTML = innerHTML;
-            popup.style.display = "flex";
-            popupCard.classList.remove("fade-out");
-            document.body.style.overflow = "hidden";
-            setTimeout(() => {
-                const audio = document.getElementById("musicPlayer");
-                if (audio) audio.play().catch(() => { });
-            }, 200);
-
-        }
-        function closePopup() {
-            popupCard.classList.add("fade-out");
-            setTimeout(() => {
-                popup.style.display = "none";
-                popupCard.classList.remove("fade-out");
-                document.body.style.overflow = "auto";
-            }, 300);
-            const audio = document.getElementById("musicPlayer");
-            if (audio) {
-                audio.pause();
-                audio.currentTime = 0;
-            }
-
-        }
-        popup.addEventListener("click", (e) => { if (e.target.id === "popup") closePopup(); });
-        window.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
-
-        document.querySelectorAll(".node, .student-card").forEach(card => {
-            card.addEventListener("click", () => {
-                const html = `
-<div class="popup-layout">
-    <div class="popup-left">
-
-    <div class="popup-title">
-        <i class="fa-solid fa-comment-dots"></i>
-        <span>Kata-Kata</span>
-    </div>
-    <div class="quote-box">
-        ${card.dataset.quote ? `“${card.dataset.quote}”` : `Unavaible`}
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="popup-title">
-        <i class="fa-solid fa-user"></i>
-        <span>Deskripsi Diri</span>
-    </div>
-    <div class="desc-box">
-        ${card.dataset.desc ? card.dataset.desc : `Unavaible.`}
-    </div>
-
-</div>
-
-
-    <div class="popup-right">
-    <img src="${card.dataset.img}" alt="Foto ${card.dataset.name || 'Siswa'}">
-    <h3>${card.dataset.name || "Anonim"}</h3>
-
-    ${card.dataset.role ? `<div class="role" 
-        style="--role-color:${card.dataset.color || '#00ffaa'};
-               --role-glow:${card.dataset.glow || card.dataset.color || '#00ffaa'};
-               --role-text:${card.dataset.textcolor || '#0a0a0a'};">
-        ${card.dataset.role}
-    </div>` : ""}
-
-    <div class="popup-links">
-        ${card.dataset.wa ? `<a href="https://wa.me/${card.dataset.wa}" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>` : ""}
-        ${card.dataset.ig ? `<a href="https://instagram.com/${card.dataset.ig}" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>` : ""}
-    </div>
-
-    <div class="cassette-container">
-        <img src="cassette.png" class="cassette">
-    </div>
-
-    <audio id="musicPlayer" src="${card.dataset.music || ''}"></audio>
-
-</div>
-
-
-`;
-                openPopup(html);
-            });
-        });
-
         document.querySelectorAll(".social-box.confess, .social-box.dev").forEach(box => {
             box.addEventListener("click", () => {
                 const nodeId = box.dataset.id;
@@ -1939,9 +2011,221 @@ bouncing back" data-color="#0099ff">
                 });
             });
         });
+
+        const popup = document.getElementById("popup");
+        const popupCard = popup.querySelector(".popup-card");
+        const popupContent = popupCard.querySelector(".popup-dynamic");
+
+        (() => {
+            const mini = document.getElementById('miniPlayer');
+            const audio = document.getElementById('mpAudio');
+            const coverEl = document.getElementById('mpCover').querySelector('img');
+            const titleEl = document.getElementById('mpTitle');
+            const artistEl = document.getElementById('mpArtist');
+            const curEl = document.getElementById('mpCur');
+            const durEl = document.getElementById('mpDur');
+            const fillEl = document.getElementById('mpFill');
+            const playBtn = document.getElementById('mpPlay');
+            const playIcon = document.getElementById('mpPlayIcon');
+            const closeBtn = document.getElementById('mpClose');
+            const bar = document.getElementById('mpBar');
+
+            let currentSrc = '';
+
+            function formatTime(s) {
+                if (!s || !isFinite(s)) return '0:00';
+                const m = Math.floor(s / 60);
+                const sec = Math.floor(s % 60).toString().padStart(2, '0');
+                return `${m}:${sec}`;
+            }
+
+            function showPlayer() {
+                mini.classList.add('visible');
+            }
+
+            function hidePlayer() {
+                mini.classList.remove('visible');
+            }
+
+            // ========== PUBLIC API ==========
+            window.MiniPlayer = {
+                loadAndPlay({ src = '', title = '', artist = '', cover = '' } = {}) {
+
+                    if (!src) {
+                        hidePlayer();
+                        audio.removeAttribute('src');
+                        return;
+                    }
+
+                    if (currentSrc === src) {
+                        showPlayer();
+                        return;
+                    }
+
+                    currentSrc = src;
+                    audio.src = src;
+
+                    titleEl.textContent = title || 'Unknown Track';
+                    artistEl.textContent = artist || '';
+
+                    if (cover) coverEl.src = cover;
+                    else coverEl.src = 'covers/default.png';
+
+                    showPlayer();
+
+                    audio.load();
+                    audio.play().then(() => {
+                        playIcon.className = 'fa-solid fa-pause';
+                    }).catch(() => {
+                        playIcon.className = 'fa-solid fa-play';
+                    });
+                },
+
+                stopAndReset() {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    currentSrc = '';
+                    hidePlayer();
+                    fillEl.style.width = '0%';
+                    curEl.textContent = '0:00';
+                    durEl.textContent = '0:00';
+                    playIcon.className = 'fa-solid fa-play';
+                }
+            };
+
+            // METADATA
+            audio.onloadedmetadata = () => {
+                durEl.textContent = formatTime(audio.duration);
+            };
+
+            audio.ontimeupdate = () => {
+                curEl.textContent = formatTime(audio.currentTime);
+                const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+                fillEl.style.width = pct + '%';
+            };
+
+            // SEEK
+            bar.addEventListener('click', (e) => {
+                if (!audio.duration) return;
+                const rect = bar.getBoundingClientRect();
+                const pct = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = pct * audio.duration;
+            });
+
+            // PLAY/PAUSE
+            playBtn.addEventListener('click', () => {
+                if (!audio.src) return;
+                if (audio.paused) {
+                    audio.play().then(() => playIcon.className = 'fa-solid fa-pause');
+                } else {
+                    audio.pause();
+                    playIcon.className = 'fa-solid fa-play';
+                }
+            });
+
+            // CLOSE
+            closeBtn.addEventListener('click', () => {
+                window.MiniPlayer.stopAndReset();
+            });
+
+            audio.onended = () => {
+                playIcon.className = 'fa-solid fa-play';
+                audio.currentTime = 0;
+            };
+        })();
+
+        function openPopup(innerHTML, musicMeta = {}) {
+            popupContent.innerHTML = innerHTML;
+
+            popup.style.display = "flex";
+            popupCard.classList.remove("fade-out");
+            popupCard.classList.add("fade-in");
+
+            document.body.style.overflow = "hidden";
+
+            if (musicMeta.src) {
+                window.MiniPlayer.loadAndPlay({
+                    src: musicMeta.src,
+                    title: musicMeta.title,
+                    artist: musicMeta.artist,
+                    cover: musicMeta.cover
+                });
+            }
+        }
+
+        function closePopup() {
+            popupCard.classList.add("fade-out");
+
+            setTimeout(() => {
+                popup.style.display = "none";
+                popupCard.classList.remove("fade-out");
+                document.body.style.overflow = "auto";
+            }, 300);
+        }
+
+        popup.addEventListener("click", (e) => { if (e.target.id === "popup") closePopup(); });
+        window.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
+
+        document.querySelectorAll(".node, .student-card").forEach(card => {
+            card.addEventListener("click", () => {
+                const html = `
+<div class="popup-layout">
+    <div class="popup-left">
+
+    <div class="popup-title">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span>Kata-Kata</span>
+    </div>
+    <div class="quote-box">
+        ${card.dataset.quote ? `“${card.dataset.quote}”` : `Unavaible`}
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="popup-title">
+        <i class="fa-solid fa-user"></i>
+        <span>Deskripsi Diri</span>
+    </div>
+    <div class="desc-box">
+        ${card.dataset.desc ? card.dataset.desc : `Unavaible.`}
+    </div>
+
+</div>
+
+
+    <div class="popup-right">
+    <img src="${card.dataset.img}" alt="Foto ${card.dataset.name || 'Siswa'}">
+    <h3>${card.dataset.name || "Anonim"}</h3>
+
+    ${card.dataset.role ? `<div class="role" 
+        style="--role-color:${card.dataset.color || '#00ffaa'};
+               --role-glow:${card.dataset.glow || card.dataset.color || '#00ffaa'};
+               --role-text:${card.dataset.textcolor || '#0a0a0a'};">
+        ${card.dataset.role}
+    </div>` : ""}
+
+    <div class="popup-links">
+        ${card.dataset.wa ? `<a href="https://wa.me/${card.dataset.wa}" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>` : ""}
+        ${card.dataset.ig ? `<a href="https://instagram.com/${card.dataset.ig}" target="_blank" class="ig"><i class="fa-brands fa-instagram"></i></a>` : ""}
+    </div>
+
+</div>
+
+
+`;
+                openPopup(html, {
+                    src: card.dataset.music || '',
+                    title: card.dataset.title || card.dataset.name || '',
+                    artist: card.dataset.artist || '',
+                    cover: card.dataset.cover || card.dataset.img || 'covers/default.png'
+                });
+            });
+        });
+
+        const a = document.getElementById("popupAudio");
+        a.pause();
+        a.currentTime = 0;
     </script>
-
-
 </body>
 
 </html>

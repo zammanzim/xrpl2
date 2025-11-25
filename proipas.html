@@ -12,17 +12,25 @@
 
 <body>
     <header>
+    <div style="display:flex; align-items:center; gap:12px;">
         <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <div class="rightsection">
-            <div class="searchhomepage">
 
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Search">
-            </div>
-            <button onclick="searchPage()">Cari</button>
-            <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+        <!-- 👁 Visitor counter di sini -->
+        <span id="visitorCounter" 
+            style="font-size:15px; opacity:0.9; display:flex; align-items:center; gap:5px;">
+            <i class="fa-solid fa-eye"></i> ...
+        </span>
+    </div>
+
+    <div class="rightsection">
+        <div class="searchhomepage">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search">
         </div>
-    </header>
+        <button onclick="searchPage()">Cari</button>
+        <span id="searchMessage" style="color: red; font-size: 14px;"></span>
+    </div>
+</header>
 
     <div class="sidebar" id="sidebar">
         <h3>Ini Menu Asli</h3>
@@ -179,6 +187,57 @@
         <button class="overlay-arrow left" id="overlayPrev">&#10094;</button>
         <button class="overlay-arrow right" id="overlayNext">&#10095;</button>
     </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+            authDomain: "xrpl2web.firebaseapp.com",
+            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "xrpl2web",
+            storageBucket: "xrpl2web.appspot.com",
+            messagingSenderId: "410193641417",
+            appId: "1:410193641417:web:a7da663d744703e4883218"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const DB_NAME = "vstproipas";
+
+        const storageKey = "visitorID_" + DB_NAME;
+        let visitorID = localStorage.getItem(storageKey);
+
+        if (!visitorID) {
+            visitorID = "vst_" + Math.random().toString(36).substring(2, 12);
+            localStorage.setItem(storageKey, visitorID);
+
+            const now = new Date();
+            const formatted = now.toLocaleString("id-ID", {
+                weekday: "short",
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            set(ref(db, "vst/" + DB_NAME + "/" + visitorID), {
+                page: location.pathname,
+                time: formatted,
+                useragent: navigator.userAgent
+            });
+        }
+
+        const counter = document.getElementById("visitorCounter");
+
+        onValue(ref(db, "vst/" + DB_NAME), (snap) => {
+            const data = snap.val();
+            const total = data ? Object.keys(data).length : 0;
+            counter.innerHTML = `<i class="fa-solid fa-eye"></i> ${total} visitors`;
+        });
+    </script>
     <script src="seacrhpage.js"></script>
     <script src="script.js"></script>
 </body>

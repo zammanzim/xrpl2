@@ -561,13 +561,78 @@
             width: 380px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
+
+        .popup-visit {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+        }
+
+        .popup-visit.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .popup-visit-card {
+            background: rgba(0, 191, 255, 0.15);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            padding: 22px;
+            border-radius: 16px;
+            text-align: center;
+            width: 85%;
+            max-width: 360px;
+            color: white;
+            box-shadow: 0 0 25px #00bfff;
+        }
+
+        .popup-visit-card h2 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            text-shadow: 0 0 8px #00bfff;
+        }
+
+        .popup-visit-card button {
+            margin-top: 15px;
+            background: #00bfff;
+            border: none;
+            padding: 10px 20px;
+            color: black;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
+
+    <div class="popup-visit" id="visitPopup">
+        <div class="popup-visit-card">
+            <h2>Terima Kasih! 🙌</h2>
+            <p>Terima kasih sudah mengunjungi website ini.
+                Kamu bantu website ini tetap hidup 👍</p>
+            <button onclick="closeVisitPopup()">Oke</button>
+        </div>
+    </div>
+
+
     <header>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <h3>X - RPL 2</h3>
+        <h3 style="display:flex; align-items:center; gap:10px;">
+            <span id="visitorCounter" style="font-size:15px; opacity:0.9;">
+                <i class="fa-solid fa-eye"></i> 0
+            </span>
+            X - RPL 2
+        </h3>
+
     </header>
 
     <div class="sidebar" id="sidebar">
@@ -796,6 +861,59 @@
     </div>
 
     <script src="seacrhpage.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+            authDomain: "xrpl2web.firebaseapp.com",
+            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "xrpl2web",
+            storageBucket: "xrpl2web.appspot.com",
+            messagingSenderId: "410193641417",
+            appId: "1:410193641417:web:a7da663d744703e4883218"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const DB_NAME = "vstannouncement";
+
+        const storageKey = "visitorID_" + DB_NAME;
+        let visitorID = localStorage.getItem(storageKey);
+
+        if (!visitorID) {
+            visitorID = "vst_" + Math.random().toString(36).substring(2, 12);
+            localStorage.setItem(storageKey, visitorID);
+
+            const now = new Date();
+            const formatted = now.toLocaleString("id-ID", {
+                weekday: "short",
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            set(ref(db, "vst/" + DB_NAME + "/" + visitorID), {
+                page: location.pathname,
+                time: formatted,
+                useragent: navigator.userAgent
+            });
+        }
+
+        const counter = document.getElementById("visitorCounter");
+
+        onValue(ref(db, "vst/" + DB_NAME + "/"), (snap) => {
+            const data = snap.val();
+            const total = data ? Object.keys(data).length : 0;
+            counter.innerHTML = `<i class="fa-solid fa-eye"></i> ${total} visitors`;
+        });
+    </script>
+
+
     <script>
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
@@ -919,6 +1037,25 @@
         });
 
     </script>
+
+    <script>
+        function closeVisitPopup() {
+            document.getElementById("visitPopup").classList.remove("active");
+            localStorage.setItem("visitedToday", new Date().toDateString());
+        }
+
+        window.addEventListener("load", () => {
+            const lastVisit = localStorage.getItem("visitedToday");
+            const today = new Date().toDateString();
+
+            if (lastVisit !== today) {
+                setTimeout(() => {
+                    document.getElementById("visitPopup").classList.add("active");
+                }, 600); // muncul setelah 0.6 detik biar smooth
+            }
+        });
+    </script>
+
 </body>
 
 </html>

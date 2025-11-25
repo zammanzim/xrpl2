@@ -1215,7 +1215,13 @@
 <body>
     <header>
         <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
-        <h3>X - RPL 2</h3>
+        <h3 style="display:flex; align-items:center; gap:12px;">
+            <span id="visitorCounter" style="font-size:15px; opacity:0.9;">
+                <i class="fa-solid fa-eye"></i> ...
+            </span>
+            X - RPL 2
+        </h3>
+
     </header>
 
     <div class="menu-popup-overlay" id="menuOverlay">
@@ -1763,9 +1769,9 @@
                         <h5>Belum lengkap (lagu)</h5>
                     </div>
 
-                    <div class="student-card" data-name="Sandra Puspita" data-role="Absen 29" data-img="students/sandra.jpg"
-                        data-wa="6283131066371" data-ig="" data-quote="" data-desc="" data-color="#BFDBFE" data-music=""
-                        data-title="" data-artist="" data-cover="">
+                    <div class="student-card" data-name="Sandra Puspita" data-role="Absen 29"
+                        data-img="students/sandra.jpg" data-wa="6283131066371" data-ig="" data-quote="" data-desc=""
+                        data-color="#BFDBFE" data-music="" data-title="" data-artist="" data-cover="">
                         <img src="students/sandra.jpg">
                         <p>Sandra Pulang Pergi</p>
                         <span>Absen 29 uncompleted</span>
@@ -1782,9 +1788,10 @@
                         <h5>Belum lengkap (lagu)</h5>
                     </div>
 
-                    <div class="student-card" data-name="Silva Rahmawati" data-role="Absen 31" data-img="students/silva.jpg"
-                        data-wa="628886055988" data-ig="sssi_lvaaa" data-quote="dukaa gatauu" data-desc="🤷🏻‍♀️" data-color="#A7F3D0" data-music=""
-                        data-title="" data-artist="" data-cover="">
+                    <div class="student-card" data-name="Silva Rahmawati" data-role="Absen 31"
+                        data-img="students/silva.jpg" data-wa="628886055988" data-ig="sssi_lvaaa"
+                        data-quote="dukaa gatauu" data-desc="🤷🏻‍♀️" data-color="#A7F3D0" data-music="" data-title=""
+                        data-artist="" data-cover="">
                         <img src="students/silva.jpg">
                         <p>Sivla</p>
                         <span>Absen 31</span>
@@ -1855,6 +1862,61 @@
 
         <audio id="mpAudio" preload="metadata"></audio>
     </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+                authDomain: "xrpl2web.firebaseapp.com",
+                databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "xrpl2web",
+                storageBucket: "xrpl2web.appspot.com",
+                messagingSenderId: "410193641417",
+                appId: "1:410193641417:web:a7da663d744703e4883218"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
+            const DB_NAME = "vstannouncement";
+
+            const storageKey = "visitorID_" + DB_NAME;
+            let visitorID = localStorage.getItem(storageKey);
+
+            if (!visitorID) {
+                visitorID = "vst_" + Math.random().toString(36).substring(2, 12);
+                localStorage.setItem(storageKey, visitorID);
+
+                const now = new Date();
+                const formatted = now.toLocaleString("id-ID", {
+                    weekday: "short",
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                });
+
+                set(ref(db, "vst/" + DB_NAME + "/" + visitorID), {
+                    page: location.pathname,
+                    time: formatted,
+                    useragent: navigator.userAgent
+                });
+            }
+
+            const counter = document.getElementById("visitorCounter");
+
+            onValue(ref(db, "vst/" + DB_NAME), (snap) => {
+                const data = snap.val();
+                const total = data ? Object.keys(data).length : 0;
+                counter.innerHTML = `<i class="fa-solid fa-eye"></i> ${total} visitors`;
+            });
+
+        });
+    </script>
 
     <script type="module" defer>
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";

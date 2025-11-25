@@ -43,7 +43,9 @@ function searchPage() {
                 { keyword: "34", url: "bahasaindonesia.html#34"},
                 { keyword: "35", url: "bahasaindonesia.html#35"},
                 { keyword: "36", url: "matematika.html#36"},
-                { keyword: "37", url: "dpr1.html#37"}
+                { keyword: "37", url: "dpr1.html#37"},
+                { keyword: "38", url: "bahasajepang.html#38"},
+                { keyword: "39", url: "matematika.html#39"},
             ];
 
             //{ keyword: "", url: ""},

@@ -227,6 +227,25 @@
             }
         }
 
+        .course-card a {
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            padding: 5px 8px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #c300ff, #ff00ea);
+            box-shadow:
+                0 3px 6px rgba(0, 100, 255, 0.3),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .course-card a:hover {
+            background: linear-gradient(135deg, #00aaff, #66d9ff);
+            box-shadow:
+                0 4px 10px rgba(0, 140, 255, 0.4),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.4);
+        }
+
         .course-cardpp {
             background: rgb(255, 255, 255, 0.2);
             border-radius: 8px;

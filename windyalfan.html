@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .sec1 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            background-image: url("windyalfan2.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+
+
+        .sec1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to top,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(217, 201, 180, 0.25) 50%,
+                    #d9c9b4 100%);
+            pointer-events: none;
+        }
+
+        .hero-box {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 650px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 22px 24px;
+            font-family: "Georgia", serif;
+            color: #470101;
+        }
+
+        /* Nama tamu */
+        .hero-dear {
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        /* Container countdown */
+        .count-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+            padding: 18px 0;
+            margin-bottom: 18px;
+        }
+
+        /* Garis pembatas tengah */
+        .right-box {
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            padding-left: 20px;
+        }
+
+        /* Kiri */
+        .hero-label {
+            font-size: 18px;
+            opacity: .95;
+            margin: 0;
+        }
+
+        .hero-date {
+            margin-top: 6px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Kanan */
+        .count-item {
+            display: flex;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .count-item small {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: .9;
+        }
+
+        /* Tombol */
+        .hero-btn {
+            display: block;
+            width: 100%;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, .8);
+            color: #4b3a28;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: .25s ease;
+        }
+
+        .hero-btn:hover {
+            background: #fff;
+        }
+
+        .hero-title {
+            position: absolute;
+            top: 20px;
+            font-size: 50px;
+            font-family: "Georgia", serif;
+            color: #000000;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec1">
+        <p class="hero-title">Windy & Alfan</p>
+        <div class="hero-box">
+            <p class="hero-dear">Dear, <span id="guestName">Teman</span></p>
+
+            <div class="count-container">
+                <div class="left-box">
+                    <p class="hero-label">Menuju Acara</p>
+                    <p class="hero-date">Sunday, 07 December 2025</p>
+                </div>
+
+                <div class="right-box">
+                    <div class="count-item">
+                        <span id="d">00</span> <small>Hari</small>
+                        <span id="h">00</span> <small>Jam</small>
+                    </div>
+                    <div class="count-item">
+                        <span id="m">00</span> <small>Menit</small>
+                        <span id="s">00</span> <small>Detik</small>
+                    </div>
+                </div>
+            </div>
+
+            <button class="hero-btn" id="openInviteBtn">Buka Undangan</button>
+        </div>
+
+
+
+    </section>
+    <section></section>
+
+    <script>
+        // === Get Query Name ===
+        const urlParams = new URLSearchParams(window.location.search);
+        const guest = urlParams.get("to");
+        if (guest) {
+            document.getElementById("guestName").textContent = guest;
+        }
+
+        // === Countdown ===
+        const targetDate = new Date("Dec 07, 2025 00:00:00").getTime();
+
+        function updateCountdown() {
+            let now = new Date().getTime();
+            let diff = targetDate - now;
+
+            if (diff <= 0) diff = 0;
+
+            document.getElementById("d").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("h").textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("m").textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("s").textContent = Math.floor((diff % (1000 * 60)) / 1000);
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // === Scroll to Next Section ===
+        const nextSection = document.querySelector("section:nth-of-type(2)");
+        document.getElementById("openInviteBtn").addEventListener("click", () => {
+            nextSection.scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+
+</body>
+
+</html>

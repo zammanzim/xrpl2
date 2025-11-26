@@ -78,12 +78,13 @@
             background-image: url("windyaffan/1.jpg");
         }
 
-        .bg2 {
-            background-image: url("windyaffan/2.jpg");
-        }
-
         .bg3 {
-            background-image: url("windyaffan/3.jpg");
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            background-image: url(".jpg");
+            
         }
 
         .bg4 {
@@ -352,68 +353,163 @@
             opacity: 0.75;
         }
 
-        .hero-box {
-            width: 85%;
-            max-width: 420px;
-            margin: 25px auto 0 auto;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .hero-dear {
-            font-family: "Georgia", serif;
-            font-size: 24px;
-            font-weight: 600;
-            color: #4b3a28;
-            margin-bottom: 18px;
-        }
-
-        .hero-btn {
-            padding: 12px 28px;
-            background: #4b3a28;
+        .hero-card {
+            width: 90%;
+            max-width: 720px;
+            height: 100px;
+            padding: 0 32px 70px;
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 120px 120px 0 0;
             color: white;
-            border: none;
-            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.35);
+            position: relative;
+            z-index: 9999;
+        }
+
+
+        .hero-subtitle {
             font-family: "Georgia", serif;
             font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s ease;
+            letter-spacing: 2px;
+            opacity: 0.9;
         }
 
-        .hero-btn:hover {
-            background: #6a543a;
+        .hero-title {
+            font-family: "Georgia", serif;
+            font-size: 46px;
+            margin: 0 0 18px 0;
+            font-weight: bold;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.4);
+            margin: 20px 0;
+        }
+
+        .count-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .count-text {
+            font-size: 18px;
+            font-family: "Georgia", serif;
+            font-weight: 500;
+        }
+
+        .count-text span {
+            font-style: italic;
+            font-size: 22px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            gap: 10px 30px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .countdown span {
+            font-size: 26px;
+            font-weight: 700;
+            display: inline-block;
+            min-width: 30px;
+        }
+
+
+        .bg0 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            background-image: url("gallerybuang/home5.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+
+
+        .bg0::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to top,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(217, 201, 180, 0.25) 50%,
+                    #d9c9b4 100%);
+            pointer-events: none;
+        }
+
+        .hero-open-btn {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.75);
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-family: "Georgia", serif;
+            color: #4b3a28;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: 0.25s ease;
+        }
+
+        .hero-open-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
         }
     </style>
 </head>
 
 <body>
-    <div id="preloader">
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
-        <p class="loader-percent">0%</p>
-        <p class="loader-text">Loading...</p>
-    </div>
 
+
+    <section class="bg bg0">
+        <div class="hero-card">
+            <p class="hero-subtitle">THE WEDDING OF</p>
+            <h1 class="hero-title">Rizky & Fachri</h1>
+
+            <div class="divider"></div>
+
+            <div class="count-container">
+                <div class="count-text">
+                    Menuju Acara <br> <span>28 . 12 . 2025</span>
+                </div>
+
+                <div class="countdown">
+                    <div><span id="day">00</span> Hari</div>
+                    <div><span id="hour">00</span> Jam</div>
+                    <div><span id="minute">00</span> Menit</div>
+                    <div><span id="second">00</span> Detik</div>
+                </div>
+            </div>
+            <button class="hero-open-btn" id="open-invite-btn">Buka Undangan</button>
+
+            <div class="divider"></div>
+            F
+        </div>
+
+    </section>
 
 
 
     <section class="bg bg1" id="s1">
         <div style="text-align: center;">
             <img src="windyaffan/book.png" style="width: 80%;">
-            <div class="hero-box">
-                <p id="guest-name" class="hero-dear">Dear Guest</p>
-
-                <button id="open-invite" class="hero-btn">
-                    Buka Undangan
-                </button>
-            </div>
-
         </div>
     </section>
 
@@ -530,78 +626,6 @@
         });
     </script>
 
-
-
-
-    <script>
-        let autoScrollActive = false;
-        let autoScrollInterval = null;
-
-        // daftar section auto scroll
-        const sections = ["s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"];
-        let currentIndex = 0;
-
-        // MULAI auto scroll
-        function startAutoScroll() {
-            autoScrollActive = true;
-
-            autoScrollInterval = setInterval(() => {
-                if (!autoScrollActive) return;
-
-                currentIndex++;
-                if (currentIndex >= sections.length) {
-                    clearInterval(autoScrollInterval);
-                    return;
-                }
-
-                document.getElementById(sections[currentIndex])
-                    .scrollIntoView({ behavior: "smooth" });
-
-            }, 5000);
-        }
-
-        // STOP auto scroll
-        function stopAutoScroll() {
-            autoScrollActive = false;
-            clearInterval(autoScrollInterval);
-        }
-
-        // ---- MATIKAN AUTO SCROLL SAAT USER SCROLL MANUAL ----
-        let scrollTimeout;
-        window.addEventListener("scroll", () => {
-            stopAutoScroll();
-
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                autoScrollActive = false;
-            }, 200); // user berhenti scroll → auto scroll tetap mati
-        });
-
-        // ---- UPDATE INDEX ADAPTIVE (di section mana user berada) ----
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    const i = sections.indexOf(id);
-                    if (i !== -1) currentIndex = i;
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // observe semua section
-        sections.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) observer.observe(el);
-        });
-
-        // ---- klik buka undangan → scroll ke s3 + mulai auto scroll ----
-        document.getElementById("open-invite").addEventListener("click", () => {
-            document.getElementById("s3").scrollIntoView({ behavior: "smooth" });
-            currentIndex = 0;
-            startAutoScroll();
-        });
-    </script>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
@@ -703,6 +727,24 @@
             });
 
         });
+
+        const eventDate = new Date("2025-12-07T00:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("day").textContent = d;
+            document.getElementById("hour").textContent = h;
+            document.getElementById("minute").textContent = m;
+            document.getElementById("second").textContent = s;
+        }, 1000);
+
     </script>
 
     <script>
@@ -714,6 +756,13 @@
         } else {
             document.getElementById("guest-name").textContent = "Dear Guest";
         }
+
+        document.getElementById("open-invite-btn").addEventListener("click", () => {
+            document.getElementById("s3").scrollIntoView({ behavior: "smooth" });
+            currentIndex = 0;
+            startAutoScroll();
+        });
+
     </script>
 
 

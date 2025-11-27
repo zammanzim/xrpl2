@@ -1096,7 +1096,7 @@
                 <small class="error" id="nameError"></small>
 
                 <label class="right">Apakah kamu akan datang?</label>
-                <div class="option left" onclick="selectOption(this)" data-value="Hadir" >
+                <div class="option left" onclick="selectOption(this)" data-value="Hadir">
                     Insya Allah, Hadirr!
                 </div>
 
@@ -1418,57 +1418,35 @@
             isPlaying = !isPlaying;
         });
 
-        // ===== SMART AUTO SCROLL =====
+        // ===== FIXED SMART AUTO SCROLL =====
         let autoScrollEnabled = false;
         let currentIndex = 0;
-        let autoScrollTimer;
-        let resumeTimer;
-
+        let scrollTimeout = null;
         const sections = document.querySelectorAll("section");
         const autoIndicator = document.getElementById("autoscroll-indicator");
+        const rsvpIndex = 10; // Batas berhenti otomatis
 
-        // Scroll otomatis
-        function startScroll() {
+        function scrollToNext() {
             if (!autoScrollEnabled) return;
 
             currentIndex++;
-            if (currentIndex >= sections.length) {
+            if (currentIndex >= sections.length || currentIndex >= rsvpIndex) {
                 stopAutoScroll(true);
                 return;
             }
 
             sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+            scheduleNextScroll();
         }
 
-        // Mulai auto scroll
-        function startAutoScroll() {
-            autoScrollEnabled = true;
-            showAutoIndicator();
-            autoScrollTimer = setInterval(smartScroll, 10000);
+        function scheduleNextScroll() {
+            clearTimeout(scrollTimeout);
+
+            scrollTimeout = setTimeout(() => {
+                scrollToNext();
+            }, 6000); // fleksibel & ga terlalu lama
         }
 
-        // Pause auto scroll 3 detik lalu lanjut
-        function pauseAutoScroll() {
-            autoScrollEnabled = false;
-            hideAutoIndicator();
-            clearInterval(autoScrollTimer);
-
-            clearTimeout(resumeTimer);
-            resumeTimer = setTimeout(() => {
-                updateCurrentIndex();
-                startAutoScroll();
-            }, 10000);
-        }
-
-        // Stop total (tidak lanjut lagi)
-        function stopAutoScroll(permanent = false) {
-            autoScrollEnabled = false;
-            clearInterval(autoScrollTimer);
-            hideAutoIndicator();
-            if (!permanent) pauseAutoScroll();
-        }
-
-        // Cek section terdekat
         function updateCurrentIndex() {
             let minDist = Infinity;
             sections.forEach((sec, i) => {
@@ -1480,7 +1458,26 @@
             });
         }
 
-        // Indicator
+        function startAutoScroll() {
+            autoScrollEnabled = true;
+            showAutoIndicator();
+            updateCurrentIndex();
+            scheduleNextScroll();
+        }
+
+        function pauseAutoScroll() {
+            autoScrollEnabled = false;
+            hideAutoIndicator();
+            clearTimeout(scrollTimeout);
+        }
+
+        function stopAutoScroll(permanent = false) {
+            autoScrollEnabled = false;
+            hideAutoIndicator();
+            clearTimeout(scrollTimeout);
+            if (!permanent) startAutoScroll();
+        }
+
         function showAutoIndicator() {
             autoIndicator.classList.add("show");
         }
@@ -1489,43 +1486,42 @@
             autoIndicator.classList.remove("show");
         }
 
-        // ===== TRIGGER: user klik "Buka Undangan" =====
-        openBtn.addEventListener("click", () => {
-            updateCurrentIndex();
+        // USER manual interaction
+        let manual = false;
+        function userScrollDetected() {
+            if (manual) return;
+            manual = true;
+            pauseAutoScroll();
+            setTimeout(() => (manual = false), 500);
+        }
+        window.addEventListener("wheel", userScrollDetected, { passive: true });
+        window.addEventListener("touchmove", userScrollDetected, { passive: true });
+
+        // Trigger auto scroll saat buka undangan
+        openInviteBtn.addEventListener("click", () => {
             startAutoScroll();
         });
 
-        // ===== USER MANUAL ACTION LISTENERS =====
         let manualScrolling = false;
+        let resumeTimer = null;
 
         function userScrollDetected() {
-            if (manualScrolling) return;
+            if (!autoScrollEnabled) return;
+
             manualScrolling = true;
             pauseAutoScroll();
 
-            setTimeout(() => { manualScrolling = false; }, 200);
+            clearTimeout(resumeTimer);
+
+            resumeTimer = setTimeout(() => {
+                manualScrolling = false;
+                updateCurrentIndex();
+                startAutoScroll();
+            }, 6000); // jeda 6 detik sebelum lanjut auto scroll
         }
 
-        window.addEventListener("wheel", userScrollDetected);
-        window.addEventListener("touchstart", userScrollDetected);
-
-        // INDEX SECTION RSVP MU DISINI
-        const rsvpIndex = 10;
-
-        function smartScroll() {
-            if (!autoScrollEnabled) return;
-
-            currentIndex++;
-
-            // Jika sudah masuk area RSVP
-            if (currentIndex >= rsvpIndex) {
-                stopAutoScroll(true); // matikan permanen
-                return;
-            }
-
-            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
-        }
-
+        window.addEventListener("wheel", userScrollDetected, { passive: true });
+        window.addEventListener("touchmove", userScrollDetected, { passive: true });
 
     </script>
 

@@ -20,7 +20,6 @@
 
         section {
             width: 100%;
-            max-width: 411px;
             height: 100vh;
         }
 
@@ -51,9 +50,7 @@
 
         .sec1 img {
             position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 30%;
             width: 85%;
             z-index: 5;
             pointer-events: none;
@@ -63,8 +60,6 @@
         .hero-box {
             position: absolute;
             bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
             width: 80%;
             max-width: 650px;
             background: rgba(255, 255, 255, 0.12);
@@ -155,27 +150,6 @@
             letter-spacing: 2px;
         }
 
-        .sec2 {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            background-image: url("windyaffan/2.jpg");
-            background-position: center;
-            background-size: cover;
-            overflow: hidden;
-        }
-
-        .sec2 img {
-            position: absolute;
-            top: 50%;
-            left: 20%;
-            width: 150%;
-            transform: translate(-50%, -50%);
-            z-index: 5;
-            pointer-events: none;
-        }
-
         .sec3 {
             position: relative;
             display: flex;
@@ -217,10 +191,8 @@
 
         .sec5 img {
             position: absolute;
-            top: 55%;
-            left: 50%;
+            top: 45%;
             width: 100%;
-            transform: translate(-50%, -50%);
             z-index: 5;
             pointer-events: none;
         }
@@ -456,13 +428,517 @@
             position: absolute;
             top: 35%;
         }
+
+        .sec14 {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            background-image: url("windyaffan/14.png");
+            background-size: cover;
+            background-position: center;
+            padding: 40px 0;
+            overflow: visible;
+        }
+
+        .rsvp-container {
+            position: absolute;
+            top: 280px;
+            width: 80%;
+            background: #dfe7da;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: left;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .rsvp-container h2 {
+            font-size: 22px;
+            margin-bottom: 14px;
+            font-family: "Georgia", serif;
+        }
+
+        form label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 12px;
+            display: block;
+            color: #2b2b2b;
+        }
+
+        form input,
+        form textarea {
+            width: 90%;
+            margin-top: 6px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #bbb;
+            background: #fff;
+            font-size: 14px;
+            resize: none;
+        }
+
+        .option {
+            width: 88%;
+            padding: 14px;
+            margin-top: 10px;
+            background: #cfd6d0;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .option.active {
+            border-color: #556b2f;
+            background: #e5ecdf;
+        }
+
+        .submit-btn {
+            width: 98%;
+            padding: 14px;
+            margin-top: 18px;
+            background: #434a3e;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .25s ease;
+            font-weight: 600;
+        }
+
+        .note {
+            font-size: 10px;
+            color: #444;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        .error {
+            font-size: 11px;
+            color: red;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .rsvp-list {
+            width: 90%;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .rsvp-list h4 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            color: #2b2a2a;
+            font-family: "Georgia", serif;
+        }
+
+        .rsvp-item {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 2px dashed #ddd;
+            font-family: "Georgia", serif;
+        }
+
+        .rsvp-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .user-icon {
+            font-size: 16px;
+        }
+
+        .attend-badge {
+            background: #eef2ec;
+            padding: 4px 10px;
+            border-radius: 10px;
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .time-text {
+            font-size: 11px;
+            color: #777;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .msg-text {
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.45;
+            color: #333;
+        }
+
+        .attendance-summary {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-family: "Georgia", serif;
+        }
+
+        .attendance-summary h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #d0d0d0;
+            display: inline-block;
+            padding: 0 8px;
+        }
+
+        .attend-count {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-top: 12px;
+        }
+
+        .attend-badge {
+            display: inline-block;
+            background: #e8ebe4;
+            border-radius: 12px;
+            padding: 3px 12px;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-bottom: 6px;
+        }
+
+        #rsvpData {
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 6px;
+            scroll-behavior: smooth;
+        }
+
+
+        .sec15 {
+            background-image: url(windyaffan/14.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .sec16 {
+            position: relative;
+            height: 100vh;
+            background-image: url("windyaffan/16.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .closing-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #countdown {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .cd-item {
+            width: 100px;
+            height: 100px;
+            background: #f3efe4;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: #2e3437;
+        }
+
+        .cd-num {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2b2f30;
+            display: inline-block;
+            width: 32px;
+            text-align: center;
+        }
+
+        .cd-label {
+            font-size: 10px;
+            font-weight: 600;
+            margin-top: 3px;
+            color: #3b4245;
+            text-transform: uppercase;
+        }
+
+        #countdown,
+        .cd-item,
+        .cd-num,
+        .cd-label {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .closing-text {
+            position: absolute;
+            top: 48%;
+            display: block;
+            width: 100%;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .withlove,
+        .couple-name,
+        .wedding-date {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+        }
+
+        .withlove {
+            bottom: 24%;
+            font-size: 13px;
+        }
+
+        .couple-name {
+            bottom: 19%;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .wedding-date {
+            bottom: 16%;
+            font-size: 14px;
+        }
+
+        .count-title {
+            position: absolute;
+            top: 8%;
+            font-size: 30px;
+            font-weight: 700;
+            color: #1e2630;
+            text-align: center;
+            z-index: 20;
+            width: 100%;
+        }
+
+        .count-date {
+            position: absolute;
+            top: 14%;
+            font-size: 13px;
+            font-weight: 600;
+            color: #36404a;
+            text-align: center;
+            z-index: 20;
+            width: 100%;
+        }
+
+        .up,
+        .down,
+        .left,
+        .right {
+            opacity: 0;
+        }
+
+        .up.show {
+            animation: upAnim 0.8s ease-out forwards;
+            transform: translateY(25px);
+        }
+
+        .down.show {
+            animation: downAnim 0.8s ease-out forwards;
+            transform: translateY(-25px);
+        }
+
+        .left.show {
+            animation: leftAnim 0.8s ease-out forwards;
+            transform: translateX(-25px);
+        }
+
+        .right.show {
+            animation: rightAnim 0.8s ease-out forwards;
+            transform: translateX(25px);
+        }
+
+        @keyframes upAnim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes downAnim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes leftAnim {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rightAnim {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #f3efe4;
+            /* kertas vintage */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            z-index: 9999;
+            transition: opacity .5s ease-out;
+        }
+
+        #load-percent {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #2d3134;
+        }
+
+        .load-bar {
+            width: 200px;
+            height: 6px;
+            background: #d9cfbd;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .load-progress {
+            height: 100%;
+            width: 0%;
+            background: #9b8e74;
+            transition: width .1s linear;
+        }
+
+        .load-text {
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        #cassette {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 55px;
+            height: 55px;
+            cursor: pointer;
+            z-index: 99999;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: showCassette .8s ease-out forwards;
+            animation-delay: 1.2s;
+            overflow: hidden;
+            /* muncul setelah buka undangan */
+        }
+
+        #cassette-img {
+            width: 100%;
+            height: auto;
+            transition: transform .3s ease;
+        }
+
+        /* Animasi kaset muter */
+        .spin {
+            animation: spinCassette 2s linear infinite;
+        }
+
+        @keyframes spinCassette {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Slide in effect */
+        @keyframes showCassette {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #autoscroll-indicator {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #f3efe4;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #3c3c3c;
+            border: 1px solid #c9bda8;
+            z-index: 99999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+            /* biar ga ganggu klik */
+        }
+
+        /* ketika indikator aktif */
+        #autoscroll-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
 <body>
+
+    <audio id="backsound" autoplay loop muted>
+        <source src="windyaffan/kauditakdirkanuntukku.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="cassette">
+        <img src="windyaffan/kasetasli.png" alt="Music" id="cassette-img">
+    </div>
+
+    <div id="autoscroll-indicator">
+        auto scroll is on
+    </div>
+
+
     <section class="sec1">
-        <img src="windyaffan/book.png">
-        <div class="hero-box">
+        <img src="windyaffan/book.png" class="down">
+        <div class="hero-box up">
             <p class="hero-dear">Dear, <span id="guestName">Teman</span></p>
 
             <div class="count-container">
@@ -490,61 +966,63 @@
 
     </section>
 
-    <section class="sec2">
-        <img src="windyaffan/book.png" alt="">
-    </section>
-
     <section class="sec3">
-        <p>“Dengan hati yang penuh syukur, kami <br> mengundang anda untuk hadir di hari ketika dua <br> langkah menjadi
+        <p class="left">“Dengan hati yang penuh syukur, kami <br> mengundang anda untuk hadir di hari ketika dua <br>
+            langkah
+            menjadi
             satu perjalanan. Datanglah, <br> berbagi senyum dan kebahagiaan <br> di perayaan cinta kami.”</p>
     </section>
 
     <section class="sec4">
-        <p>Cinta datang membawa tanggung jawab, <br> namun juga menghadirkan kekuatan yang <br> tak tertandingi.
-            Bersama, kami belajar bahwa <br> cinta adalah kekuatan terbesar yang menyatukan <br> hati dan langkah. Kini,
-            saat kami bersiap menapaki petualangan baru dalam pernikahan, kami ingin membaginya denganmu—dengan senyum,
-            doa, dan kebahagiaan.
+        <p class="right">Cinta datang membawa tanggung jawab, <br> namun juga menghadirkan kekuatan yang <br> tak
+            tertandingi.
+            Bersama, kami belajar bahwa <br> cinta adalah kekuatan terbesar yang menyatukan <br> hati dan langkah.
+            Kini,
+            saat kami bersiap menapaki <br> petualangan baru dalam pernikahan, kami ingin <br> membaginya
+            denganmu—dengan
+            senyum,
+            <br> doa, dan kebahagiaan.
     </section>
 
     <section class="sec5">
-        <img src="windyaffan/book3fix.png">
+        <img src="windyaffan/book3fix.png" class="down">
     </section>
 
     <section class="sec6">
-        <img src="windyaffan/text1fix.png" class="text-title">
+        <img src="windyaffan/text1fix.png" class="text-title up">
 
         <div class="Ucup">
-            <img src="windyaffan/affan.png">
-            <img src="windyaffan/windy.png">
+            <img src="windyaffan/affan.png" class="left">
+            <img src="windyaffan/windy.png" class="right">
         </div>
     </section>
 
     <section class="sec7">
-        <p>Putri Pertama dari <br>
+        <p class="right">Putri Pertama dari <br>
             Bapak Wawan Suryana <br>
             dan Ibu Ida Rosida</p>
     </section>
 
     <section class="sec8">
-        <p>Putra Pertama dari <br>
+        <p class="left">Putra Pertama dari <br>
             Bapak Johnny Taufik (alm.) <br>
             dan Ibu Lina Herlina</p>
     </section>
 
     <section class="sec9">
-        <p>Akad <br>
+        <p class="down">Akad <br>
             Ahad, 07 Desember 2025 <br>
             08.00 WIB</p>
     </section>
 
     <section class="sec10">
-        <p>Resepsi <br>
+        <p class="up">Resepsi <br>
             Ahad, 07 Desember 2025 <br>
             11.00 - 16.00</p>
     </section>
 
     <section class="sec11">
-        <p>Kp. Cisaladah RT 01/RW 10, <br>
+        <p class="up">Kp. Cisaladah RT 01/RW 10, <br>
             Ds. Gunungmasigit, <br>
             Kec. Cipatat, Bandung Barat</p>
 
@@ -554,7 +1032,7 @@
             </iframe>
         </div>
 
-        <a class="maps-btn"
+        <a class="maps-btn down"
             href="https://www.google.com/maps/place/Jl.+Kp.+Cisaladah,+Gunungmasigit,+Kec.+Cipatat,+Kabupaten+Bandung+Barat,+Jawa+Barat+40554/"
             target="_blank">
             Buka di Google Maps
@@ -564,21 +1042,21 @@
 
     <section class="sec12">
 
-            <div class="bank-card">
-                <h3>BSI</h3>
-                <p><b>7271745488</b></p>
-                <p>A.N : <b>Muhammad Alfan</b></p>
-                <button class="copy-btn" onclick="copyText('7271745488')">Copy</button>
-            </div>
+        <div class="bank-card left">
+            <h3>BSI</h3>
+            <p><b>7271745488</b></p>
+            <p>A.N : <b>Muhammad Alfan</b></p>
+            <button class="copy-btn" onclick="copyText('7271745488', this)">Copy BSI</button>
+        </div>
 
-            <div class="bank-card">
-                <h3>BCA</h3>
-                <p><b>2780936374</b></p>
-                <p>A.N : <b>Windy Puteri Utami</b></p>
-                <button class="copy-btn" onclick="copyText('2780936374')">Copy</button>
-            </div>
+        <div class="bank-card right">
+            <h3>BCA</h3>
+            <p><b>2780936374</b></p>
+            <p>A.N : <b>Windy Puteri Utami</b></p>
+            <button class="copy-btn" onclick="copyText('2780936374', this)">Copy BCA</button>
+        </div>
 
-            <div class="bank-card">
+        <div class="bank-card down">
             <p>
                 Nama Penerima: Windy Puteri Utami<br>
                 (+6287821000692)<br>
@@ -591,9 +1069,227 @@
     </section>
 
     <section class="sec13">
-        <p>Dan segala sesuatu Kami ciptakan <br>
-             berpasang-pasangan supaya kamu <br> mengingat kebesaran Allah. <br> <br>Q.S Adz Dzāriyāt: 49</p>
+        <p class="right">Dan segala sesuatu Kami ciptakan <br>
+            berpasang-pasangan supaya kamu <br> mengingat kebesaran Allah. <br> <br>Q.S Adz Dzāriyāt: 49</p>
     </section>
+
+    <section class="sec14">
+        <div class="rsvp-container down">
+            <h2>RSVP</h2>
+
+            <form id="rsvpForm">
+
+                <label>Nama</label>
+                <input type="text" id="nameInput">
+                <small class="error" id="nameError"></small>
+
+                <label>Apakah kamu akan datang?</label>
+                <div class="option" onclick="selectOption(this)" data-value="Hadir">
+                    I’m planning to attend
+                </div>
+
+                <div class="option" onclick="selectOption(this)" data-value="Tidak yakin">
+                    Not sure yet
+                </div>
+
+                <div class="option" onclick="selectOption(this)" data-value="Tidak Hadir">
+
+                    Can’t attend
+                </div>
+                <input type="hidden" id="attendanceInput">
+                <small class="error" id="attendanceError"></small>
+
+                <label>Message</label>
+                <textarea id="messageInput" rows="3"></textarea>
+                <small class="error" id="messageError"></small>
+
+                <button type="submit" class="submit-btn">RSVP now</button>
+
+            </form>
+
+            <div class="attendance-summary">
+                <h4>Attendance</h4>
+                <div class="attend-count" id="countAttend">0</div>
+                <p>Hadir</p>
+
+                <div class="attend-count" id="countUnsure">0</div>
+                <p>Tidak yakin</p>
+
+                <div class="attend-count" id="countCant">0</div>
+                <p>Tidak bisa hadir</p>
+            </div>
+
+
+            <div class="rsvp-list">
+                <h4>RSVP Terkirim :</h4>
+                <div id="rsvpData"></div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="sec15">
+    </section>
+
+    <section class="sec16">
+
+        <div class="closing-container">
+            <p class="count-title down">Menuju Acara</p>
+            <p class="count-date up">Ahad, 7 Desember 2025</p>
+
+            <div id="countdown">
+                <div class="cd-item left">
+                    <div class="cd-num" id="days">00</div>
+                    <div class="cd-label">DAYS</div>
+                </div>
+                <div class="cd-item down">
+                    <div class="cd-num" id="hours">00</div>
+                    <div class="cd-label">HOURS</div>
+                </div>
+                <div class="cd-item up">
+                    <div class="cd-num" id="minutes">00</div>
+                    <div class="cd-label">MINUTES</div>
+                </div>
+                <div class="cd-item right">
+                    <div class="cd-num" id="seconds">00</div>
+                    <div class="cd-label">SECONDS</div>
+                </div>
+            </div>
+
+            <p class="closing-text up">
+                Merupakan suatu kebahagiaan dan kehormatan <br> bagi kami, apabila Bapak/Ibu/Saudara/i. <br>
+                berkenan hadir dan memberikan <br>
+                do’a restu kepada kami.<br>
+                We will see you at our wedding!
+            </p>
+
+            <p class="withlove down">with love.</p>
+            <p class="couple-name right">Windy & Alfan</p>
+            <p class="wedding-date up">07.12.25</p>
+        </div>
+    </section>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAI4c2PwPXOOc90e6Rris7qbAwKojnB5Qc",
+            authDomain: "xrpl2web.firebaseapp.com",
+            databaseURL: "https://xrpl2web-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "xrpl2web",
+            storageBucket: "xrpl2web.appspot.com",
+            messagingSenderId: "410193641417",
+            appId: "1:410193641417:web:a7da663d744703e4883218",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        function selectOption(el) {
+            document.querySelectorAll(".option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            document.getElementById("attendanceInput").value = el.dataset.value;
+        }
+        window.selectOption = selectOption;
+
+        const rsvpForm = document.getElementById("rsvpForm");
+        const submitBtn = document.querySelector(".submit-btn");
+
+        rsvpForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let name = document.getElementById("nameInput").value.trim();
+            let attendance = document.getElementById("attendanceInput").value.trim();
+            let message = document.getElementById("messageInput").value.trim();
+
+            let isValid = true;
+
+            document.querySelectorAll(".error").forEach(el => el.style.display = "none");
+
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Harap isi!";
+                document.getElementById("nameError").style.display = "block";
+                isValid = false;
+            }
+            if (attendance === "") {
+                document.getElementById("attendanceError").textContent = "Harap isi!";
+                document.getElementById("attendanceError").style.display = "block";
+                isValid = false;
+            }
+            if (message === "") {
+                document.getElementById("messageError").textContent = "Harap isi!";
+                document.getElementById("messageError").style.display = "block";
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const rsvpRef = ref(db, "rsvp");
+            push(rsvpRef, {
+                name: name,
+                attendance: attendance,
+                message: message,
+                timestamp: new Date().toISOString()
+            }).then(() => {
+                submitBtn.style.background = "#3fa156";
+                submitBtn.textContent = "Terkirim";
+                submitBtn.disabled = true;
+            });
+        });
+
+        import { onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+        const displayRef = ref(db, "rsvp");
+
+        onValue(displayRef, snapshot => {
+            const dataArea = document.getElementById("rsvpData");
+            dataArea.innerHTML = "";
+
+            let countAttend = 0;
+            let countUnsure = 0;
+            let countCant = 0;
+
+            if (!snapshot.exists()) {
+                dataArea.innerHTML = "<p>Belum ada RSVP.</p>";
+            } else {
+                snapshot.forEach(child => {
+                    const data = child.val();
+
+                    if (data.attendance === "Hadir") countAttend++;
+                    if (data.attendance === "Tidak yakin") countUnsure++;
+                    if (data.attendance === "Tidak Hadir") countCant++;
+
+                    const div = document.createElement("div");
+                    div.classList.add("rsvp-item");
+                    div.innerHTML = `
+                <div class="rsvp-header">
+                    <span class="user-icon">👤</span>
+                    <b>${data.name}</b>
+                </div>
+
+                <div class="attend-badge">${data.attendance}</div>
+
+                <small class="time-text">
+                    ${new Date(data.timestamp).toLocaleString("id-ID", {
+                        timeZone: "Asia/Jakarta"
+                    })}
+                </small>
+
+                <p class="msg-text">${data.message}</p>
+            `;
+                    dataArea.appendChild(div);
+                });
+            }
+
+            // Update attendance summary
+            document.getElementById("countAttend").textContent = countAttend;
+            document.getElementById("countUnsure").textContent = countUnsure;
+            document.getElementById("countCant").textContent = countCant;
+        });
+
+    </script>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -602,7 +1298,6 @@
             document.getElementById("guestName").textContent = guest;
         }
 
-        // === Countdown ===
         const targetDate = new Date("Dec 07, 2025 00:00:00").getTime();
 
         function updateCountdown() {
@@ -620,11 +1315,207 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // === Scroll to Next Section ===
         const nextSection = document.querySelector("section:nth-of-type(2)");
         document.getElementById("openInviteBtn").addEventListener("click", () => {
             nextSection.scrollIntoView({ behavior: "smooth" });
         });
+
+        function copyText(text) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            alert("Nomor rekening berhasil disalin!");
+        }
+
+        function copyText(text, btn) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            btn.innerText = "Tersalin";
+            setTimeout(() => btn.innerText = "Copy", 2000);
+        }
+
+        // SET TANGGAL NIKAH
+        const weddingDate = new Date("2025-12-07 08:00:00").getTime();
+
+        setInterval(function () {
+            const now = new Date().getTime();
+            let distance = weddingDate - now;
+
+            document.getElementById("days").textContent = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
+            document.getElementById("hours").textContent = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            document.getElementById("minutes").textContent = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+            document.getElementById("seconds").textContent = pad(Math.floor((distance % (1000 * 60)) / 1000));
+        }, 1000);
+
+        function pad(num) {
+            return num.toString().padStart(2, '0');
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+
+        document.querySelectorAll(".up, .down, .left, .right")
+            .forEach(el => observer.observe(el));
+
+        const audio = document.getElementById("backsound");
+        const openBtn = document.getElementById("openInviteBtn");
+
+        // Jangan play sebelum user klik
+        audio.muted = true;
+        audio.pause();
+
+        // Play setelah user klik + langsung unmute
+        openBtn.addEventListener("click", () => {
+            audio.muted = false;
+            audio.volume = 1.0;
+            audio.play();
+        });
+
+        const cassette = document.getElementById("cassette");
+        const cassetteImg = document.getElementById("cassette-img");
+        let isPlaying = true; // musik awalnya play pas buka undangan
+
+        // Pastikan button muncul setelah buka undangan
+        openBtn.addEventListener("click", () => {
+            cassette.style.display = "block";
+            cassetteImg.classList.add("spin");
+        });
+
+        cassette.addEventListener("click", () => {
+            if (isPlaying) {
+                audio.pause();
+                cassetteImg.classList.remove("spin");
+            } else {
+                audio.play();
+                cassetteImg.classList.add("spin");
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // ===== SMART AUTO SCROLL =====
+        let autoScrollEnabled = false;
+        let currentIndex = 0;
+        let autoScrollTimer;
+        let resumeTimer;
+
+        const sections = document.querySelectorAll("section");
+        const autoIndicator = document.getElementById("autoscroll-indicator");
+
+        // Scroll otomatis
+        function smartScroll() {
+            if (!autoScrollEnabled) return;
+
+            currentIndex++;
+            if (currentIndex >= sections.length) {
+                stopAutoScroll(true);
+                return;
+            }
+
+            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Mulai auto scroll
+        function startAutoScroll() {
+            autoScrollEnabled = true;
+            showAutoIndicator();
+            autoScrollTimer = setInterval(smartScroll, 5000);
+        }
+
+        // Pause auto scroll 3 detik lalu lanjut
+        function pauseAutoScroll() {
+            autoScrollEnabled = false;
+            hideAutoIndicator();
+            clearInterval(autoScrollTimer);
+
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                updateCurrentIndex();
+                startAutoScroll();
+            }, 3000);
+        }
+
+        // Stop total (tidak lanjut lagi)
+        function stopAutoScroll(permanent = false) {
+            autoScrollEnabled = false;
+            clearInterval(autoScrollTimer);
+            hideAutoIndicator();
+            if (!permanent) pauseAutoScroll();
+        }
+
+        // Cek section terdekat
+        function updateCurrentIndex() {
+            let minDist = Infinity;
+            sections.forEach((sec, i) => {
+                const dist = Math.abs(sec.getBoundingClientRect().top);
+                if (dist < minDist) {
+                    minDist = dist;
+                    currentIndex = i;
+                }
+            });
+        }
+
+        // Indicator
+        function showAutoIndicator() {
+            autoIndicator.classList.add("show");
+        }
+
+        function hideAutoIndicator() {
+            autoIndicator.classList.remove("show");
+        }
+
+        // ===== TRIGGER: user klik "Buka Undangan" =====
+        openBtn.addEventListener("click", () => {
+            updateCurrentIndex();
+            startAutoScroll();
+        });
+
+        // ===== USER MANUAL ACTION LISTENERS =====
+        let manualScrolling = false;
+
+        function userScrollDetected() {
+            if (manualScrolling) return;
+            manualScrolling = true;
+            pauseAutoScroll();
+
+            setTimeout(() => { manualScrolling = false; }, 200);
+        }
+
+        window.addEventListener("wheel", userScrollDetected);
+        window.addEventListener("touchstart", userScrollDetected);
+
+        // INDEX SECTION RSVP MU DISINI
+        const rsvpIndex = 13;
+
+        function smartScroll() {
+            if (!autoScrollEnabled) return;
+
+            currentIndex++;
+
+            // Jika sudah masuk area RSVP
+            if (currentIndex >= rsvpIndex) {
+                stopAutoScroll(true); // matikan permanen
+                return;
+            }
+
+            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+        }
+
+
     </script>
 
 </body>

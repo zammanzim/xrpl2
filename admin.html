@@ -10,10 +10,25 @@
 
     <style>
         body {
-            background: #111;
-            color: #fff;
-            padding: 20px;
-            font-family: Arial;
+            color: white;
+            background-color: #101010;
+            background-image:
+                linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.8), transparent 70%);
+            z-index: -2;
         }
 
         input,

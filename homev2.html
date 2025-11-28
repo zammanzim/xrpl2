@@ -217,7 +217,6 @@
             font-size: 3rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            animation: fadeIn 1.5s ease forwards;
             text-shadow:
                 0 0 10px #00bfff,
                 0 0 20px #00bfff,
@@ -227,7 +226,6 @@
         .content p {
             font-size: 1.3rem;
             opacity: 0.9;
-            animation: fadeIn 2.5s ease forwards;
             text-shadow:
                 0 0 10px #00bfff,
                 0 0 20px #00bfff,
@@ -505,19 +503,7 @@
             resize: none;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .structure-section {
+       .structure-section {
             text-align: center;
             margin: 60px auto;
             color: white;
@@ -943,30 +929,6 @@
             background: transparent;
         }
 
-        @keyframes fadeIn1 {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            to {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-        }
-
         .popup-card.fade-out {
             animation: fadeOut 0.3s ease forwards;
         }
@@ -1209,6 +1171,61 @@
                 width: 90%;
             }
         }
+
+        .up,
+        .down,
+        .left,
+        .right {
+            opacity: 0;
+        }
+
+        .up.show {
+            animation: upAnim 1.5s ease-out forwards;
+            transform: translateY(100px);
+        }
+
+        .down.show {
+            animation: downAnim 1.5s ease-out forwards;
+            transform: translateY(-100px);
+        }
+
+        .left.show {
+            animation: leftAnim 1.5s ease-out forwards;
+            transform: translateX(-100px);
+        }
+
+        .right.show {
+            animation: rightAnim 1.5s ease-out forwards;
+            transform: translateX(100px);
+        }
+
+        @keyframes upAnim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes downAnim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes leftAnim {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rightAnim {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
@@ -1238,11 +1255,11 @@
 
     <div class="background"></div>
     <div class="content">
-        <p>Hi Visitor, Welcome To</p>
-        <h1>X - RPL 2</h1>
+        <p class="down">Hi Visitor, Welcome To</p>
+        <h1 class="up">X - RPL 2</h1>
     </div>
 
-    <div class="search-container">
+    <div class="search-container up">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search...">
@@ -1618,8 +1635,11 @@
                     </div>
 
                     <div class="student-card" data-name="Muhammad Gilang" data-role="Absen 15"
-                        data-img="students/gilang.jpg" data-wa="628388256759" data-ig="" data-quote="dia cuman becanda seharusnya aku tertawa bukannya jatuh cinta." data-desc="Gilang mah rajin, sok ngaji, sok membantu orang tua, tidak sombong, ges we lah."
-                        data-color="#22C55E" data-music="music/gilangturip.ogg" data-title="Turip ip ip ip" data-artist="NCS" data-cover="music/gilangturip.png">
+                        data-img="students/gilang.jpg" data-wa="628388256759" data-ig=""
+                        data-quote="dia cuman becanda seharusnya aku tertawa bukannya jatuh cinta."
+                        data-desc="Gilang mah rajin, sok ngaji, sok membantu orang tua, tidak sombong, ges we lah."
+                        data-color="#22C55E" data-music="music/gilangturip.ogg" data-title="Turip ip ip ip"
+                        data-artist="NCS" data-cover="music/gilangturip.png">
                         <img src="students/gilang.jpg">
                         <p>Gilang Ojol Baso Cabul</p>
                         <span>Absen 15</span>
@@ -1629,8 +1649,8 @@
                     <div class="student-card" data-name="Muhammad Nazlan Rizqi Ramadhan" data-role="Absen 16"
                         data-img="gallery/bekamkeber.webp" data-wa="6282312015593" data-ig="zlaan_9"
                         data-quote="lebih baik kita ngopi daripada kita minum intisari. Karena hidup ini perlu inspirasi, bukan halusinasi"
-                        data-desc="selau bernafas & makan" data-color="#15803D" data-music="music/bekmmm.ogg" data-title="Tetaplah Bersamaku"
-                        data-artist="Nobitasan" data-cover="music/bekmmm.jpg">
+                        data-desc="selau bernafas & makan" data-color="#15803D" data-music="music/bekmmm.ogg"
+                        data-title="Tetaplah Bersamaku" data-artist="Nobitasan" data-cover="music/bekmmm.jpg">
                         <img src="gallery/bekamkeber.webp">
                         <p>Bekam hengset</p>
                         <span>Absen 16</span>
@@ -1761,8 +1781,9 @@
                     <div class="student-card" data-name="Rizky Khoerrurizal" data-role="Absen 28"
                         data-img="students/rizky.jpg" data-ig="_rzkypngersa"
                         data-quote="di kehidupan kedua semoga kau tak terlalu keras kepala(nada puisi)"
-                        data-desc="orang rajin penyabar suka menabung" data-color="#1D4ED8" data-music="music/Ukuy.ogg" data-title="Untuk Perempuan Yang Sedang Dalam Pelukan"
-                        data-artist="Payung Teduh" data-cover="music/ukuy.jpg">
+                        data-desc="orang rajin penyabar suka menabung" data-color="#1D4ED8"
+                        data-music="music/ukuybumbu.ogg" data-title="Omoy Bumbu Kacang" data-artist="Ukuy"
+                        data-cover="gallery/ukuyolah.webp">
                         <img src="students/rizky.jpg">
                         <p>Ukuy Depo Roket Indo</p>
                         <span>Absen 28</span>
@@ -1781,7 +1802,8 @@
                     <div class="student-card" data-name="Sendi Hermansyah" data-role="Absen 30"
                         data-img="students/sendi.jpg" data-wa="6283865537575" data-ig="sendihermansyah55"
                         data-quote="lebih enak jilat kacang daripada cilok" data-desc="suka bacol pake bumbu kacang"
-                        data-color="#0F172A" data-music="music/omoy.mp3" data-title="Cilok Cilok" data-artist="Bumbu kacang" data-cover="music/omoy.png">
+                        data-color="#0F172A" data-music="music/omoy.mp3" data-title="Cilok Cilok"
+                        data-artist="Bumbu kacang" data-cover="music/omoy.png">
                         <img src="students/sendi.jpg">
                         <p>Omoy Bumbu Kacang Bacol</p>
                         <span>Absen 30</span>
@@ -1919,7 +1941,7 @@
     </script>
 
     <script type="module" defer>
-        
+
         const menuOverlay = document.getElementById("menuOverlay");
         const hamburger = document.querySelector(".hamburger");
         const closeMenu = document.querySelector(".close-menu");
@@ -2323,6 +2345,22 @@
         a.pause();
         a.currentTime = 0;
     </script>
+
+    <script>
+        const animatedEls = document.querySelectorAll('.up, .down, .left, .right');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        animatedEls.forEach(el => observer.observe(el));
+    </script>
+
 </body>
 
 </html>
